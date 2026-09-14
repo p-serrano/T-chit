@@ -13,6 +13,13 @@ const TCHIT_KEY_STORAGE =
 
 
 // ----------------------------------------
+// SUPABASE CLIENT
+// ----------------------------------------
+
+let supabaseClient = null;
+
+
+// ----------------------------------------
 // ACCESS KEY
 // ----------------------------------------
 
@@ -32,18 +39,19 @@ function setTchitAccessKey(key) {
         key
     );
 
+    createSupabaseClient();
+
 }
 
 
 // ----------------------------------------
-// SUPABASE CLIENT
+// INITIALIZE CLIENT
 // ----------------------------------------
 
-let tchitAccessKey =
-    getTchitAccessKey();
+function createSupabaseClient() {
 
-
-function initializeSupabaseClient() {
+    const key =
+        getTchitAccessKey();
 
     supabaseClient =
         window.supabase.createClient(
@@ -53,7 +61,7 @@ function initializeSupabaseClient() {
                 global: {
                     headers: {
                         "x-tchit-key":
-                            tchitAccessKey || ""
+                            key || ""
                     }
                 }
             }
@@ -62,39 +70,12 @@ function initializeSupabaseClient() {
     console.log(
         "T-chit: Supabase client initialized."
     );
+
 }
 
 
-initializeSupabaseClient();
+// ----------------------------------------
+// START
+// ----------------------------------------
 
-
-function setTchitAccessKey(key) {
-
-    tchitAccessKey = key;
-
-    localStorage.setItem(
-        TCHIT_KEY_STORAGE,
-        key
-    );
-
-    initializeSupabaseClient();
-}
-
-let supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY,
-        {
-            global: {
-                headers: {
-                    "x-tchit-key":
-                        tchitAccessKey || ""
-                }
-            }
-        }
-    );
-
-
-console.log(
-    "T-chit: Supabase client initialized."
-);
+createSupabaseClient();
