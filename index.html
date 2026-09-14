@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>T-chit</title>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/planner.css">
+    <link rel="stylesheet" href="css/attendance.css">
+    <link rel="stylesheet" href="css/assessment.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================================
+         SIDEBAR
+         ========================================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h1>T-chit</h1>
+            <span>teach it ✎</span>
+        </div>
+
+        <nav class="nav">
+
+            <a href="#" class="nav-item active" data-view="dashboard">
+                <span>🏠</span>
+                <span>Home</span>
+            </a>
+
+            <a href="#" class="nav-item" data-view="planner">
+                <span>📅</span>
+                <span>Planner</span>
+            </a>
+
+            <a href="#" class="nav-item" data-view="classes">
+                <span>🏫</span>
+                <span>Classes</span>
+            </a>
+
+            <a href="#" class="nav-item" data-view="teaching">
+                <span>📚</span>
+                <span>Teaching</span>
+            </a>
+
+            <a href="#" class="nav-item" data-view="assessment">
+                <span>📊</span>
+                <span>Assessment</span>
+            </a>
+
+            <a href="#" class="nav-item" data-view="notes">
+                <span>📝</span>
+                <span>Notes</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="nav-item" data-view="settings">
+                <span>⚙️</span>
+                <span>Settings</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN
+         ========================================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <h2 class="page-title" id="pageTitle">
+                    Home
+                </h2>
+
+                <p class="page-subtitle" id="pageSubtitle">
+                    Your teaching desk
+                </p>
+            </div>
+
+            <div
+                class="academic-year-badge"
+                id="academicYearBadge">
+                No academic year
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             VIEW CONTAINER
+             ===================================== -->
+
+        <section id="appView">
+
+            <!-- Dashboard injected by app.js -->
+
+        </section>
+
+    </main>
+
+</div>
+
+<div id="modalContainer"></div>
+
+
+<!-- =========================================
+     EXTERNAL LIBRARIES
+     ========================================= -->
+
+<!-- PDF.js -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- =====================================================
+     T-CHIT — CORE
+     ===================================================== -->
+
+<script src="js/core/utils.js"></script>
+<script src="js/core/storage.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/supabaseClient.js"></script>
+<script src="js/core/supabaseSync.js"></script>
+
+
+<!-- =====================================================
+     T-CHIT — MANAGERS
+     ===================================================== -->
+
+<script src="js/managers/academicYearManager.js"></script>
+<script src="js/managers/classManager.js"></script>
+<script src="js/managers/curriculumManager.js"></script>
+<script src="js/managers/studentManager.js"></script>
+<script src="js/managers/enrollmentManager.js"></script>
+<script src="js/managers/timetableManager.js"></script>
+<script src="js/managers/lessonManager.js"></script>
+<script src="js/managers/assessmentActivityManager.js"></script>
+<script src="js/managers/assessmentResultManager.js"></script>
+<script src="js/managers/attendanceManager.js"></script>
+
+
+<!-- =====================================================
+     T-CHIT — IMPORTERS
+     ===================================================== -->
+
+<script src="js/importers/excelImporter.js"></script>
+<script src="js/importers/pdfImporter.js"></script>
+<script src="js/importers/studentImporter.js"></script>
+
+
+<!-- =====================================================
+     UI — GENERAL
+     ===================================================== -->
+
+<script src="js/ui/dashboard.js"></script>
+<script src="js/ui/classesView.js"></script>
+<script src="js/ui/classDetailView.js"></script>
+<script src="js/ui/attendanceView.js"></script>
+<script src="js/ui/assessmentView.js"></script>
+<script src="js/ui/settingsView.js"></script>
+<script src="js/ui/studentImportView.js"></script>
+
+
+<!-- =====================================================
+     UI — PLANNER
+     ===================================================== -->
+
+<script src="js/ui/planner/plannerConfig.js"></script>
+<script src="js/ui/planner/plannerDateUtils.js"></script>
+<script src="js/ui/planner/timetableView.js"></script>
+<script src="js/ui/planner/coursePlanView.js"></script>
+<script src="js/ui/planner/coursePlanCopy.js"></script>
+<script src="js/ui/planner/lessonModal.js"></script>
+<script src="js/ui/planner/plannerView.js"></script>
+
+
+<!-- =====================================================
+     T-CHIT — APP
+     ===================================================== -->
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

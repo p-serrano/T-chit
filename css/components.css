@@ -1,0 +1,1669 @@
+/* =========================================================
+   T-CHIT — COMPONENTS
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   SIDEBAR BOTTOM
+   --------------------------------------------------------- */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+
+/* ---------------------------------------------------------
+   ACADEMIC YEAR BADGE
+   --------------------------------------------------------- */
+
+.academic-year-badge {
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    padding: 8px 13px;
+
+    border-radius: 6px;
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    color: var(--ink-soft);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* ---------------------------------------------------------
+   DASHBOARD
+   --------------------------------------------------------- */
+
+.dashboard {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 28px;
+}
+
+
+/* Welcome */
+
+.dashboard-welcome {
+
+    position: relative;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    padding: 24px 28px;
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+
+.dashboard-welcome::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: var(--pink-light);
+
+    opacity: 0.18;
+
+    right: -30px;
+    top: -40px;
+
+    transform: rotate(15deg);
+}
+
+
+.dashboard-welcome h3 {
+
+    font-family: var(--font-hand);
+
+    font-size: 31px;
+
+    color: var(--purple-dark);
+
+    margin-bottom: 3px;
+}
+
+
+.dashboard-welcome p {
+
+    color: var(--ink-soft);
+
+    font-size: 13px;
+}
+
+
+/* ---------------------------------------------------------
+   QUICK STATS
+   --------------------------------------------------------- */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+.stat-card {
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    padding: 18px;
+
+    box-shadow: var(--shadow);
+
+    position: relative;
+}
+
+
+.stat-card:nth-child(1) {
+    transform: rotate(-0.4deg);
+}
+
+
+.stat-card:nth-child(2) {
+    transform: rotate(0.25deg);
+}
+
+
+.stat-card:nth-child(3) {
+    transform: rotate(-0.2deg);
+}
+
+
+.stat-card:nth-child(4) {
+    transform: rotate(0.35deg);
+}
+
+
+.stat-label {
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.07em;
+
+    color: var(--ink-soft);
+
+    font-weight: 600;
+}
+
+
+.stat-value {
+
+    font-family: var(--font-mono);
+
+    font-size: 28px;
+
+    font-weight: 600;
+
+    color: var(--purple);
+
+    margin-top: 7px;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION HEADER
+   --------------------------------------------------------- */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+
+.section-title {
+
+    font-family: var(--font-hand);
+
+    font-size: 27px;
+
+    color: var(--ink);
+}
+
+
+.section-link {
+
+    font-size: 12px;
+
+    color: var(--purple);
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------------
+   TODAY'S CLASSES
+   --------------------------------------------------------- */
+
+.classes-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.class-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius-small);
+
+    padding: 13px 16px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.class-time {
+    min-width: 70px;
+
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.class-time span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--ink-muted);
+
+    font-size: 9px;
+    font-weight: 400;
+}
+
+
+.class-info {
+
+    flex: 1;
+}
+
+
+.class-name {
+
+    font-weight: 600;
+
+    font-size: 14px;
+}
+
+
+.class-subject {
+
+    font-size: 11px;
+
+    color: var(--ink-soft);
+
+    margin-top: 2px;
+}
+
+
+.class-action {
+
+    background: var(--purple);
+
+    color: white;
+
+    padding: 8px 13px;
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+}
+
+
+.class-action:hover {
+    background: var(--purple-dark);
+}
+
+
+.class-lesson {
+    margin-top: 5px;
+
+    color: var(--purple);
+
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.class-lesson-empty {
+    color: var(--ink-muted);
+
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY STATE
+   --------------------------------------------------------- */
+
+.empty-state {
+
+    background:
+        repeating-linear-gradient(
+            -3deg,
+            transparent,
+            transparent 7px,
+            rgba(112, 70, 168, 0.025) 8px
+        ),
+        var(--paper-light);
+
+    border: 1px dashed var(--line);
+
+    border-radius: var(--radius);
+
+    padding: 40px 20px;
+
+    text-align: center;
+}
+
+
+.empty-state-icon {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+    opacity: 0.7;
+}
+
+
+.empty-state h3 {
+
+    font-family: var(--font-hand);
+
+    font-size: 25px;
+
+    margin-bottom: 5px;
+}
+
+
+.empty-state p {
+
+    max-width: 420px;
+
+    margin: auto;
+
+    color: var(--ink-soft);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+.settings-view {
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+}
+
+
+/* ---------------------------------------------------------
+   ACADEMIC YEARS
+   --------------------------------------------------------- */
+
+.academic-years-list {
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+}
+
+
+/* ---------------------------------------------------------
+   ACADEMIC YEAR CARD
+   --------------------------------------------------------- */
+
+.academic-year-card {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 20px;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+
+}
+
+
+/* Small scrapbook variations */
+
+.academic-year-card:nth-child(odd) {
+
+    transform: rotate(-0.35deg);
+
+}
+
+.academic-year-card:nth-child(even) {
+
+    transform: rotate(0.3deg);
+
+}
+
+
+.academic-year-card:hover {
+
+    transform:
+        translateY(-2px)
+        rotate(-0.2deg);
+
+    box-shadow: var(--shadow-heavy);
+
+}
+
+
+/* ---------------------------------------------------------
+   ACTIVE YEAR
+   --------------------------------------------------------- */
+
+.academic-year-card.active {
+
+    border-left: 4px solid var(--purple);
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(112, 70, 168, 0.045),
+            transparent 45%
+        ),
+
+        var(--paper-light);
+
+}
+
+
+/* ---------------------------------------------------------
+   CARD INFO
+   --------------------------------------------------------- */
+
+.academic-year-card-info {
+
+    min-width: 0;
+
+}
+
+
+.academic-year-card-info h3 {
+
+    margin-top: 3px;
+
+    font-family: var(--font-hand);
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    color: var(--purple-dark);
+
+}
+
+
+/* ---------------------------------------------------------
+   CARD ACTIONS
+   --------------------------------------------------------- */
+
+.academic-year-card-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ---------------------------------------------------------
+   ACTIVE BADGE
+   --------------------------------------------------------- */
+
+.active-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 9px;
+
+    background: var(--yellow);
+
+    color: var(--ink);
+
+    border-radius: 4px;
+
+    font-family: var(--font-mono);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+
+    transform: rotate(-1deg);
+
+}
+
+
+/* Little dot */
+
+.active-badge::before {
+
+    content: "";
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--purple);
+
+}
+
+
+/* ---------------------------------------------------------
+   DELETE BUTTON
+   --------------------------------------------------------- */
+
+.academic-year-card
+.small-icon-button {
+
+    width: 28px;
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid transparent;
+
+    border-radius: 5px;
+
+    color: var(--ink-soft);
+
+    font-size: 18px;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+
+}
+
+
+.academic-year-card
+.small-icon-button:hover {
+
+    color: var(--red);
+
+    background: rgba(200, 109, 114, 0.08);
+
+    border-color: rgba(200, 109, 114, 0.25);
+
+}
+
+
+/* ---------------------------------------------------------
+   SETTINGS EMPTY STATE
+   --------------------------------------------------------- */
+
+.settings-view
+.empty-state {
+
+    padding-top: 52px;
+
+    padding-bottom: 52px;
+
+}
+
+
+/* Make the book icon feel like a little sticker */
+
+.settings-view
+.empty-state-icon {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 14px;
+
+    background: var(--pink-light);
+
+    border-radius: 8px;
+
+    box-shadow: var(--shadow);
+
+    transform: rotate(-3deg);
+
+}
+
+
+/* ---------------------------------------------------------
+   STUDENT IMPORT PREVIEW
+   --------------------------------------------------------- */
+
+.import-result-summary {
+
+    margin-top: 12px;
+
+    padding: 9px 11px;
+
+    background: var(--pink-light);
+
+    border-radius: 5px;
+
+    font-size: 11px;
+
+    color: var(--ink);
+
+}
+
+
+.import-result-summary strong {
+
+    font-family: var(--font-mono);
+
+    color: var(--purple-dark);
+
+}
+
+
+.import-name-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    margin-top: 10px;
+
+    max-height: 230px;
+
+    overflow-y: auto;
+
+}
+
+
+.import-name-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 7px 8px;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--paper-dark);
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+}
+
+
+.import-name-row:hover {
+
+    background: rgba(
+        112,
+        70,
+        168,
+        0.04
+    );
+
+}
+
+
+.import-name-row input {
+
+    accent-color: var(--purple);
+
+    flex-shrink: 0;
+
+}
+
+
+.file-drop-zone.drag-active {
+
+    border-color: var(--purple);
+
+    background:
+        rgba(
+            112,
+            70,
+            168,
+            0.06
+        );
+
+    transform: rotate(-0.2deg);
+
+}
+
+
+/* ---------------------------------------------------------
+   SETTINGS RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 650px) {
+
+    .academic-year-card {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+
+    }
+
+
+    .academic-year-card-actions {
+
+        width: 100%;
+
+        justify-content: space-between;
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 950px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .topbar {
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+
+    .academic-year-badge {
+
+        font-size: 9px;
+
+        padding: 6px 8px;
+    }
+
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 9px;
+    }
+
+
+    .stat-card {
+
+        padding: 14px;
+    }
+
+
+    .stat-value {
+
+        font-size: 23px;
+    }
+
+
+    .class-card {
+
+        gap: 10px;
+
+        padding: 11px;
+    }
+
+
+    .class-time {
+
+        width: 45px;
+
+        font-size: 10px;
+    }
+
+
+    .class-action {
+
+        padding: 7px 9px;
+
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================================
+   CLASSES
+   ========================================================= */
+
+.classes-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+.view-toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.view-label {
+
+    font-family: var(--font-mono);
+
+    font-size: 10px;
+
+    color: var(--ink-soft);
+
+    letter-spacing: 0.08em;
+}
+
+
+.academic-year-name {
+
+    font-family: var(--font-hand);
+
+    font-size: 28px;
+
+    color: var(--purple-dark);
+}
+
+
+/* ---------------------------------------------------------
+   CLASS GRID
+   --------------------------------------------------------- */
+
+.classes-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(230px, 1fr));
+
+    gap: 18px;
+}
+
+
+.class-tile {
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    box-shadow: var(--shadow);
+
+    position: relative;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.class-tile:hover {
+
+    transform: translateY(-3px) rotate(-0.2deg);
+
+    box-shadow: var(--shadow-heavy);
+}
+
+
+.class-tile:nth-child(odd) {
+    transform: rotate(-0.4deg);
+}
+
+
+.class-tile:nth-child(even) {
+    transform: rotate(0.35deg);
+}
+
+
+.class-tile:nth-child(odd):hover {
+    transform: translateY(-3px) rotate(-0.4deg);
+}
+
+
+.class-tile:nth-child(even):hover {
+    transform: translateY(-3px) rotate(0.35deg);
+}
+
+
+.class-tile-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+}
+
+
+.class-subject-tag {
+
+    background: var(--pink-light);
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    font-weight: 700;
+}
+
+
+.small-icon-button {
+
+    background: transparent;
+
+    color: var(--ink-soft);
+
+    font-size: 18px;
+
+    line-height: 1;
+}
+
+
+.class-tile h3 {
+
+    font-family: var(--font-hand);
+
+    font-size: 32px;
+
+    color: var(--purple-dark);
+
+    margin-bottom: 4px;
+}
+
+
+.class-student-count {
+
+    color: var(--ink-soft);
+
+    font-size: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.open-class-button {
+
+    width: 100%;
+
+    background: var(--purple);
+
+    color: white;
+
+    padding: 9px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   CLASS DETAIL
+   --------------------------------------------------------- */
+
+.class-detail {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+.back-button {
+
+    align-self: flex-start;
+
+    background: transparent;
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+.class-detail-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    padding: 22px 24px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.class-detail-kicker {
+
+    font-family: var(--font-mono);
+
+    font-size: 10px;
+
+    color: var(--ink-soft);
+
+    margin-bottom: 3px;
+}
+
+
+.class-detail-header h2 {
+
+    font-family: var(--font-hand);
+
+    font-size: 40px;
+
+    color: var(--purple-dark);
+}
+
+
+.class-detail-header p {
+
+    color: var(--ink-soft);
+
+    font-size: 12px;
+}
+
+
+.class-detail-actions {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.student-section {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.student-total {
+
+    background: var(--purple);
+
+    color: white;
+
+    min-width: 26px;
+    height: 26px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-family: var(--font-mono);
+
+    font-size: 10px;
+}
+
+
+/* ---------------------------------------------------------
+   STUDENT TABLE
+   --------------------------------------------------------- */
+
+.student-table {
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+}
+
+
+.student-row {
+
+    display: grid;
+
+    grid-template-columns: 30px 40px 1fr 40px;
+
+    align-items: center;
+
+    min-height: 48px;
+
+    padding: 0 16px;
+
+    border-bottom: 1px solid var(--paper-dark);
+}
+
+
+.student-row:last-child {
+    border-bottom: none;
+}
+
+
+.student-header {
+
+    min-height: 38px;
+
+    background: var(--paper-dark);
+
+    font-family: var(--font-mono);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    color: var(--ink-soft);
+}
+
+
+.student-number {
+
+    font-family: var(--font-mono);
+
+    font-size: 10px;
+
+    color: var(--ink-soft);
+}
+
+
+.student-name {
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+.student-edit {
+
+    background: transparent;
+
+    color: var(--purple);
+
+    font-size: 16px;
+}
+
+/* =========================================================
+   STUDENT SELECTION
+   ========================================================= */
+
+.student-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    flex-shrink: 0;
+}
+
+.student-select input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--purple);
+}
+
+
+/* ---------------------------------------------------------
+   SELECTION BAR
+   --------------------------------------------------------- */
+
+.student-selection-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 10px;
+    padding: 10px 12px;
+
+    border: 1px solid var(--line);
+    border-radius: 6px;
+
+    background: var(--paper-light);
+}
+
+
+.student-selection-bar.hidden {
+    display: none;
+}
+
+
+#studentSelectionCount {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+}
+
+
+/* ---------------------------------------------------------
+   DANGER BUTTON
+   --------------------------------------------------------- */
+
+.btn-danger {
+    border: 1px solid #c66;
+    background: transparent;
+    color: #a33;
+
+    padding: 7px 11px;
+
+    border-radius: 4px;
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+
+.btn-danger:hover {
+    background: #a33;
+    border-color: #a33;
+    color: white;
+}
+
+
+/* ---------------------------------------------------------
+   MODALS
+   --------------------------------------------------------- */
+
+#modalContainer {
+    position: relative;
+    z-index: 1000;
+}
+
+
+.modal-backdrop {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(40, 30, 45, 0.35);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+.modal {
+
+    width: min(500px, 100%);
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow-heavy);
+
+    overflow: hidden;
+
+    transform: rotate(-0.3deg);
+}
+
+
+.modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    padding: 22px 24px;
+
+    border-bottom: 1px solid var(--paper-dark);
+}
+
+
+.modal-kicker {
+
+    font-family: var(--font-mono);
+
+    font-size: 9px;
+
+    color: var(--purple);
+
+    letter-spacing: 0.08em;
+}
+
+
+.modal-header h3 {
+
+    font-family: var(--font-hand);
+
+    font-size: 31px;
+
+    color: var(--purple-dark);
+}
+
+
+.modal-close {
+
+    background: transparent;
+
+    color: var(--ink-soft);
+
+    font-size: 24px;
+}
+
+
+.modal-body {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    padding: 22px 24px;
+}
+
+
+.modal-body label {
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    margin-top: 7px;
+}
+
+
+.modal-footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    padding: 16px 24px;
+
+    background: var(--paper);
+
+    border-top: 1px solid var(--paper-dark);
+}
+
+
+/* ---------------------------------------------------------
+   IMPORT
+   --------------------------------------------------------- */
+
+.file-drop-zone {
+
+    border: 2px dashed var(--line);
+
+    border-radius: var(--radius);
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+
+.file-drop-zone:hover {
+
+    border-color: var(--purple-light);
+
+    background: rgba(112, 70, 168, 0.03);
+}
+
+
+.drop-icon {
+
+    font-size: 36px;
+
+    margin-bottom: 8px;
+}
+
+
+.file-drop-zone h4 {
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+
+.file-drop-zone p {
+
+    font-size: 11px;
+
+    color: var(--ink-soft);
+
+    margin-bottom: 15px;
+}
+
+
+.file-drop-zone input {
+    display: none;
+}
+
+
+.supported-files {
+
+    margin-top: 12px;
+
+    font-family: var(--font-mono);
+
+    font-size: 8px;
+
+    color: var(--ink-soft);
+
+    letter-spacing: 0.05em;
+}
+
+
+.import-preview {
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 6px;
+
+    background: var(--paper);
+}
+
+
+.import-preview.hidden {
+    display: none;
+}
+
+
+.import-file {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 12px;
+}
+
+
+.import-status {
+
+    margin-top: 8px;
+
+    font-size: 11px;
+
+    color: var(--ink-soft);
+
+    line-height: 1.5;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 650px) {
+
+    .view-toolbar,
+    .class-detail-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .class-detail-actions {
+
+        width: 100%;
+    }
+
+
+    .class-detail-actions button {
+
+        flex: 1;
+    }
+
+
+    .classes-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}

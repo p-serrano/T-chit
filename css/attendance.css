@@ -1,0 +1,561 @@
+/* =========================================================
+   T-CHIT — ATTENDANCE / CLASS SESSION
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   MODAL
+   --------------------------------------------------------- */
+
+#attendanceModal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: rgba(41, 37, 45, 0.48);
+}
+
+
+#attendanceModal .attendance-modal {
+    position: relative;
+
+    width: min(900px, calc(100vw - 40px));
+    max-height: 92vh;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.18)
+        ),
+        var(--paper);
+
+    box-shadow:
+        0 18px 50px rgba(30, 25, 35, 0.28),
+        4px 5px 0 rgba(91, 72, 105, 0.08);
+
+    transform: rotate(-0.15deg);
+}
+
+
+/* ---------------------------------------------------------
+   HEADER
+   --------------------------------------------------------- */
+
+#attendanceModal .modal-header {
+    flex: 0 0 auto;
+
+    padding: 22px 24px 18px;
+
+    border-bottom:
+        1px solid rgba(91, 72, 105, 0.18);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(151, 104, 166, 0.10),
+            rgba(240, 196, 79, 0.08),
+            transparent
+        );
+}
+
+
+#attendanceModal .modal-header h2 {
+    margin: 0;
+
+    color: var(--ink);
+
+    font-family: var(--font-hand);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+.attendance-session-meta {
+    margin-top: 8px;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+
+#attendanceModal .modal-close {
+    flex: 0 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   BODY
+   --------------------------------------------------------- */
+
+#attendanceModal .attendance-modal-body {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 22px 24px 28px;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION LABELS
+   --------------------------------------------------------- */
+
+.attendance-section-label {
+    margin-bottom: 7px;
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+
+.attendance-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+
+.attendance-student-count {
+    color: var(--ink-soft);
+
+    font-family: var(--font-ui);
+    font-size: 11px;
+}
+
+
+/* ---------------------------------------------------------
+   TODAY'S LESSON
+   --------------------------------------------------------- */
+
+.attendance-lesson {
+    margin-bottom: 25px;
+}
+
+
+.attendance-lesson-card {
+    position: relative;
+
+    padding: 14px 17px;
+
+    border-left: 4px solid var(--yellow);
+
+    background:
+        var(--paper-dark);
+
+    box-shadow:
+        2px 2px 0 rgba(91, 72, 105, 0.08);
+
+    transform: rotate(0.15deg);
+}
+
+
+.attendance-lesson-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+    right: 18px;
+
+    width: 42px;
+    height: 10px;
+
+    background: rgba(240, 196, 79, 0.55);
+
+    transform: rotate(2deg);
+}
+
+
+.attendance-lesson-title {
+    color: var(--ink);
+
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.attendance-lesson-notes {
+    margin-top: 7px;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-ui);
+    font-size: 13px;
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+}
+
+
+.attendance-no-lesson {
+    padding: 13px 16px;
+
+    border: 1px dashed rgba(91, 72, 105, 0.25);
+
+    color: var(--ink-muted);
+
+    background: rgba(91, 72, 105, 0.035);
+
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+}
+
+
+/* ---------------------------------------------------------
+   STUDENT LIST
+   --------------------------------------------------------- */
+
+.attendance-student-list {
+    display: flex;
+    flex-direction: column;
+
+    border-top:
+        1px solid rgba(91, 72, 105, 0.15);
+}
+
+
+.attendance-student {
+    display: grid;
+
+    grid-template-columns:
+        minmax(180px, 1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 18px;
+
+    min-height: 58px;
+
+    padding: 8px 0;
+
+    border-bottom:
+        1px solid rgba(91, 72, 105, 0.12);
+}
+
+
+.attendance-student-name {
+    min-width: 0;
+
+    color: var(--ink);
+
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS CONTROLS
+   --------------------------------------------------------- */
+
+.attendance-status-group {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    flex-wrap: wrap;
+}
+
+
+.attendance-status {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 72px;
+    min-height: 32px;
+
+    padding: 0 9px;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid rgba(91, 72, 105, 0.20);
+
+    background: rgba(255, 255, 255, 0.35);
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transition:
+        background 0.12s ease,
+        border-color 0.12s ease,
+        color 0.12s ease,
+        transform 0.12s ease;
+}
+
+
+.attendance-status:hover {
+    border-color: rgba(91, 72, 105, 0.38);
+
+    transform: translateY(-1px);
+}
+
+
+/*
+ * Keep the actual radio accessible.
+ * It is visually hidden, but remains keyboard accessible.
+ */
+
+.attendance-status input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    margin: -1px;
+    padding: 0;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.attendance-status span {
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   KEYBOARD FOCUS
+   --------------------------------------------------------- */
+
+.attendance-status:has(input:focus-visible) {
+    outline:
+        2px solid var(--purple);
+
+    outline-offset: 2px;
+}
+
+
+/* ---------------------------------------------------------
+   SELECTED STATES
+   --------------------------------------------------------- */
+
+.attendance-status.selected {
+    color: var(--ink);
+
+    border-color:
+        rgba(91, 72, 105, 0.48);
+
+    box-shadow:
+        inset 0 -2px 0 rgba(91, 72, 105, 0.12);
+}
+
+
+/* Present */
+
+.attendance-status-present.selected {
+    background:
+        rgba(150, 190, 150, 0.32);
+
+    border-color:
+        rgba(91, 130, 91, 0.48);
+}
+
+
+/* Absent */
+
+.attendance-status-absent.selected {
+    background:
+        rgba(190, 115, 130, 0.22);
+
+    border-color:
+        rgba(150, 75, 95, 0.48);
+}
+
+
+/* Justified */
+
+.attendance-status-justified.selected {
+    background:
+        rgba(240, 196, 79, 0.30);
+
+    border-color:
+        rgba(175, 135, 35, 0.50);
+}
+
+
+/* Late */
+
+.attendance-status-late.selected {
+    background:
+        rgba(151, 104, 166, 0.22);
+
+    border-color:
+        rgba(112, 72, 130, 0.50);
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY STATE
+   --------------------------------------------------------- */
+
+.attendance-empty {
+    padding: 28px 20px;
+
+    border:
+        1px dashed rgba(91, 72, 105, 0.25);
+
+    text-align: center;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-ui);
+    font-size: 13px;
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------- */
+
+#attendanceModal .attendance-modal-footer {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    padding: 15px 24px;
+
+    border-top:
+        1px solid rgba(91, 72, 105, 0.16);
+
+    background:
+        rgba(91, 72, 105, 0.035);
+}
+
+
+#attendanceModal .attendance-modal-footer .btn-primary {
+    min-width: 150px;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+
+    #attendanceModal {
+        padding: 10px;
+    }
+
+
+    #attendanceModal .attendance-modal {
+        width: calc(100vw - 20px);
+        max-height: 96vh;
+    }
+
+
+    #attendanceModal .attendance-modal-body {
+        padding: 18px 16px 22px;
+    }
+
+
+    #attendanceModal .modal-header {
+        padding: 18px 16px 15px;
+    }
+
+
+    .attendance-student {
+        grid-template-columns: 1fr;
+        gap: 8px;
+
+        padding: 13px 0;
+    }
+
+
+    .attendance-status-group {
+        width: 100%;
+    }
+
+
+    .attendance-status {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+
+    #attendanceModal .attendance-modal-footer {
+        padding: 12px 16px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .attendance-status {
+        min-height: 36px;
+
+        font-size: 7px;
+    }
+
+
+    #attendanceModal .attendance-modal-footer {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+
+    #attendanceModal .attendance-modal-footer button {
+        width: 100%;
+    }
+
+}

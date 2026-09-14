@@ -1,0 +1,916 @@
+/* =========================================================
+   T-CHIT — ASSESSMENT / ATTENDANCE
+   ========================================================= */
+
+
+.assessment-view {
+    width: 100%;
+}
+
+
+.assessment-header {
+    margin-bottom: 22px;
+}
+
+
+.assessment-header h3 {
+    margin: 0;
+
+    color: var(--ink);
+
+    font-family: var(--font-hand);
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+.assessment-header p {
+    margin: 6px 0 0;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-ui);
+    font-size: 11px;
+}
+
+
+/* ---------------------------------------------------------
+   SUMMARY
+   --------------------------------------------------------- */
+
+.assessment-summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-bottom: 32px;
+}
+
+
+.assessment-stat-card {
+    position: relative;
+    min-height: 90px;
+    padding: 16px;
+    box-sizing: border-box;
+
+    background: var(--paper);
+
+    border: 1px solid rgba(91, 72, 105, 0.13);
+    border-radius: var(--radius-small);
+
+    box-shadow:
+        2px 3px 0 rgba(91, 72, 105, 0.06);
+}
+
+
+.assessment-stat-card:nth-child(2) {
+    transform: rotate(-0.4deg);
+}
+
+
+.assessment-stat-card:nth-child(3) {
+    transform: rotate(0.3deg);
+}
+
+
+.assessment-stat-card:nth-child(4) {
+    transform: rotate(-0.2deg);
+}
+
+
+.assessment-stat-label {
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.10em;
+}
+
+
+.assessment-stat-value {
+    margin-top: 8px;
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   CLASS LIST
+   --------------------------------------------------------- */
+
+.attendance-class-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.attendance-class-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 18px;
+
+    border: 1px solid rgba(91, 72, 105, 0.13);
+    border-radius: var(--radius-small);
+
+    background: var(--paper);
+    color: var(--ink);
+
+    text-align: left;
+    cursor: pointer;
+
+    box-shadow:
+        2px 2px 0 rgba(91, 72, 105, 0.045);
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+
+.attendance-class-card:hover {
+    transform: translateX(2px);
+
+    box-shadow:
+        4px 3px 0 rgba(91, 72, 105, 0.08);
+}
+
+
+.attendance-class-info {
+    min-width: 0;
+}
+
+
+.attendance-class-name {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.attendance-class-meta {
+    margin-top: 5px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+
+    letter-spacing: 0.04em;
+}
+
+
+.attendance-class-rate {
+    flex: 0 0 auto;
+
+    margin-left: 20px;
+
+    text-align: right;
+}
+
+
+.attendance-rate-value {
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.attendance-rate-label {
+    margin-top: 2px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 7px;
+    letter-spacing: 0.08em;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY
+   --------------------------------------------------------- */
+
+.attendance-stats-empty {
+    margin-top: 10px;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 760px) {
+
+    .assessment-summary {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .assessment-summary {
+        grid-template-columns: 1fr;
+    }
+
+
+    .attendance-class-card {
+        padding: 13px 14px;
+    }
+
+}
+
+
+/* =========================================================
+   T-CHIT — CLASS ATTENDANCE DETAIL
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   BACK
+   --------------------------------------------------------- */
+
+.assessment-back-button {
+
+    margin-bottom: 14px;
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+}
+
+
+.assessment-back-button:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------------------------------------------------------
+   CLASS HEADER
+   --------------------------------------------------------- */
+
+.assessment-class-heading {
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+
+.assessment-class-title {
+    min-width: 0;
+}
+
+
+.assessment-class-heading h3 {
+
+    margin: 0;
+
+    color: var(--ink);
+
+    font-family: var(--font-hand);
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+.assessment-class-heading p {
+
+    margin: 5px 0 0;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-ui);
+    font-size: 11px;
+}
+
+
+/* ---------------------------------------------------------
+   CLASS OVERVIEW
+   --------------------------------------------------------- */
+
+.assessment-class-overview {
+
+    display: flex;
+
+    gap: 20px;
+
+    flex-shrink: 0;
+}
+
+
+.assessment-class-overview > div {
+
+    min-width: 58px;
+
+    text-align: right;
+}
+
+
+.assessment-class-overview strong {
+
+    display: block;
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.assessment-class-overview span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 7px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ---------------------------------------------------------
+   SECTION COUNT
+   --------------------------------------------------------- */
+
+.assessment-section-count {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 22px;
+    height: 22px;
+
+    padding: 0 6px;
+
+    box-sizing: border-box;
+
+    background: var(--paper-dark);
+
+    border-radius: var(--radius-small);
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   STUDENT LIST
+   --------------------------------------------------------- */
+
+.student-attendance-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+/* ---------------------------------------------------------
+   STUDENT CARD
+   --------------------------------------------------------- */
+
+.student-attendance-card {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 14px 18px;
+
+    background: var(--paper);
+
+    border: 1px solid
+        rgba(91, 72, 105, 0.13);
+
+    border-radius: var(--radius-small);
+
+    box-shadow:
+        2px 2px 0
+        rgba(91, 72, 105, 0.045);
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+
+.student-attendance-card:hover {
+
+    transform: translateX(2px);
+
+    box-shadow:
+        4px 3px 0
+        rgba(91, 72, 105, 0.07);
+}
+
+
+.student-attendance-main {
+    min-width: 0;
+}
+
+
+.student-attendance-name {
+
+    color: var(--ink);
+
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS BREAKDOWN
+   --------------------------------------------------------- */
+
+.student-attendance-meta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 4px 10px;
+
+    margin-top: 5px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 7px;
+
+    letter-spacing: 0.04em;
+}
+
+
+.student-attendance-meta span {
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   ATTENDANCE FLAG
+   --------------------------------------------------------- */
+
+.student-attendance-flag {
+
+    display: inline-block;
+
+    margin-top: 7px;
+
+    padding: 5px 9px;
+
+    border-left:
+        3px solid var(--yellow);
+
+    background:
+        rgba(240, 196, 79, 0.16);
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    line-height: 1.3;
+}
+
+
+.student-attendance-flag-risk {
+
+    border-left-color:
+        rgba(175, 82, 104, 0.70);
+
+    background:
+        rgba(175, 82, 104, 0.10);
+}
+
+
+/* ---------------------------------------------------------
+   STUDENT RATE
+   --------------------------------------------------------- */
+
+.student-attendance-rate {
+
+    flex: 0 0 auto;
+
+    min-width: 54px;
+
+    text-align: right;
+}
+
+
+.student-rate-value {
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+.student-rate-label {
+
+    margin-top: 2px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 7px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 650px) {
+
+    .assessment-class-heading {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+
+    .assessment-class-overview {
+
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+
+    .assessment-class-overview > div {
+        text-align: left;
+    }
+
+
+    .student-attendance-card {
+        padding: 13px 14px;
+    }
+
+
+    .student-attendance-meta {
+
+        line-height: 1.6;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .assessment-class-overview {
+        gap: 10px;
+    }
+
+
+    .assessment-class-overview > div {
+        min-width: 0;
+    }
+
+
+    .assessment-class-overview strong {
+        font-size: 16px;
+    }
+
+
+    .student-attendance-card {
+        align-items: flex-start;
+    }
+
+
+    .student-attendance-rate {
+        min-width: 48px;
+    }
+
+}
+
+
+/* =========================================================
+   T-CHIT — STUDENT ATTENDANCE DETAIL
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   STUDENT HEADER
+   --------------------------------------------------------- */
+
+.assessment-student-heading {
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+
+.assessment-student-title {
+    min-width: 0;
+}
+
+
+.assessment-student-title h3 {
+
+    margin: 0;
+
+    color: var(--ink);
+
+    font-family: var(--font-hand);
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+.assessment-student-title p {
+
+    margin: 5px 0 0;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-ui);
+    font-size: 11px;
+}
+
+
+.assessment-student-rate {
+
+    flex: 0 0 auto;
+
+    text-align: right;
+}
+
+
+.assessment-student-rate strong {
+
+    display: block;
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+.assessment-student-rate span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 7px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ---------------------------------------------------------
+   HISTORY
+   --------------------------------------------------------- */
+
+.student-attendance-history {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.student-attendance-record {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 16px;
+
+    background: var(--paper);
+
+    border: 1px solid
+        rgba(91, 72, 105, 0.13);
+
+    border-radius: var(--radius-small);
+
+    box-shadow:
+        2px 2px 0
+        rgba(91, 72, 105, 0.04);
+}
+
+
+.student-attendance-record-date {
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+}
+
+
+.student-attendance-record-status {
+
+    padding: 4px 8px;
+
+    border-radius: 3px;
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS VARIANTS
+   --------------------------------------------------------- */
+
+.student-attendance-record-present
+.student-attendance-record-status {
+
+    background:
+        rgba(150, 190, 150, 0.20);
+
+    color:
+        var(--ink-soft);
+}
+
+
+.student-attendance-record-absent
+.student-attendance-record-status {
+
+    background:
+        rgba(190, 115, 130, 0.14);
+
+    color:
+        var(--ink-soft);
+}
+
+
+.student-attendance-record-justified
+.student-attendance-record-status {
+
+    background:
+        rgba(240, 196, 79, 0.22);
+
+    color:
+        var(--ink-soft);
+}
+
+
+.student-attendance-record-late
+.student-attendance-record-status {
+
+    background:
+        rgba(151, 104, 166, 0.16);
+
+    color:
+        var(--ink-soft);
+}
+
+
+/* ---------------------------------------------------------
+   CLICKABLE STUDENT CARDS
+   --------------------------------------------------------- */
+
+.student-attendance-card {
+
+    position: relative;
+
+    padding-right: 48px;
+}
+
+
+.student-attendance-arrow {
+
+    position: absolute;
+
+    right: 17px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 13px;
+
+    transition:
+        transform 0.12s ease,
+        color 0.12s ease;
+}
+
+
+.student-attendance-card:hover
+.student-attendance-arrow {
+
+    transform:
+        translate(2px, -50%);
+
+    color: var(--purple);
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 650px) {
+
+    .assessment-student-heading {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+    }
+
+
+    .assessment-student-rate {
+
+        text-align: left;
+    }
+
+
+    .assessment-student-rate strong {
+        font-size: 21px;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .student-attendance-record {
+        padding: 11px 13px;
+    }
+
+}

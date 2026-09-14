@@ -1,0 +1,30 @@
+[
+  {
+    "id": "cv_eso_llengua_estrangera_1cicle",
+    "stage": "ESO",
+    "course": "1r-2n ESO (1r cicle)",
+    "subject": "Llengua Estrangera",
+    "file": "cv_eso_llengua_estrangera_1cicle.json"
+  },
+  {
+    "id": "cv_eso_llengua_estrangera_2cicle",
+    "stage": "ESO",
+    "course": "3r-4t ESO (2n cicle)",
+    "subject": "Llengua Estrangera",
+    "file": "cv_eso_llengua_estrangera_2cicle.json"
+  },
+  {
+    "id": "cv_batx_llengua_estrangera_1",
+    "stage": "Batxillerat",
+    "course": "1r Batxillerat (Llengua Estrangera I)",
+    "subject": "Llengua Estrangera",
+    "file": "cv_batx_llengua_estrangera_1.json"
+  },
+  {
+    "id": "cv_batx_llengua_estrangera_2",
+    "stage": "Batxillerat",
+    "course": "2n Batxillerat (Llengua Estrangera II)",
+    "subject": "Llengua Estrangera",
+    "file": "cv_batx_llengua_estrangera_2.json"
+  }
+]

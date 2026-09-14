@@ -1,0 +1,54 @@
+Listado de rutas de carpetas para el volumen OS
+El número de serie del volumen es 0000004A EC77:A371
+C:.
+¦   architecture.txt
+¦   index.html
+¦   
++---css
+¦       assessment.css
+¦       attendance.css
+¦       base.css
+¦       components.css
+¦       layout.css
+¦       planner.css
+¦       
++---js
+    ¦   app.js
+    ¦   
+    +---core
+    ¦       state.js
+    ¦       storage.js
+    ¦       utils.js
+    ¦       
+    +---importers
+    ¦       excelImporter.js
+    ¦       pdfImporter.js
+    ¦       studentImporter.js
+    ¦       
+    +---managers
+    ¦       academicYearManager.js
+    ¦       attendanceManager.js
+    ¦       classManager.js
+    ¦       enrollmentManager.js
+    ¦       lessonManager.js
+    ¦       studentManager.js
+    ¦       timetableManager.js
+    ¦       
+    +---ui
+        ¦   assessmentView.js
+        ¦   attendanceView.js
+        ¦   classDetailView.js
+        ¦   classesView.js
+        ¦   coursePlanCopy.js
+        ¦   dashboard.js
+        ¦   settingsView.js
+        ¦   studentImportView.js
+        ¦   
+        +---planner
+                coursePlanView.js
+                lessonModal.js
+                plannerConfig.js
+                plannerDateUtils.js
+                plannerView.js
+                timetableView.js
+                

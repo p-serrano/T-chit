@@ -1,0 +1,281 @@
+/* =========================================================
+   T-CHIT — LAYOUT
+   ========================================================= */
+
+.app {
+
+    display: flex;
+
+    min-height: 100vh;
+
+    width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR
+   --------------------------------------------------------- */
+
+.sidebar {
+
+    width: 240px;
+
+    min-height: 100vh;
+
+    background: var(--paper-light);
+
+    border-right: 1px solid var(--line);
+
+    padding: 24px 16px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    position: sticky;
+
+    top: 0;
+}
+
+
+/* Logo */
+
+.logo {
+
+    padding: 8px 12px 28px;
+
+    text-align: center;
+}
+
+
+.logo h1 {
+
+    font-size: 34px;
+
+    color: var(--purple);
+
+    line-height: 1;
+}
+
+
+.logo span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: var(--font-hand);
+
+    font-size: 20px;
+
+    color: var(--ink-soft);
+
+    transform: rotate(-2deg);
+}
+
+
+/* Navigation */
+
+.nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.nav-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px 13px;
+
+    border-radius: var(--radius-small);
+
+    color: var(--ink-soft);
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.nav-item:hover {
+
+    background: var(--paper-dark);
+
+    color: var(--ink);
+
+    transform: translateX(2px);
+}
+
+
+.nav-item.active {
+
+    background: rgba(112, 70, 168, 0.12);
+
+    color: var(--purple);
+
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN
+   --------------------------------------------------------- */
+
+.main {
+
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 28px 34px;
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------------
+   TOP BAR
+   --------------------------------------------------------- */
+
+.topbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+
+.page-title {
+
+    font-size: 28px;
+
+    color: var(--ink);
+}
+
+
+.page-subtitle {
+
+    margin-top: 4px;
+
+    color: var(--ink-soft);
+
+    font-size: 13px;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+
+        width: 70px;
+
+        padding: 16px 8px;
+    }
+
+
+    .logo span,
+    .nav-item span {
+        display: none;
+    }
+
+
+    .logo h1 {
+        font-size: 25px;
+    }
+
+
+    .nav-item {
+
+        justify-content: center;
+
+        padding: 12px 8px;
+    }
+
+
+    .main {
+
+        padding: 20px 16px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .sidebar {
+
+        position: fixed;
+
+        z-index: 100;
+
+        bottom: 0;
+
+        top: auto;
+
+        left: 0;
+
+        width: 100%;
+
+        height: 64px;
+
+        min-height: 64px;
+
+        border-right: none;
+
+        border-top: 1px solid var(--line);
+
+        padding: 6px;
+    }
+
+
+    .logo {
+        display: none;
+    }
+
+
+    .nav {
+
+        flex-direction: row;
+
+        justify-content: space-around;
+
+        width: 100%;
+    }
+
+
+    .nav-item {
+
+        flex: 1;
+
+        max-width: 70px;
+    }
+
+
+    .main {
+
+        padding-bottom: 85px;
+    }
+}
