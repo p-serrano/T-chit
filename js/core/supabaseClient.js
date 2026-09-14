@@ -39,10 +39,48 @@ function setTchitAccessKey(key) {
 // SUPABASE CLIENT
 // ----------------------------------------
 
-const tchitAccessKey =
+let tchitAccessKey =
     getTchitAccessKey();
 
-const supabaseClient =
+
+function initializeSupabaseClient() {
+
+    supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY,
+            {
+                global: {
+                    headers: {
+                        "x-tchit-key":
+                            tchitAccessKey || ""
+                    }
+                }
+            }
+        );
+
+    console.log(
+        "T-chit: Supabase client initialized."
+    );
+}
+
+
+initializeSupabaseClient();
+
+
+function setTchitAccessKey(key) {
+
+    tchitAccessKey = key;
+
+    localStorage.setItem(
+        TCHIT_KEY_STORAGE,
+        key
+    );
+
+    initializeSupabaseClient();
+}
+
+let supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY,
