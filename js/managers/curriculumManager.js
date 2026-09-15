@@ -210,6 +210,173 @@ const CurriculumManager = {
 
     },
 
+        // ----------------------------------------
+    // OPERATIONAL DESCRIPTORS
+    // FOR SPECIFIC COMPETENCE
+    // ----------------------------------------
+
+    getOperationalDescriptorsForSpecificCompetence(
+        curriculumId,
+        specificCompetenceId
+    ) {
+
+        const specificCompetences =
+            this.getSpecificCompetences(
+                curriculumId
+            );
+
+        const specificCompetence =
+            specificCompetences.find(
+                item =>
+                    item.id ===
+                    specificCompetenceId
+            );
+
+        if (!specificCompetence) {
+            return [];
+        }
+
+        const descriptors = [];
+
+
+        // ----------------------------------------
+        // PRIMARY SOURCE:
+        // Specific Competence
+        // ----------------------------------------
+
+        if (
+            Array.isArray(
+                specificCompetence.operationalDescriptors
+            )
+        ) {
+
+            specificCompetence
+                .operationalDescriptors
+                .forEach(
+                    descriptor => {
+
+                        if (
+                            descriptor &&
+                            !descriptors.includes(
+                                descriptor
+                            )
+                        ) {
+
+                            descriptors.push(
+                                descriptor
+                            );
+
+                        }
+
+                    }
+                );
+
+        }
+
+
+        // ----------------------------------------
+        // BACKWARDS COMPATIBILITY:
+        // Criteria
+        // ----------------------------------------
+
+        (
+            specificCompetence.criteria || []
+        ).forEach(
+            criterion => {
+
+                if (
+                    !Array.isArray(
+                        criterion.operationalDescriptors
+                    )
+                ) {
+                    return;
+                }
+
+                criterion
+                    .operationalDescriptors
+                    .forEach(
+                        descriptor => {
+
+                            if (
+                                descriptor &&
+                                !descriptors.includes(
+                                    descriptor
+                                )
+                            ) {
+
+                                descriptors.push(
+                                    descriptor
+                                );
+
+                            }
+
+                        }
+                    );
+
+            }
+        );
+
+        return descriptors;
+
+    },
+
+        // ----------------------------------------
+    // OPERATIONAL DESCRIPTORS
+    // FOR CRITERION
+    // ----------------------------------------
+
+    getOperationalDescriptorsForCriterion(
+        curriculumId,
+        criterionId
+    ) {
+
+        const criteria =
+            this.getCriteria(
+                curriculumId
+            );
+
+        const criterion =
+            criteria.find(
+                item =>
+                    item.id ===
+                    criterionId
+            );
+
+        if (!criterion) {
+            return [];
+        }
+
+
+        // ----------------------------------------
+        // DIRECT CRITERION DESCRIPTORS
+        // ----------------------------------------
+
+        if (
+            Array.isArray(
+                criterion.operationalDescriptors
+            ) &&
+            criterion.operationalDescriptors.length
+        ) {
+
+            return [
+                ...criterion.operationalDescriptors
+            ];
+
+        }
+
+
+        // ----------------------------------------
+        // INHERIT FROM SPECIFIC COMPETENCE
+        // ----------------------------------------
+
+        return this
+            .getOperationalDescriptorsForSpecificCompetence(
+                curriculumId,
+                criterion.specificCompetenceId
+            );
+
+    },
+
     // ----------------------------------------
     // EVALUATION CRITERIA
     // ----------------------------------------
@@ -312,54 +479,117 @@ const CurriculumManager = {
     // OPERATIONAL DESCRIPTORS
     // ----------------------------------------
     //
-    // These will later allow T-chit to derive
-    // Key Competences automatically from the
-    // selected Evaluation Criteria.
+    // Operational descriptors are linked to
+    // Specific Competences.
     //
-    // We deliberately DO NOT invent descriptors
-    // if the curriculum data does not contain
-    // them.
+    // Criteria inherit the descriptors from
+    // their parent Specific Competence.
+    //
+    // For backwards compatibility, descriptors
+    // stored directly inside criteria are also
+    // supported.
     // ----------------------------------------
 
     getOperationalDescriptors(
         curriculumId
     ) {
 
-        const criteria =
-            this.getCriteria(curriculumId);
+        const curriculum =
+            this.getById(curriculumId);
+
+        if (!curriculum) {
+            return [];
+        }
 
         const descriptors = [];
 
-        criteria.forEach(criterion => {
+        (
+            curriculum.specificCompetences || []
+        ).forEach(
+            specificCompetence => {
 
-            if (
-                !Array.isArray(
-                    criterion.operationalDescriptors
-                )
-            ) {
-                return;
-            }
+                // ----------------------------------------
+                // PRIMARY SOURCE:
+                // Specific Competence
+                // ----------------------------------------
 
-            criterion.operationalDescriptors
-                .forEach(descriptor => {
+                if (
+                    Array.isArray(
+                        specificCompetence.operationalDescriptors
+                    )
+                ) {
 
-                    if (
-                        descriptor &&
-                        !descriptors.includes(
-                            descriptor
-                        )
-                    ) {
-                        descriptors.push(
-                            descriptor
+                    specificCompetence
+                        .operationalDescriptors
+                        .forEach(
+                            descriptor => {
+
+                                if (
+                                    descriptor &&
+                                    !descriptors.includes(
+                                        descriptor
+                                    )
+                                ) {
+
+                                    descriptors.push(
+                                        descriptor
+                                    );
+
+                                }
+
+                            }
                         );
+
+                }
+
+
+                // ----------------------------------------
+                // BACKWARDS COMPATIBILITY:
+                // Criteria
+                // ----------------------------------------
+
+                (
+                    specificCompetence.criteria || []
+                ).forEach(
+                    criterion => {
+
+                        if (
+                            !Array.isArray(
+                                criterion.operationalDescriptors
+                            )
+                        ) {
+                            return;
+                        }
+
+                        criterion
+                            .operationalDescriptors
+                            .forEach(
+                                descriptor => {
+
+                                    if (
+                                        descriptor &&
+                                        !descriptors.includes(
+                                            descriptor
+                                        )
+                                    ) {
+
+                                        descriptors.push(
+                                            descriptor
+                                        );
+
+                                    }
+
+                                }
+                            );
+
                     }
+                );
 
-                });
-
-        });
+            }
+        );
 
         return descriptors;
 
-    }
+    },
 
 };
