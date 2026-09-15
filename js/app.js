@@ -2,6 +2,34 @@
 // T-CHIT — APP
 // =========================================================
 
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then(() => {
+
+                    console.log(
+                        "T-chit: service worker registered."
+                    );
+
+                })
+                .catch(error => {
+
+                    console.error(
+                        "T-chit: service worker registration failed.",
+                        error
+                    );
+
+                });
+
+        }
+    );
+
+}
 
 // ---------------------------------------------------------
 // INIT
