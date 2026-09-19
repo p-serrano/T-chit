@@ -1,112 +1,145 @@
+// =========================================================
+// T-CHIT — ASSESSMENT RESULT MANAGER
+// =========================================================
+
+
 const AssessmentResultManager = {
 
     // ----------------------------------------
-    // Create
+    // CREATE / UPDATE
     // ----------------------------------------
 
     create({
         assessmentActivityId,
         studentId,
-        criterionId,
         value
     }) {
 
         if (!assessmentActivityId) {
+
             throw new Error(
                 "Assessment activity is required."
             );
+
         }
 
+
         if (!studentId) {
+
             throw new Error(
                 "Student is required."
             );
+
         }
 
-        if (!criterionId) {
-            throw new Error(
-                "Assessment criterion is required."
-            );
-        }
 
+        // ----------------------------------------
+        // CHECK ACTIVITY
+        // ----------------------------------------
 
         const activity =
-            AppState.data.assessmentActivities.find(
-                item =>
-                    item.id === assessmentActivityId
-            );
+            AppState
+                .data
+                .assessmentActivities
+                .find(
+                    item =>
+                        item.id ===
+                        assessmentActivityId
+                );
+
 
         if (!activity) {
+
             throw new Error(
                 "Assessment activity not found."
             );
+
         }
 
 
+        // ----------------------------------------
+        // CHECK STUDENT
+        // ----------------------------------------
+
         const student =
-            AppState.data.students.find(
-                item =>
-                    item.id === studentId
-            );
+            AppState
+                .data
+                .students
+                .find(
+                    item =>
+                        item.id ===
+                        studentId
+                );
+
 
         if (!student) {
+
             throw new Error(
                 "Student not found."
             );
+
         }
 
 
-        const criterionBelongsToActivity =
-            activity.criteria.some(
-                criterion =>
-                    criterion.criterionId === criterionId
-            );
-
-        if (!criterionBelongsToActivity) {
-            throw new Error(
-                "Criterion is not linked to this assessment activity."
-            );
-        }
-
+        // ----------------------------------------
+        // NORMALIZE VALUE
+        // ----------------------------------------
 
         const normalizedValue =
             Number(value);
 
+
         if (
-            !Number.isFinite(normalizedValue) ||
+            !Number.isFinite(
+                normalizedValue
+            ) ||
             normalizedValue < 0 ||
             normalizedValue > 10
         ) {
+
             throw new Error(
                 "Assessment value must be between 0 and 10."
             );
+
         }
 
 
-        // There should only be one result
-        // per student / activity / criterion.
+        // ----------------------------------------
+        // ONE RESULT PER STUDENT / ACTIVITY
+        // ----------------------------------------
 
         const existing =
-            this.getByStudentActivityCriterion(
+            this.getByStudentActivity(
                 studentId,
-                assessmentActivityId,
-                criterionId
+                assessmentActivityId
             );
 
 
-        if (existing) {
+        if (existing.length) {
 
-            existing.value =
+            const result =
+                existing[0];
+
+
+            result.value =
                 normalizedValue;
 
-            existing.updatedAt =
+
+            result.updatedAt =
                 new Date().toISOString();
+
 
             AppState.save();
 
-            return existing;
+
+            return result;
+
         }
 
+
+        // ----------------------------------------
+        // CREATE RESULT
+        // ----------------------------------------
 
         const now =
             new Date().toISOString();
@@ -114,80 +147,100 @@ const AssessmentResultManager = {
 
         const result = {
 
-            id: Utils.createId(
-                "assessmentResult"
-            ),
+            id:
+                Utils.createId(
+                    "assessmentResult"
+                ),
 
             assessmentActivityId,
 
             studentId,
 
-            criterionId,
-
             value:
                 normalizedValue,
 
-            createdAt: now,
-            updatedAt: now
+            createdAt:
+                now,
+
+            updatedAt:
+                now
+
         };
 
 
-        AppState.data.assessmentResults
+        AppState
+            .data
+            .assessmentResults
             .push(result);
+
 
         AppState.save();
 
+
         return result;
+
     },
 
 
     // ----------------------------------------
-    // Get by ID
+    // GET BY ID
     // ----------------------------------------
 
     getById(id) {
 
-        return AppState.data.assessmentResults
+        return AppState
+            .data
+            .assessmentResults
             .find(
                 result =>
                     result.id === id
             ) || null;
+
     },
 
 
     // ----------------------------------------
-    // Get by activity
+    // GET BY ACTIVITY
     // ----------------------------------------
 
     getByActivityId(
         assessmentActivityId
     ) {
 
-        return AppState.data.assessmentResults
+        return AppState
+            .data
+            .assessmentResults
             .filter(
                 result =>
                     result.assessmentActivityId ===
                     assessmentActivityId
             );
+
     },
 
 
     // ----------------------------------------
-    // Get by student
+    // GET BY STUDENT
     // ----------------------------------------
 
-    getByStudentId(studentId) {
+    getByStudentId(
+        studentId
+    ) {
 
-        return AppState.data.assessmentResults
+        return AppState
+            .data
+            .assessmentResults
             .filter(
                 result =>
-                    result.studentId === studentId
+                    result.studentId ===
+                    studentId
             );
+
     },
 
 
     // ----------------------------------------
-    // Get by student + activity
+    // GET BY STUDENT + ACTIVITY
     // ----------------------------------------
 
     getByStudentActivity(
@@ -195,81 +248,102 @@ const AssessmentResultManager = {
         assessmentActivityId
     ) {
 
-        return AppState.data.assessmentResults
+        return AppState
+            .data
+            .assessmentResults
             .filter(
                 result =>
-                    result.studentId === studentId &&
+                    result.studentId ===
+                    studentId &&
                     result.assessmentActivityId ===
-                        assessmentActivityId
+                    assessmentActivityId
             );
+
     },
 
 
     // ----------------------------------------
-    // Get exact result
+    // GET EXACT RESULT
     // ----------------------------------------
 
-    getByStudentActivityCriterion(
+    getByStudentActivityResult(
         studentId,
-        assessmentActivityId,
-        criterionId
+        assessmentActivityId
     ) {
 
-        return AppState.data.assessmentResults
+        return AppState
+            .data
+            .assessmentResults
             .find(
                 result =>
-                    result.studentId === studentId &&
+                    result.studentId ===
+                    studentId &&
                     result.assessmentActivityId ===
-                        assessmentActivityId &&
-                    result.criterionId === criterionId
+                    assessmentActivityId
             ) || null;
+
     },
 
 
     // ----------------------------------------
-    // Update
+    // UPDATE
     // ----------------------------------------
 
-    update(id, value) {
+    update(
+        id,
+        value
+    ) {
 
         const result =
             this.getById(id);
 
+
         if (!result) {
+
             throw new Error(
                 "Assessment result not found."
             );
+
         }
 
 
         const normalizedValue =
             Number(value);
 
+
         if (
-            !Number.isFinite(normalizedValue) ||
+            !Number.isFinite(
+                normalizedValue
+            ) ||
             normalizedValue < 0 ||
             normalizedValue > 10
         ) {
+
             throw new Error(
                 "Assessment value must be between 0 and 10."
             );
+
         }
 
 
         result.value =
             normalizedValue;
 
+
         result.updatedAt =
             new Date().toISOString();
 
+
         AppState.save();
 
+
         return result;
+
     },
 
 
     // ----------------------------------------
-    // Delete
+    // DELETE
     // ----------------------------------------
 
     delete(id) {
@@ -277,13 +351,16 @@ const AssessmentResultManager = {
         const result =
             this.getById(id);
 
+
         if (!result) {
             return;
         }
 
 
         AppState.data.assessmentResults =
-            AppState.data.assessmentResults
+            AppState
+                .data
+                .assessmentResults
                 .filter(
                     item =>
                         item.id !== id
@@ -291,11 +368,12 @@ const AssessmentResultManager = {
 
 
         AppState.save();
+
     },
 
 
     // ----------------------------------------
-    // Delete all results for an activity
+    // DELETE ALL RESULTS FOR ACTIVITY
     // ----------------------------------------
 
     deleteByActivityId(
@@ -303,7 +381,9 @@ const AssessmentResultManager = {
     ) {
 
         AppState.data.assessmentResults =
-            AppState.data.assessmentResults
+            AppState
+                .data
+                .assessmentResults
                 .filter(
                     result =>
                         result.assessmentActivityId !==
@@ -312,24 +392,31 @@ const AssessmentResultManager = {
 
 
         AppState.save();
+
     },
 
 
     // ----------------------------------------
-    // Delete all results for a student
+    // DELETE ALL RESULTS FOR STUDENT
     // ----------------------------------------
 
-    deleteByStudentId(studentId) {
+    deleteByStudentId(
+        studentId
+    ) {
 
         AppState.data.assessmentResults =
-            AppState.data.assessmentResults
+            AppState
+                .data
+                .assessmentResults
                 .filter(
                     result =>
-                        result.studentId !== studentId
+                        result.studentId !==
+                        studentId
                 );
 
 
         AppState.save();
+
     }
 
 };

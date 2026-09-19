@@ -31,6 +31,9 @@ function openAddLessonModal(
         return;
     }
 
+    window.currentAssessmentLessonClassId =
+        classItem.id;
+
 
     const modal =
         document.getElementById(
@@ -155,42 +158,111 @@ function openAddLessonModal(
                                 autocomplete="off">
 
 
+                            <!-- =================================
+                                 INSTRUMENT
+                                 ================================= -->
+
+                            <label>
+                                Assessment instrument
+                            </label>
+
+                            ${renderAssessmentInstrumentSelect()}
+
+
+                            <!-- =================================
+                                 SPECIFIC COMPETENCES
+                                 ================================= -->
+
                             <div
                                 class="lesson-assessment-group">
 
                                 <div
                                     class="lesson-assessment-label">
 
-                                    Assessment instrument
+                                    Specific competences
 
                                 </div>
 
 
                                 <div
+                                    class="lesson-assessment-help">
+
+                                    Select the specific competences
+                                    assessed by this activity and
+                                    assign the percentage of the
+                                    activity that contributes to
+                                    each competence.
+
+                                </div>
+
+
+                                <div
+                                    id="lessonSpecificCompetences"
                                     class="lesson-assessment-options">
 
-                                    ${renderInstrumentCheckboxes()}
+                                    ${renderAssessmentSpecificCompetences(
+                                        classId,
+                                        [],
+                                        "lesson"
+                                    )}
 
                                 </div>
 
                             </div>
 
 
+                            <!-- =================================
+                                 BASIC KNOWLEDGE
+                                 ================================= -->
+
                             <div
                                 class="lesson-assessment-group">
 
                                 <div
                                     class="lesson-assessment-label">
 
-                                    Key competences
+                                    Basic knowledge
 
                                 </div>
 
 
                                 <div
+                                    class="lesson-assessment-help">
+
+                                    Search the basic knowledge
+                                    elements related to this activity.
+
+                                </div>
+
+
+                                <input
+                                    id="lessonBasicKnowledgeSearch"
+                                    type="search"
+                                    placeholder="Search basic knowledge..."
+                                    autocomplete="off"
+                                    oninput="filterLessonBasicKnowledge()">
+
+
+                                <div
+                                    id="lessonBasicKnowledgeOptions"
                                     class="lesson-assessment-options">
 
-                                    ${renderCompetenceCheckboxes()}
+                                    ${renderAssessmentBasicKnowledgeOptions(
+                                        classId,
+                                        [],
+                                        "lesson"
+                                    )}
+
+                                </div>
+
+
+                                <div
+                                    id="lessonSelectedBasicKnowledge">
+
+                                    ${renderSelectedAssessmentBasicKnowledge(
+                                        classId,
+                                        []
+                                    )}
 
                                 </div>
 
@@ -259,105 +331,243 @@ function openAddLessonModal(
         .getElementById(
             "lessonTitle"
         )
-        .focus();
+        ?.focus();
+
+}
+
+
+// =========================================================
+// ASSESSMENT FORM INTERACTION
+// =========================================================
+
+
+// ---------------------------------------------------------
+// REFRESH SELECTED BASIC KNOWLEDGE
+// ---------------------------------------------------------
+
+function refreshSelectedLessonBasicKnowledge() {
+
+    const classId =
+        window.currentAssessmentLessonClassId;
+
+
+    if (!classId) {
+        return;
+    }
+
+
+    const selectedIds =
+        getSelectedAssessmentBasicKnowledge(
+            document,
+            "lesson"
+        );
+
+
+    const container =
+        document.getElementById(
+            "lessonSelectedBasicKnowledge"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML =
+        renderSelectedAssessmentBasicKnowledge(
+            classId,
+            selectedIds
+        );
 
 }
 
 
 // ---------------------------------------------------------
-// RENDER INSTRUMENT CHECKBOXES
+// FILTER BASIC KNOWLEDGE — ADD
 // ---------------------------------------------------------
 
-function renderInstrumentCheckboxes(
-    selected = []
+function filterLessonBasicKnowledge() {
+
+    const searchInput =
+        document.getElementById(
+            "lessonBasicKnowledgeSearch"
+        );
+
+
+    const optionsContainer =
+        document.getElementById(
+            "lessonBasicKnowledgeOptions"
+        );
+
+
+    if (
+        !searchInput ||
+        !optionsContainer
+    ) {
+
+        return;
+
+    }
+
+
+    const classId =
+        window.currentAssessmentLessonClassId;
+
+
+    if (!classId) {
+        return;
+    }
+
+
+    const selectedIds =
+        getSelectedAssessmentBasicKnowledge(
+            document,
+            "lesson"
+        );
+
+
+    optionsContainer.innerHTML =
+        renderAssessmentBasicKnowledgeOptions(
+            classId,
+            selectedIds,
+            "lesson",
+            searchInput.value
+        );
+
+
+    refreshSelectedLessonBasicKnowledge();
+
+}
+
+
+// ---------------------------------------------------------
+// FILTER BASIC KNOWLEDGE — EDIT
+// ---------------------------------------------------------
+
+function filterEditLessonBasicKnowledge() {
+
+    const searchInput =
+        document.getElementById(
+            "editLessonBasicKnowledgeSearch"
+        );
+
+
+    const optionsContainer =
+        document.getElementById(
+            "editLessonBasicKnowledgeOptions"
+        );
+
+
+    if (
+        !searchInput ||
+        !optionsContainer
+    ) {
+
+        return;
+
+    }
+
+
+    const classId =
+        window.currentAssessmentLessonClassId;
+
+
+    if (!classId) {
+        return;
+    }
+
+
+    const selectedIds =
+        getSelectedAssessmentBasicKnowledge(
+            document,
+            "editLesson"
+        );
+
+
+    optionsContainer.innerHTML =
+        renderAssessmentBasicKnowledgeOptions(
+            classId,
+            selectedIds,
+            "editLesson",
+            searchInput.value
+        );
+
+
+    const selectedContainer =
+        document.getElementById(
+            "editLessonSelectedBasicKnowledge"
+        );
+
+
+    if (selectedContainer) {
+
+        selectedContainer.innerHTML =
+            renderSelectedAssessmentBasicKnowledge(
+                classId,
+                selectedIds
+            );
+
+    }
+
+}
+
+
+// ---------------------------------------------------------
+// HANDLE BASIC KNOWLEDGE CHANGE
+// ---------------------------------------------------------
+
+function handleAssessmentBasicKnowledgeChange(
+    mode = "lesson"
 ) {
 
-    return ASSESSMENT_INSTRUMENTS
-        .map(
-            instrument => `
-
-                <label
-                    class="assessment-check-option">
-
-                    <input
-                        type="checkbox"
-                        name="lessonInstrument"
-                        value="${instrument.id}"
-                        ${
-                            selected.includes(
-                                instrument.id
-                            )
-                                ? "checked"
-                                : ""
-                        }>
-
-                    <span>
-                        ${escapeHTML(
-                            instrument.name
-                        )}
-                    </span>
-
-                    <small>
-                        ${instrument.weight}%
-                    </small>
-
-                </label>
-
-            `
-        )
-        .join("");
-
-}
+    const classId =
+        window.currentAssessmentLessonClassId;
 
 
-// ---------------------------------------------------------
-// RENDER COMPETENCE CHECKBOXES
-// ---------------------------------------------------------
+    if (!classId) {
+        return;
+    }
 
-function renderCompetenceCheckboxes(
-    selected = []
-) {
 
-    return KEY_COMPETENCES
-        .map(
-            competence => `
+    const selectedIds =
+        getSelectedAssessmentBasicKnowledge(
+            document,
+            mode === "lesson"
+                ? "lesson"
+                : "editLesson"
+        );
 
-                <label
-                    class="assessment-check-option">
 
-                    <input
-                        type="checkbox"
-                        name="lessonCompetence"
-                        value="${competence.id}"
-                        ${
-                            selected.includes(
-                                competence.id
-                            )
-                                ? "checked"
-                                : ""
-                        }>
+    const container =
+        document.getElementById(
+            mode === "lesson"
+                ? "lessonSelectedBasicKnowledge"
+                : "editLessonSelectedBasicKnowledge"
+        );
 
-                    <span>
-                        ${escapeHTML(
-                            competence.name
-                        )}
-                    </span>
 
-                    <small>
-                        ${competence.weight}%
-                    </small>
+    if (!container) {
+        return;
+    }
 
-                </label>
 
-            `
-        )
-        .join("");
+    container.innerHTML =
+        renderSelectedAssessmentBasicKnowledge(
+            classId,
+            selectedIds
+        );
 
 }
 
 
+// =========================================================
+// TOGGLE ASSESSMENT
+// =========================================================
+
+
 // ---------------------------------------------------------
-// TOGGLE ASSESSMENT FIELDS
+// TOGGLE ADD ASSESSMENT FIELDS
 // ---------------------------------------------------------
 
 function toggleLessonAssessment() {
@@ -374,8 +584,13 @@ function toggleLessonAssessment() {
         );
 
 
-    if (!checkbox || !fields) {
+    if (
+        !checkbox ||
+        !fields
+    ) {
+
         return;
+
     }
 
 
@@ -401,43 +616,57 @@ function toggleLessonAssessment() {
 
 
 // ---------------------------------------------------------
-// GET SELECTED INSTRUMENTS
+// TOGGLE EDIT ASSESSMENT
 // ---------------------------------------------------------
 
-function getSelectedAssessmentInstruments(
-    container = document
-) {
+function toggleEditLessonAssessment() {
 
-    return Array.from(
-        container.querySelectorAll(
-            'input[name="lessonInstrument"]:checked'
-        )
-    ).map(
-        input =>
-            input.value
+    const checkbox =
+        document.getElementById(
+            "editLessonEvaluable"
+        );
+
+
+    const fields =
+        document.getElementById(
+            "editLessonAssessmentFields"
+        );
+
+
+    if (
+        !checkbox ||
+        !fields
+    ) {
+
+        return;
+
+    }
+
+
+    fields.classList.toggle(
+        "hidden",
+        !checkbox.checked
     );
+
+
+    if (
+        checkbox.checked
+    ) {
+
+        document
+            .getElementById(
+                "editLessonAssessmentTitle"
+            )
+            ?.focus();
+
+    }
 
 }
 
 
-// ---------------------------------------------------------
-// GET SELECTED COMPETENCES
-// ---------------------------------------------------------
-
-function getSelectedAssessmentCompetences(
-    container = document
-) {
-
-    return Array.from(
-        container.querySelectorAll(
-            'input[name="lessonCompetence"]:checked'
-        )
-    ).map(
-        input =>
-            input.value
-    );
-
-}
+// =========================================================
+// CREATE LESSON
+// =========================================================
 
 
 // ---------------------------------------------------------
@@ -452,28 +681,33 @@ function createLesson(
         AppState.getCurrentAcademicYear();
 
 
+    if (!academicYear) {
+        return;
+    }
+
+
     const date =
         document.getElementById(
             "lessonDate"
-        ).value;
+        )?.value;
 
 
     const title =
         document.getElementById(
             "lessonTitle"
-        ).value;
+        )?.value || "";
 
 
     const notes =
         document.getElementById(
             "lessonNotes"
-        ).value;
+        )?.value || "";
 
 
     const status =
         document.getElementById(
             "lessonStatus"
-        ).value;
+        )?.value || "planned";
 
 
     const isEvaluable =
@@ -488,13 +722,29 @@ function createLesson(
         )?.value || "";
 
 
-    const instruments =
-        getSelectedAssessmentInstruments();
+    const instrumentId =
+        document.getElementById(
+            "lessonAssessmentInstrument"
+        )?.value || null;
 
 
-    const competences =
-        getSelectedAssessmentCompetences();
+    const specificCompetences =
+        getSelectedAssessmentSpecificCompetences(
+            document,
+            "lesson"
+        );
 
+
+    const basicKnowledgeIds =
+        getSelectedAssessmentBasicKnowledge(
+            document,
+            "lesson"
+        );
+
+
+    // -----------------------------------------------------
+    // VALIDATION
+    // -----------------------------------------------------
 
     if (
         !date ||
@@ -506,51 +756,15 @@ function createLesson(
         );
 
         return;
+
     }
 
 
     if (
-        isEvaluable &&
-        !assessmentTitle.trim()
+        !isEvaluable
     ) {
 
-        alert(
-            "Please enter a title for the evaluable activity."
-        );
-
-        return;
-    }
-
-
-    if (
-        isEvaluable &&
-        !instruments.length
-    ) {
-
-        alert(
-            "Please select at least one assessment instrument."
-        );
-
-        return;
-    }
-
-
-    if (
-        isEvaluable &&
-        !competences.length
-    ) {
-
-        alert(
-            "Please select at least one key competence."
-        );
-
-        return;
-    }
-
-
-    try {
-
-        LessonManager.create({
+        createLessonWithoutAssessment({
 
             academicYearId:
                 academicYear.id,
@@ -563,37 +777,188 @@ function createLesson(
 
             notes,
 
-            status,
-
-            assessment: {
-
-                isEvaluable,
-
-                title:
-                    isEvaluable
-                        ? assessmentTitle
-                        : "",
-
-                instruments:
-                    isEvaluable
-                        ? instruments
-                        : [],
-
-                competences:
-                    isEvaluable
-                        ? competences
-                        : []
-
-            }
+            status
 
         });
+
+        return;
+
+    }
+
+
+    if (
+        !assessmentTitle.trim()
+    ) {
+
+        alert(
+            "Please enter a title for the evaluable activity."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !instrumentId
+    ) {
+
+        alert(
+            "Please select an assessment instrument."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !specificCompetences.length
+    ) {
+
+        alert(
+            "Please select at least one specific competence."
+        );
+
+        return;
+
+    }
+
+
+    const curriculum =
+        getAssessmentCurriculum(
+            classId
+        );
+
+
+    if (!curriculum) {
+
+        alert(
+            "This class has no curriculum assigned. A curriculum is required for an evaluable activity."
+        );
+
+        return;
+
+    }
+
+
+    // -----------------------------------------------------
+    // VALIDATE CE WEIGHTS
+    // -----------------------------------------------------
+
+    const invalidWeight =
+        specificCompetences.some(
+            item =>
+                !Number.isFinite(
+                    Number(item.weight)
+                ) ||
+                Number(item.weight) < 0 ||
+                Number(item.weight) > 100
+        );
+
+
+    if (invalidWeight) {
+
+        alert(
+            "Specific competence weights must be between 0 and 100."
+        );
+
+        return;
+
+    }
+
+
+    // -----------------------------------------------------
+    // CREATE LESSON
+    // -----------------------------------------------------
+
+    try {
+
+        const lesson =
+            LessonManager.create({
+
+                academicYearId:
+                    academicYear.id,
+
+                classId,
+
+                date,
+
+                title,
+
+                notes,
+
+                status,
+
+                // Legacy compatibility only.
+                // AssessmentActivity is now the
+                // real source of assessment data.
+
+                assessment: {
+
+                    isEvaluable: true,
+
+                    title:
+                        assessmentTitle,
+
+                    instruments:
+                        [instrumentId],
+
+                    competences:
+                        specificCompetences
+                            .map(
+                                item =>
+                                    item.specificCompetenceId
+                            )
+
+                }
+
+            });
+
+
+        // -------------------------------------------------
+        // CREATE REAL ASSESSMENT ACTIVITY
+        // -------------------------------------------------
+
+        try {
+
+            AssessmentActivityManager.create({
+
+                lessonId:
+                    lesson.id,
+
+                title:
+                    assessmentTitle,
+
+                instrumentId,
+
+                specificCompetences,
+
+                basicKnowledgeIds
+
+            });
+
+        }
+        catch (error) {
+
+            // Remove the lesson if creating the
+            // assessment activity fails.
+
+            LessonManager.delete(
+                lesson.id
+            );
+
+            throw error;
+
+        }
 
 
         closeModal();
 
         renderCoursePlan();
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             "Failed to create lesson:",
@@ -607,6 +972,78 @@ function createLesson(
     }
 
 }
+
+
+// ---------------------------------------------------------
+// CREATE NON-ASSESSABLE LESSON
+// ---------------------------------------------------------
+
+function createLessonWithoutAssessment(
+    {
+        academicYearId,
+        classId,
+        date,
+        title,
+        notes,
+        status
+    }
+) {
+
+    try {
+
+        LessonManager.create({
+
+            academicYearId,
+
+            classId,
+
+            date,
+
+            title,
+
+            notes,
+
+            status,
+
+            assessment: {
+
+                isEvaluable: false,
+
+                title: "",
+
+                instruments: [],
+
+                competences: []
+
+            }
+
+        });
+
+
+        closeModal();
+
+        renderCoursePlan();
+
+    }
+    catch (error) {
+
+        console.error(
+            "Failed to create lesson:",
+            error
+        );
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+// =========================================================
+// EDIT LESSON MODAL
+// =========================================================
 
 
 // ---------------------------------------------------------
@@ -639,7 +1076,14 @@ function openEditLessonModal(
     }
 
 
-    const assessment =
+    const assessmentActivity =
+        AssessmentActivityManager
+            .getByLessonId(
+                lessonId
+            )[0] || null;
+
+
+    const legacyAssessment =
         lesson.assessment ||
         {
             isEvaluable: false,
@@ -647,6 +1091,45 @@ function openEditLessonModal(
             instruments: [],
             competences: []
         };
+
+
+    const isEvaluable =
+        Boolean(
+            assessmentActivity ||
+            legacyAssessment.isEvaluable
+        );
+
+
+    const selectedCompetences =
+        assessmentActivity
+            ?.specificCompetences ||
+        [];
+
+
+    const selectedKnowledge =
+        assessmentActivity
+            ?.basicKnowledgeIds ||
+        [];
+
+
+    const selectedInstrument =
+        assessmentActivity
+            ?.instrumentId ||
+        legacyAssessment
+            ?.instruments?.[0] ||
+        "";
+
+
+    const assessmentTitle =
+        assessmentActivity
+            ?.title ||
+        legacyAssessment
+            ?.title ||
+        "";
+
+
+    window.currentAssessmentLessonClassId =
+        classItem.id;
 
 
     const modal =
@@ -752,7 +1235,7 @@ function openEditLessonModal(
                                 id="editLessonEvaluable"
                                 type="checkbox"
                                 ${
-                                    assessment.isEvaluable
+                                    isEvaluable
                                         ? "checked"
                                         : ""
                                 }
@@ -769,10 +1252,11 @@ function openEditLessonModal(
                             id="editLessonAssessmentFields"
                             class="lesson-assessment-fields
                                 ${
-                                    assessment.isEvaluable
+                                    isEvaluable
                                         ? ""
                                         : "hidden"
                                 }">
+
 
                             <label>
                                 Activity title
@@ -782,12 +1266,32 @@ function openEditLessonModal(
                                 id="editLessonAssessmentTitle"
                                 type="text"
                                 value="${escapeHTML(
-                                    assessment.title ||
-                                    ""
+                                    assessmentTitle
                                 )}"
                                 placeholder="e.g. Tech for Good presentation"
                                 autocomplete="off">
 
+
+                            <!-- =================================
+                                 INSTRUMENT
+                                 ================================= -->
+
+                            <label>
+                                Assessment instrument
+                            </label>
+
+                            ${renderAssessmentInstrumentSelect(
+                                selectedInstrument
+                            )
+                                .replace(
+                                    'id="lessonAssessmentInstrument"',
+                                    'id="editLessonAssessmentInstrument"'
+                                )}
+
+
+                            <!-- =================================
+                                 SPECIFIC COMPETENCES
+                                 ================================= -->
 
                             <div
                                 class="lesson-assessment-group">
@@ -795,17 +1299,31 @@ function openEditLessonModal(
                                 <div
                                     class="lesson-assessment-label">
 
-                                    Assessment instrument
+                                    Specific competences
 
                                 </div>
 
 
                                 <div
+                                    class="lesson-assessment-help">
+
+                                    Select the specific competences
+                                    assessed by this activity and
+                                    assign the percentage of the
+                                    activity that contributes to
+                                    each competence.
+
+                                </div>
+
+
+                                <div
+                                    id="editLessonSpecificCompetences"
                                     class="lesson-assessment-options">
 
-                                    ${renderInstrumentCheckboxes(
-                                        assessment.instruments ||
-                                        []
+                                    ${renderAssessmentSpecificCompetences(
+                                        classItem.id,
+                                        selectedCompetences,
+                                        "editLesson"
                                     )}
 
                                 </div>
@@ -813,23 +1331,57 @@ function openEditLessonModal(
                             </div>
 
 
+                            <!-- =================================
+                                 BASIC KNOWLEDGE
+                                 ================================= -->
+
                             <div
                                 class="lesson-assessment-group">
 
                                 <div
                                     class="lesson-assessment-label">
 
-                                    Key competences
+                                    Basic knowledge
 
                                 </div>
 
 
                                 <div
+                                    class="lesson-assessment-help">
+
+                                    Search the basic knowledge
+                                    elements related to this activity.
+
+                                </div>
+
+
+                                <input
+                                    id="editLessonBasicKnowledgeSearch"
+                                    type="search"
+                                    placeholder="Search basic knowledge..."
+                                    autocomplete="off"
+                                    oninput="filterEditLessonBasicKnowledge()">
+
+
+                                <div
+                                    id="editLessonBasicKnowledgeOptions"
                                     class="lesson-assessment-options">
 
-                                    ${renderCompetenceCheckboxes(
-                                        assessment.competences ||
-                                        []
+                                    ${renderAssessmentBasicKnowledgeOptions(
+                                        classItem.id,
+                                        selectedKnowledge,
+                                        "editLesson"
+                                    )}
+
+                                </div>
+
+
+                                <div
+                                    id="editLessonSelectedBasicKnowledge">
+
+                                    ${renderSelectedAssessmentBasicKnowledge(
+                                        classItem.id,
+                                        selectedKnowledge
                                     )}
 
                                 </div>
@@ -935,84 +1487,9 @@ function openEditLessonModal(
 }
 
 
-// ---------------------------------------------------------
-// TOGGLE EDIT ASSESSMENT
-// ---------------------------------------------------------
-
-function toggleEditLessonAssessment() {
-
-    const checkbox =
-        document.getElementById(
-            "editLessonEvaluable"
-        );
-
-
-    const fields =
-        document.getElementById(
-            "editLessonAssessmentFields"
-        );
-
-
-    if (!checkbox || !fields) {
-        return;
-    }
-
-
-    fields.classList.toggle(
-        "hidden",
-        !checkbox.checked
-    );
-
-
-    if (
-        checkbox.checked
-    ) {
-
-        document
-            .getElementById(
-                "editLessonAssessmentTitle"
-            )
-            ?.focus();
-
-    }
-
-}
-
-
-// ---------------------------------------------------------
-// GET EDIT SELECTED INSTRUMENTS
-// ---------------------------------------------------------
-
-function getEditSelectedAssessmentInstruments() {
-
-    return Array.from(
-        document.querySelectorAll(
-            'input[name="lessonInstrument"]:checked'
-        )
-    ).map(
-        input =>
-            input.value
-    );
-
-}
-
-
-// ---------------------------------------------------------
-// GET EDIT SELECTED COMPETENCES
-// ---------------------------------------------------------
-
-function getEditSelectedAssessmentCompetences() {
-
-    return Array.from(
-        document.querySelectorAll(
-            'input[name="lessonCompetence"]:checked'
-        )
-    ).map(
-        input =>
-            input.value
-    );
-
-}
+// =========================================================
+// SAVE LESSON EDIT
+// =========================================================
 
 
 // ---------------------------------------------------------
@@ -1037,25 +1514,25 @@ function saveLessonEdit(
     const date =
         document.getElementById(
             "editLessonDate"
-        ).value;
+        )?.value;
 
 
     const title =
         document.getElementById(
             "editLessonTitle"
-        ).value;
+        )?.value || "";
 
 
     const notes =
         document.getElementById(
             "editLessonNotes"
-        ).value;
+        )?.value || "";
 
 
     const status =
         document.getElementById(
             "editLessonStatus"
-        ).value;
+        )?.value || "planned";
 
 
     const isEvaluable =
@@ -1070,13 +1547,29 @@ function saveLessonEdit(
         )?.value || "";
 
 
-    const instruments =
-        getEditSelectedAssessmentInstruments();
+    const instrumentId =
+        document.getElementById(
+            "editLessonAssessmentInstrument"
+        )?.value || null;
 
 
-    const competences =
-        getEditSelectedAssessmentCompetences();
+    const specificCompetences =
+        getSelectedAssessmentSpecificCompetences(
+            document,
+            "editLesson"
+        );
 
+
+    const basicKnowledgeIds =
+        getSelectedAssessmentBasicKnowledge(
+            document,
+            "editLesson"
+        );
+
+
+    // -----------------------------------------------------
+    // VALIDATION — LESSON
+    // -----------------------------------------------------
 
     if (
         !date ||
@@ -1088,47 +1581,13 @@ function saveLessonEdit(
         );
 
         return;
+
     }
 
 
-    if (
-        isEvaluable &&
-        !assessmentTitle.trim()
-    ) {
-
-        alert(
-            "Please enter a title for the evaluable activity."
-        );
-
-        return;
-    }
-
-
-    if (
-        isEvaluable &&
-        !instruments.length
-    ) {
-
-        alert(
-            "Please select at least one assessment instrument."
-        );
-
-        return;
-    }
-
-
-    if (
-        isEvaluable &&
-        !competences.length
-    ) {
-
-        alert(
-            "Please select at least one key competence."
-        );
-
-        return;
-    }
-
+    // -----------------------------------------------------
+    // UPDATE BASIC LESSON DATA
+    // -----------------------------------------------------
 
     try {
 
@@ -1146,6 +1605,10 @@ function saveLessonEdit(
 
                 status,
 
+                // Keep legacy structure synchronized
+                // for now. The actual assessment data
+                // lives in AssessmentActivity.
+
                 assessment: {
 
                     isEvaluable,
@@ -1157,12 +1620,16 @@ function saveLessonEdit(
 
                     instruments:
                         isEvaluable
-                            ? instruments
+                            ? [instrumentId]
                             : [],
 
                     competences:
                         isEvaluable
-                            ? competences
+                            ? specificCompetences
+                                .map(
+                                    item =>
+                                        item.specificCompetenceId
+                                )
                             : []
 
                 }
@@ -1172,11 +1639,202 @@ function saveLessonEdit(
         );
 
 
+        // -------------------------------------------------
+        // GET EXISTING ACTIVITIES
+        // -------------------------------------------------
+
+        const existingActivities =
+            AssessmentActivityManager
+                .getByLessonId(
+                    lessonId
+                );
+
+
+        // -------------------------------------------------
+        // TURN ASSESSMENT OFF
+        // -------------------------------------------------
+
+        if (!isEvaluable) {
+
+            existingActivities.forEach(
+                activity => {
+
+                    AssessmentActivityManager
+                        .delete(
+                            activity.id
+                        );
+
+                }
+            );
+
+
+            closeModal();
+
+            renderCoursePlan();
+
+            return;
+
+        }
+
+
+        // -------------------------------------------------
+        // VALIDATE ASSESSMENT
+        // -------------------------------------------------
+
+        if (
+            !assessmentTitle.trim()
+        ) {
+
+            alert(
+                "Please enter a title for the evaluable activity."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !instrumentId
+        ) {
+
+            alert(
+                "Please select an assessment instrument."
+            );
+
+            return;
+
+        }
+
+
+        const curriculum =
+            getAssessmentCurriculum(
+                lesson.classId
+            );
+
+
+        if (!curriculum) {
+
+            alert(
+                "This class has no curriculum assigned. A curriculum is required for an evaluable activity."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !specificCompetences.length
+        ) {
+
+            alert(
+                "Please select at least one specific competence."
+            );
+
+            return;
+
+        }
+
+
+        const invalidWeight =
+            specificCompetences.some(
+                item =>
+                    !Number.isFinite(
+                        Number(item.weight)
+                    ) ||
+                    Number(item.weight) < 0 ||
+                    Number(item.weight) > 100
+            );
+
+
+        if (invalidWeight) {
+
+            alert(
+                "Specific competence weights must be between 0 and 100."
+            );
+
+            return;
+
+        }
+
+
+        // -------------------------------------------------
+        // UPDATE OR CREATE ACTIVITY
+        // -------------------------------------------------
+
+        const existingActivity =
+            existingActivities[0] ||
+            null;
+
+
+        if (existingActivity) {
+
+            AssessmentActivityManager
+                .update(
+
+                    existingActivity.id,
+
+                    {
+
+                        title:
+                            assessmentTitle,
+
+                        instrumentId,
+
+                        specificCompetences,
+
+                        basicKnowledgeIds
+
+                    }
+
+                );
+
+
+            // If somehow more than one activity exists
+            // for the same lesson, remove the extras.
+
+            existingActivities
+                .slice(1)
+                .forEach(
+                    activity => {
+
+                        AssessmentActivityManager
+                            .delete(
+                                activity.id
+                            );
+
+                    }
+                );
+
+        }
+        else {
+
+            AssessmentActivityManager
+                .create({
+
+                    lessonId,
+
+                    title:
+                        assessmentTitle,
+
+                    instrumentId,
+
+                    specificCompetences,
+
+                    basicKnowledgeIds
+
+                });
+
+        }
+
+
         closeModal();
 
         renderCoursePlan();
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.error(
             "Failed to update lesson:",
@@ -1190,6 +1848,11 @@ function saveLessonEdit(
     }
 
 }
+
+
+// =========================================================
+// DELETE LESSON
+// =========================================================
 
 
 // ---------------------------------------------------------
@@ -1208,9 +1871,32 @@ function deleteLesson(
 
         () => {
 
+            // Delete assessment activities first
+            // so their results are also removed.
+
+            const activities =
+                AssessmentActivityManager
+                    .getByLessonId(
+                        lessonId
+                    );
+
+
+            activities.forEach(
+                activity => {
+
+                    AssessmentActivityManager
+                        .delete(
+                            activity.id
+                        );
+
+                }
+            );
+
+
             LessonManager.delete(
                 lessonId
             );
+
 
             closeModal();
 

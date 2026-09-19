@@ -5,10 +5,11 @@
   "course": "1r-2n ESO (1r cicle)",
   "subject": "Llengua Estrangera",
   "source": "Currículum de Llengua Estrangera ESO (Generalitat Valenciana)",
+
   "specificCompetences": [
     {
       "id": "cv_eso_llengua_estrangera_1cicle_sc_1",
-      "code": "1",
+      "code": "CE1",
       "title": "Multilingüisme i interculturalitat",
       "description": "Analitzar i usar els repertoris lingüístics de diverses llengües, reflexionar sobre el funcionament i prendre consciència dels coneixements propis, així com valorar la diversitat lingüística i cultural a partir de la llengua estrangera.",
       "operationalDescriptors": [
@@ -23,30 +24,35 @@
       ],
       "criteria": [
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_1_1",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_1_c_1_1",
           "code": "1.1",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_1",
           "description": "Contrastar les similituds i diferències entre diverses llengües, de manera progressivament autònoma, sobre aspectes bàsics del seu funcionament."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_1_2",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_1_c_1_2",
           "code": "1.2",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_1",
           "description": "Utilitzar i diferenciar, de manera progressivament autònoma, els coneixements i estratègies que formen el seu repertori lingüístic, amb ajuda d'altres participants i amb suports analògics i digitals."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_1_3",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_1_c_1_3",
           "code": "1.3",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_1",
           "description": "Diferenciar i valorar, de manera progressivament autònoma, la diversitat lingüística i cultural pròpia de països on es parla la llengua estrangera com a font d'enriquiment personal i mostrar interès per comprendre elements culturals i lingüístics dels àmbits personal, social i educatiu."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_1_4",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_1_c_1_4",
           "code": "1.4",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_1",
           "description": "Mostrar respecte per les diferències lingüístiques i culturals de la llengua estrangera, identificar prejudicis i estereotips, i reconéixer la pluralitat lingüística com a font de riquesa cultural."
         }
       ]
     },
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_sc_2",
-      "code": "2",
+      "code": "CE2",
       "title": "Comprensió oral",
       "description": "Interpretar textos orals, breus i senzills, sobre temes predictibles i no predictibles dels àmbits personal, social, educatiu i professional, utilitzant els coneixements adequats sobre els gèneres textuals i les estratègies de comprensió i d'escolta activa.",
       "operationalDescriptors": [
@@ -61,25 +67,29 @@
       ],
       "criteria": [
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_2_1",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_2_c_2_1",
           "code": "2.1",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_2",
           "description": "Escoltar de forma activa i interpretar, de manera progressivament autònoma, textos orals i multimodals breus i senzills, sobre temes predictibles i no predictibles, dels àmbits personal, social, educatiu i professional, així com textos literaris adequats al seu nivell."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_2_2",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_2_c_2_2",
           "code": "2.2",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_2",
           "description": "Analitzar la funció comunicativa, el tema principal, les idees secundàries i detalls rellevants de textos orals i multimodals a partir dels significats explícits i implícits presents en la informació de caràcter lingüístic i extralingüístic, per mitjà d'inferències i els seus coneixements previs."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_2_3",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_2_c_2_3",
           "code": "2.3",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_2",
           "description": "Inferir el significat de vocabulari i l'ús d'estructures freqüents, així com expressions bàsiques d'ús comú dels àmbits personal, social, educatiu i professional."
         }
       ]
     },
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_sc_3",
-      "code": "3",
+      "code": "CE3",
       "title": "Comprensió escrita",
       "description": "Interpretar informació explícita i implícita expressada en textos escrits i multimodals breus i senzills que inclouen estructures i vocabulari d'ús freqüent, sobre temes predictibles i no predictibles d'àmbit personal, social, educatiu i professional, mitjançant estratègies que permeten desenvolupar el seu repertori lingüístic.",
       "operationalDescriptors": [
@@ -94,30 +104,35 @@
       ],
       "criteria": [
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_3_1",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_3_c_3_1",
           "code": "3.1",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_3",
           "description": "Llegir i interpretar, de manera progressivament autònoma, textos escrits i multimodals breus i senzills, sobre temes predictibles i no predictibles dels àmbits personal, social, educatiu i professional, i triar els que s'adeqüen als seus gustos i interessos."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_3_2",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_3_c_3_2",
           "code": "3.2",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_3",
           "description": "Identificar, de manera progressivament autònoma, la funció comunicativa, el tema principal, les idees secundàries de textos escrits i multimodals, així com els seus significats explícits i implícits de caràcter lingüístic i la seua relació amb la informació de caràcter extralingüístic."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_3_3",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_3_c_3_3",
           "code": "3.3",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_3",
           "description": "Inferir el significat de vocabulari i l'ús d'estructures freqüents, així com expressions bàsiques d'ús comú dels àmbits personal, social, educatiu i professional en textos escrits i multimodals."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_3_4",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_3_c_3_4",
           "code": "3.4",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_3",
           "description": "Localitzar, seleccionar i contrastar la informació en mitjans digitals, de manera progressivament autònoma, de diferents textos multimodals dels àmbits, personal, social, educatiu i professional."
         }
       ]
     },
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_sc_4",
-      "code": "4",
+      "code": "CE4",
       "title": "Expressió oral",
       "description": "Produir textos orals, de manera autònoma i fluida, aplicant estratègies de planificació, producció i compensació, per a expressar missatges senzills dels àmbits personal, social, educatiu i professional, per mitjà d'estratègies que permeten desenvolupar el seu repertori lingüístic.",
       "operationalDescriptors": [
@@ -132,20 +147,23 @@
       ],
       "criteria": [
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_4_1",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_4_c_4_1",
           "code": "4.1",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_4",
           "description": "Produir diferents tipus de textos orals breus, amb una pronunciació, un ritme i una entonació adequats, de manera progressivament autònoma, utilitzant un registre informal i formal, així com un repertori d'expressions, lèxic i estructures d'ús freqüent en situacions dels àmbits personal, social, educatiu i professional."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_4_2",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_4_c_4_2",
           "code": "4.2",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_4",
           "description": "Utilitzar estratègies de planificació, producció, compensació i revisió, com l'ús de paraules o frases senzilles de les diferents llengües del seu repertori lingüístic o l'ús del context verbal i no verbal."
         }
       ]
     },
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_sc_5",
-      "code": "5",
+      "code": "CE5",
       "title": "Expressió escrita",
       "description": "Produir textos escrits i multimodals comprensibles i estructurats, de manera autònoma, per a expressar missatges senzills de l'àmbit personal, social, educatiu i professional, aplicant estratègies de planificació, textualització i revisió, per mitjà d'estratègies que permeten desenvolupar el seu repertori lingüístic.",
       "operationalDescriptors": [
@@ -159,20 +177,23 @@
       ],
       "criteria": [
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_5_1",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_5_c_5_1",
           "code": "5.1",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_5",
           "description": "Produir textos escrits i multimodals breus, coherents i cohesionats, de manera progressivament autònoma, en suports analògics i digitals, utilitzant tant el registre formal com l'informal segons la tipologia textual i la situació comunicativa, sobre temes dels àmbits personal, educatiu, social i professional."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_5_2",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_5_c_5_2",
           "code": "5.2",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_5",
           "description": "Aplicar estratègies de revisió de textos, de manera progressivament autònoma, a partir de models dels textos escrits."
         }
       ]
     },
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_sc_6",
-      "code": "6",
+      "code": "CE6",
       "title": "Interacció oral i escrita",
       "description": "Interaccionar de manera oral, escrita i multimodal per mitjà d'intercanvis senzills d'informació, de manera síncrona i asíncrona, mostrant autonomia i iniciativa, per a respondre a necessitats comunicatives relacionades amb els àmbits personal, social, educatiu i professional, mitjançant estratègies que permeten desenvolupar el seu repertori lingüístic.",
       "operationalDescriptors": [
@@ -186,25 +207,29 @@
       ],
       "criteria": [
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_6_1",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_6_c_6_1",
           "code": "6.1",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_6",
           "description": "Participar en converses simples, sobre temes predictibles, en contextos analògics i digitals, utilitzant guions com a suport."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_6_2",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_6_c_6_2",
           "code": "6.2",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_6",
           "description": "Utilitzar la cortesia lingüística, l'etiqueta digital, el llenguatge no verbal i estratègies per a indicar que no s'ha entès el missatge i sol·licitar repetició."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_6_3",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_6_c_6_3",
           "code": "6.3",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_6",
           "description": "Interaccionar mostrant interès, respecte i empatia cap als interlocutors en contextos pluriculturals, quotidians, informals, com donar i demanar la paraula, cooperar i demanar aclariments."
         }
       ]
     },
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_sc_7",
-      "code": "7",
+      "code": "CE7",
       "title": "Mediació oral i escrita",
       "description": "Mediar entre interlocutors aplicant estratègies d'adaptació, simplificació i reformulació del llenguatge per a processar i transmetre informació més elaborada en situacions comunicatives d'àmbit personal, social i professional.",
       "operationalDescriptors": [
@@ -218,149 +243,243 @@
       ],
       "criteria": [
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_7_1",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_7_c_7_1",
           "code": "7.1",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_7",
           "description": "Mostrar interès per participar en la solució de problemes d'incomprensió i enteniment, sobre assumptes diversos dels àmbits personal, social i educatiu."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_7_2",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_7_c_7_2",
           "code": "7.2",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_7",
           "description": "Comprendre, comunicar i descriure textos en diferents suports, o explicar conceptes, de manera oral o escrita, combinant el seu repertori lingüístic (L2-L2, L1-L2, L2-L1), que incloguen vocabulari, expressions i estructures freqüents, de manera progressivament autònoma."
         },
         {
-          "id": "cv_eso_llengua_estrangera_1cicle_c_7_3",
+          "id": "cv_eso_llengua_estrangera_1cicle_sc_7_c_7_3",
           "code": "7.3",
+          "specificCompetenceId": "cv_eso_llengua_estrangera_1cicle_sc_7",
           "description": "Seleccionar i aplicar, de manera progressivament autònoma, estratègies de simplificació i adaptació de la llengua, que faciliten la comprensió i expressió oral i escrita de la informació en diferents llengües (L2-L2, L1-L2, L2-L1), adequades a les situacions comunicatives, amb ajuda puntual de suports analògics o digitals, en funció de les necessitats de cada moment."
         }
       ]
     }
   ],
+
   "basicKnowledge": [
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_funcions_1",
       "block": "Llengua i ús",
-      "code": null,
-      "title": "Funcions comunicatives",
-      "description": "Funcions comunicatives bàsiques adequades a l'àmbit i al context comunicatiu: salutacions, comiats i presentacions; descripció de persones, objectes i llocs; situar esdeveniments en el temps; situar objectes, persones i llocs en l'espai; petició i intercanvi d'informació sobre qüestions quotidianes; instruccions i ordres; oferir, acceptar i rebutjar ajuda, proposicions o suggeriments; expressar parcialment el gust o l'interès i emocions bàsiques; narració d'esdeveniments passats, descripció de situacions presents, i expressió de successos futurs; expressar l'opinió i la possibilitat."
+      "code": "1.1.1",
+      "title": "Funcions comunicatives 1 - salutacions, comiats i presentacions",
+      "description": "Funcions comunicatives bàsiques adequades a l’àmbit i al context comunicatiu: salutacions, comiats i presentacions; descripció de persones, objectes i llocs; situar esdeveniments en el temps; situar objectes, persones i llocs en l’espai; petició i intercanvi d’informació sobre qüestions quotidianes; instruccions i ordres; oferir, acceptar i rebutjar ajuda, proposicions o suggeriments; expressar parcialment el gust o l’interés i emocions bàsiques; narració d’esdeveniments passats, descripció de situacions presents, i expressió de successos futurs; expressar l’opinió i la possibilitat."
     },
     {
-      "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_unitats",
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_funcions_4",
       "block": "Llengua i ús",
-      "code": null,
-      "title": "Unitats lingüístiques",
-      "description": "Unitats lingüístiques d'ús comú i significats associats a aquestes unitats com ara expressió de l'entitat i les seues propietats, quantitat i qualitat, espai i relacions espacials, temps i relacions temporals, afirmació, negació, interrogació i exclamació, i relacions lògiques bàsiques."
+      "code": "1.1.4",
+      "title": "Funcions comunicatives 4 - comparació i contrast",
+      "description": "Comparació i contrast dels principis del funcionament de les llengües pel que fa al lèxic, a les regles gramaticals i a les varietats lingüístiques."
     },
     {
-      "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_models",
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_funcions_5",
       "block": "Llengua i ús",
-      "code": null,
+      "code": "1.1.5",
+      "title": "Funcions comunicatives 5 - expressió de relacions lògiques",
+      "description": "Unitats lingüístiques (Gramàtica) d’ús comú i significats associats a aquestes unitats com ara expressió de l’entitat i les seues propietats, quantitat i qualitat, espai i relacions espacials, temps i relacions temporals, afirmació, negació, interrogació i exclamació, i relacions lògiques bàsiques."
+    },
+
+
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_models_contextuals",
+      "block": "Llengua i ús",
+      "code": "1.2.1",
       "title": "Models contextuals i gèneres discursius",
-      "description": "Models contextuals i gèneres discursius d'ús comú en la comprensió, producció i coproducció de textos orals, escrits i multimodals, breus i senzills, literaris i no literaris: característiques i reconeixement del context (participants i situació), expectatives generades pel context; organització i estructuració segons el gènere, la funció textual i l'estructura."
+      "description": "Models contextuals i gèneres discursius d’ús comú en la comprensió, producció i coproducció de textos orals, escrits i multimodals, breus i senzills, literaris i no literaris: característiques i reconeixement del context (participants i situació), expectatives generades pel context; organització i estructuració segons el gènere, la funció textual i l’estructura."
     },
+
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_lexic_1",
       "block": "Llengua i ús",
-      "code": null,
-      "title": "Lèxic d'ús comú",
-      "description": "Lèxic d'ús comú i d'interès per a l'alumnat, relatiu a identificació personal, relacions interpersonals, llocs i entorns pròxims, oci i temps lliure, vida quotidiana, salut i activitat física, habitatge i llar, clima i entorn natural, tecnologies de la informació i la comunicació."
+      "code": "1.3.1",
+      "title": "Expressions i lèxic 1 - Lèxic d’ús comú",
+      "description": "Lèxic d’ús comú i d’interés per a l’alumnat, relatiu a identificació personal, relacions interpersonals, llocs i entorns pròxims, oci i temps lliure, vida quotidiana, salut i activitat física, habitatge i llar, clima i entorn natural, tecnologies de la informació i la comunicació."
     },
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_metallenguatge",
       "block": "Llengua i ús",
-      "code": null,
-      "title": "Expressions i lèxic de metallenguatge",
-      "description": "Expressions i lèxic d'ús comú per a comprendre enunciats sobre la comunicació, la llengua, l'aprenentatge i les eines de comunicació i aprenentatge (metallenguatge)."
+      "code": "1.3.3",
+      "title": "Expressions i lèxic 3 - Lèxic de metallenguatge",
+      "description": "Expressions i lèxic d’ús comú per a comprendre enunciats sobre la comunicació, la llengua, l’aprenentatge i les eines de comunicació i aprenentatge (metallenguatge)."
     },
+
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_patrons",
       "block": "Llengua i ús",
-      "code": null,
+      "code": "1.4.1",
       "title": "Patrons sonors, accentuals i rítmics",
-      "description": "Patrons sonors, accentuals, rítmics i d'entonació bàsics i d'ús comú, intencions comunicatives i significats generals associats a aquests patrons."
+      "description": "Patrons sonors, accentuals, rítmics i d’entonació bàsics i d’ús comú, intencions comunicatives i significats generals associats a aquests patrons."
     },
+
+    
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_ortografia",
       "block": "Llengua i ús",
-      "code": null,
+      "code": "1.5.1",
       "title": "Convencions ortogràfiques",
       "description": "Convencions ortogràfiques bàsiques i intencions comunicatives i significats associats als formats, patrons i elements gràfics."
     },
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_llengua_us_reflexio",
       "block": "Llengua i ús",
-      "code": null,
+      "code": "1.6.1",
       "title": "Reflexió sobre la llengua",
-      "description": "Consciència sobre les similituds formals i diferències de significats entre llengües (prèstecs, cognats i falsos amics)."
+      "description": "Consciència sobre les similituds formals i diferències de significats entre llengües (préstecs, cognats i falsos amics)."
     },
+
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_comprensio",
       "block": "Estratègies comunicatives",
-      "code": null,
-      "title": "Estratègies de comprensió i producció",
-      "description": "Estratègies d'ús comú per a la planificació, l'execució, el control i la reparació de la comprensió, la producció i la coproducció de textos orals, escrits i multimodals."
-    },
-    {
-      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_conversacionals",
-      "block": "Estratègies comunicatives",
-      "code": null,
-      "title": "Convencions i estratègies conversacionals",
-      "description": "Convencions i estratègies conversacionals d'ús comú, en format síncron o asíncron, per a iniciar, mantindre i acabar la comunicació, prendre i cedir la paraula, demanar i donar aclariments i explicacions, reformular, comparar i contrastar, resumir, col·laborar, debatre."
+      "code": "2.1.1",
+      "title": "Estratègies de comprensió i producció 1 - planificació, execució i control",
+      "description": "Estratègies d’ús comú per a la planificació, l’execució, el control i la reparació de la comprensió, la producció i la coproducció de textos orals, escrits i multimodals."
     },
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_necessitat",
       "block": "Estratègies comunicatives",
-      "code": null,
-      "title": "Estratègies per a respondre a necessitats comunicatives",
+      "code": "2.1.3",
+      "title": "Estratègies de comprensió i producció 2 - necessitats comunicatives",
       "description": "Estratègies i tècniques per a respondre eficaçment a una necessitat comunicativa bàsica i concreta de manera comprensible, malgrat les limitacions derivades del nivell de competència en la llengua estrangera i en les llengües familiars."
     },
-    {
+        {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_unitats",
       "block": "Estratègies comunicatives",
-      "code": null,
-      "title": "Estratègies d'ús d'unitats lingüístiques",
-      "description": "Estratègies d'ús comú per a identificar, organitzar, retindre, recuperar i utilitzar creativament unitats lingüístiques (lèxic, morfosintaxi, patrons sonors, etc.) a partir de la comparació de les llengües i varietats que conformen el repertori lingüístic personal."
+      "code": "2.1.5",
+      "title": "Estratègies de comprensió i producció 3 - Unitats lingüístiques (Gramàtica)",
+      "description": "Estratègies d’ús comú per a identificar, organitzar, retindre, recuperar i utilitzar creativament Unitats lingüístiques (Gramàtica) (lèxic, morfosintaxi, patrons sonors, etc.) a partir de la comparació de les llengües i varietats que conformen el repertori lingüístic personal."
     },
+
+
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_intercanvis",
       "block": "Estratègies comunicatives",
-      "code": null,
-      "title": "Intercanvis interculturals i mediació",
-      "description": "Interès i iniciativa en la realització d'intercanvis comunicatius per diferents mitjans amb parlants o estudiants de la llengua estrangera. Estratègies per a resoldre conflictes interculturals en contextos personals, socials i educatius. Coneixements, destreses i actituds que permeten detectar i col·laborar en activitats de mediació en situacions quotidianes senzilles."
+      "code": "2.2.1",
+      "title": "Intercanvis interculturals i mediació 1 - interès i iniciativa",
+      "description": "Interés i iniciativa en la realització d’intercanvis comunicatius per diferents mitjans amb parlants o estudiants de la llengua estrangera."
+    },
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_conflictes",
+      "block": "Estratègies comunicatives",
+      "code": "2.2.2",
+      "title": "Intercanvis interculturals i mediació 2 - Conflictes interculturals",
+      "description": "Estratègies per a resoldre conflictes interculturals en contextos personals, socials i educatius."
+    },
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_quotidianes",
+      "block": "Estratègies comunicatives",
+      "code": "2.2.4",
+      "title": "Intercanvis interculturals i mediació 4 - Situacions quotidianes",
+      "description": "Coneixements, destreses i actituds que permeten detectar i col·laborar en activitats de mediació en situacions quotidianes senzilles."
+    },
+
+
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_autoconfiança",
+      "block": "Estratègies comunicatives",
+      "code": "2.3.1",
+      "title": "Estratègies d’autoavaluació i coavaluació 1 - autoconfiança i gestió de l’error",
+      "description": "Autoconfiança. L’error com a instrument de millora i proposta de reparació."
     },
     {
       "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_autoavaluacio",
       "block": "Estratègies comunicatives",
-      "code": null,
-      "title": "Estratègies d'autoavaluació i coavaluació",
-      "description": "Autoconfiança. L'error com a instrument de millora i proposta de reparació. Estratègies i eines d'ús comú d'autoavaluació i coavaluació, analògiques i digitals, individuals i cooperatives."
+      "code": "2.3.3",
+      "title": "Estratègies d’autoavaluació i coavaluació 3 - Estratègies i eines",
+      "description": "Estratègies i eines d’ús comú d’autoavaluació i coavaluació, analògiques i digitals, individuals i cooperatives."
     },
+
+
     {
-      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_info",
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_recursos",
       "block": "Estratègies comunicatives",
-      "code": null,
-      "title": "Tractament de la informació",
-      "description": "Recursos per a l'aprenentatge i estratègies bàsiques de cerca d'informació: diccionaris, llibres de consulta, biblioteques, recursos digitals i informàtics. Identificació de l'autoria de les fonts consultades i els continguts utilitzats. Eines analògiques i digitals d'ús comú per a la comprensió, producció i coproducció oral, escrita i multimodal, i plataformes virtuals d'interacció i col·laboració educativa (aules virtuals, videoconferències i eines digitals col·laboratives) per a l'aprenentatge, la comunicació i el desenvolupament de projectes amb les persones parlants i estudiants de la llengua estrangera."
+      "code": "2.4.1",
+      "title": "Tractament de la informació 1 - Recursos",
+      "description": "Recursos per a l’aprenentatge i estratègies bàsiques de cerca d’informació: diccionaris, llibres de consulta, biblioteques, recursos digitals i informàtics."
     },
     {
-      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_aspectes",
-      "block": "Cultura i societat",
-      "code": null,
-      "title": "Aspectes socioculturals i sociolingüístics",
-      "description": "Aspectes socioculturals i sociolingüístics d'ús comú relatius a la vida quotidiana, les condicions de vida i les relacions interpersonals; convencions socials bàsiques; llenguatge no verbal, cortesia lingüística i etiqueta digital; cultura, costums i valors propis de països on es parla la llengua estrangera. Valoració crítica de les diferències en la comunicació no verbal entre les diferents llengües i cultures. Reconeixement de la necessitat d'adaptar el repertori comunicatiu propi al context social i cultural en el qual es desenvolupa la comunicació. Estratègies bàsiques per a entendre i apreciar la diversitat lingüística, cultural i artística, atenent valors ecosocials i democràtics."
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_fonts",
+      "block": "Estratègies comunicatives",
+      "code": "2.4.2",
+      "title": "Tractament de la informació 2 - Fonts",
+      "description": "Identificació de l’autoria de les fonts consultades i els continguts utilitzats."
     },
     {
-      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_diversitat",
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_estrategies_eines_complementaries",
+      "block": "Estratègies comunicatives",
+      "code": "2.4.4",
+      "title": "Tractament de la informació 4 - Eines complementàries",
+      "description": "Eines analògiques i digitals d’ús comú per a la comprensió, producció i coproducció oral, escrita i multimodal, i plataformes virtuals d’interacció i col·laboració educativa (aules virtuals, videoconferències i eines digitals col·laboratives) per a l’aprenentatge, la comunicació i el desenvolupament de projectes amb les persones parlants iestudiants de la llengua estrangera."
+    },
+
+
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_quotidiana",
       "block": "Cultura i societat",
-      "code": null,
-      "title": "Diversitat lingüística i intercultural",
-      "description": "Reconeixement de les diferències i la diversitat plurilingüe i intercultural. Diferències entre llengua i societat, varietats lingüístiques, diferents registres (estàndard, informal i formal). Estereotips d'altres cultures on es parla la llengua estrangera."
+      "code": "3.1.1",
+      "title": "Aspectes socioculturals i sociolingüístics 1 - vida quotidiana i relacions interpersonals",
+      "description": "Aspectes socioculturals i sociolingüístics d’ús comú relatius a la vida quotidiana, les condicions de vida i les relacions interpersonals; convencions socials bàsiques; llenguatge no verbal, cortesia lingüística i etiqueta digital; cultura, costums i valors propis de països on es parla la llengua estrangera."
     },
     {
-      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_mitja",
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_nonverbal",
       "block": "Cultura i societat",
-      "code": null,
-      "title": "Llengua estrangera com a mitjà de comunicació",
-      "description": "Patrons culturals d'ús comú propis de la llengua estrangera. La llengua estrangera com a mitjà de comunicació interpersonal i internacional, com a font d'informació i com a eina per a l'enriquiment personal."
+      "code": "3.1.2",
+      "title": "Aspectes socioculturals i sociolingüístics 2 - comunicació no verbal",
+      "description": "Valoració crítica de les diferències en la comunicació no verbal entre les diferents llengües i cultures."
+    },    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_contextual",
+      "block": "Cultura i societat",
+      "code": "3.1.3",
+      "title": "Aspectes socioculturals i sociolingüístics 3 - convencions socials",
+      "description": "Reconeixement de la necessitat d’adaptar el repertori comunicatiu propi al context social i cultural en el qual es desenvolupa la comunicació."
+    },    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_diversitat1",
+      "block": "Cultura i societat",
+      "code": "3.1.5",
+      "title": "Aspectes socioculturals i sociolingüístics 5 - diversitat lingüística i cultural",
+      "description": "Estratègies bàsiques per a entendre i apreciar la diversitat lingüística, cultural i artística, atenent valors ecosocials i democràtics."
+    },
+
+
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_diversitat2",
+      "block": "Cultura i societat",
+      "code": "3.2.1",
+      "title": "Diversitat lingüística i intercultural 1 - diversitat plurilingüe i intercultural",
+      "description": "Reconeixement de les diferències i la diversitat plurilingüe i intercultural."
+    },
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_estereotips",
+      "block": "Cultura i societat",
+      "code": "3.2.4",
+      "title": "Diversitat lingüística i intercultural 4 - estereotips culturals",
+      "description": "Estereotips d’altres cultures on es parla la llengua estrangera."
+    },
+
+
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_patrons",
+      "block": "Cultura i societat",
+      "code": "3.3.1",
+      "title": "Llengua estrangera com a mitjà de comunicació 1 - patrons culturals",
+      "description": "Patrons culturals d’ús comú propis de la llengua estrangera."
+    },
+    {
+      "id": "cv_eso_llengua_estrangera_1cicle_bk_cultura_funcions",
+      "block": "Cultura i societat",
+      "code": "3.3.2",
+      "title": "Llengua estrangera com a mitjà de comunicació 2 - funcions comunicatives",
+      "description": "La llengua estrangera com a mitjà de comunicació interpersonal i internacional, com a font d’informació i com a eina per a l’enriquiment personal."
     }
   ]
 }

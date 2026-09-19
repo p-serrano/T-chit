@@ -21,9 +21,40 @@ function renderSingleClassView(classId) {
 
 
     const students =
-        EnrollmentManager.getStudentsForClass(
-            classId
-        );
+        EnrollmentManager
+            .getStudentsForClass(classId)
+            .slice()
+            .sort((a, b) => {
+
+                const lastNameA =
+                    (a.lastName || "").trim();
+
+                const lastNameB =
+                    (b.lastName || "").trim();
+
+                const lastNameComparison =
+                    lastNameA.localeCompare(
+                        lastNameB,
+                        "es",
+                        {
+                            sensitivity: "base"
+                        }
+                    );
+
+                if (lastNameComparison !== 0) {
+                    return lastNameComparison;
+                }
+
+                return (a.firstName || "").trim()
+                    .localeCompare(
+                        (b.firstName || "").trim(),
+                        "es",
+                        {
+                            sensitivity: "base"
+                        }
+                    );
+
+            });
 
 
     const academicYear =
@@ -92,6 +123,30 @@ function renderSingleClassView(classId) {
                 </div>
 
             </div>
+
+
+            <!-- CURRICULUM -->
+
+            <div class="class-curriculum-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h3 class="section-title">
+                            Curriculum
+                        </h3>
+
+                        <p class="section-description">
+                            Select the curriculum used by this class.
+                        </p>
+                    </div>
+
+                </div>
+
+                ${renderClassCurriculumSelector(classItem)}
+
+            </div>
+
 
 
             <!-- STUDENTS -->
@@ -177,9 +232,9 @@ function renderStudentTable(students) {
 
                     <span class="student-name">
                         ${escapeHTML(
-                            student.firstName +
-                            " " +
-                            student.lastName
+                            student.lastName +
+                            ", " +
+                            student.firstName
                         )}
                     </span>
 
@@ -198,20 +253,31 @@ function renderStudentTable(students) {
         </div>
 
 
-        <div
-            id="studentSelectionBar"
-            class="student-selection-bar hidden">
+        <div id="studentSelectionBar" class="student-selection-bar hidden">
 
             <span id="studentSelectionCount">
                 0 selected
             </span>
 
             <button
+                class="btn-secondary"
+                onclick="moveSelectedStudents()"
+            >
+                MOVE TO
+            </button>
+
+            <button
+                class="btn-secondary"
+                onclick="removeSelectedStudents()"
+            >
+                REMOVE FROM CLASS
+            </button>
+
+            <button
                 class="btn-danger"
-                onclick="removeSelectedStudents()">
-
-                REMOVE SELECTED
-
+                onclick="deleteSelectedStudents()"
+            >
+                DELETE STUDENT
             </button>
 
         </div>
@@ -319,6 +385,253 @@ function toggleAllStudents(checked) {
 
 }
 
+// ----------------------------------------
+// Move selected students
+// ----------------------------------------
+
+function moveSelectedStudents() {
+
+    const selectedIds =
+        Array.from(
+            document.querySelectorAll(
+                ".student-checkbox:checked"
+            )
+        ).map(
+            checkbox => checkbox.value
+        );
+
+    if (!selectedIds.length) {
+        return;
+    }
+
+    const currentClassId =
+        AppState.currentClassId;
+
+    const currentClass =
+        ClassManager.getById(
+            currentClassId
+        );
+
+    if (!currentClass) {
+        return;
+    }
+
+    const academicYearId =
+        currentClass.academicYearId;
+
+    const destinationClasses =
+        ClassManager
+            .getByAcademicYear(
+                academicYearId
+            )
+            .filter(
+                cls =>
+                    cls.id !== currentClassId
+            );
+
+    if (!destinationClasses.length) {
+
+        alert(
+            "There are no other classes available in this academic year."
+        );
+
+        return;
+    }
+
+    const options =
+        destinationClasses
+            .map(
+                cls =>
+                    `<option value="${cls.id}">
+                        ${escapeHTML(cls.name)}
+                    </option>`
+            )
+            .join("");
+
+    const modal =
+        document.createElement("div");
+
+    modal.className =
+        "modal-overlay";
+
+    modal.innerHTML = `
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    MOVE STUDENTS
+                </h2>
+
+                <button
+                    class="modal-close"
+                    onclick="
+                        this.closest(
+                            '.modal-overlay'
+                        ).remove()
+                    "
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>
+                    Move
+                    <strong>
+                        ${selectedIds.length}
+                    </strong>
+                    student${selectedIds.length !== 1 ? "s" : ""}
+                    to:
+                </p>
+
+                <select
+                    id="moveStudentsDestination"
+                    class="form-input"
+                >
+
+                    <option value="">
+                        Select a class...
+                    </option>
+
+                    ${options}
+
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn-secondary"
+                    onclick="
+                        this.closest(
+                            '.modal-overlay'
+                        ).remove()
+                    "
+                >
+                    CANCEL
+                </button>
+
+                <button
+                    class="btn-primary"
+                    onclick="
+                        confirmMoveSelectedStudents(
+                            '${currentClassId}',
+                            '${academicYearId}'
+                        )
+                    "
+                >
+                    MOVE
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+}
+
+
+// ----------------------------------------
+// Confirm move
+// ----------------------------------------
+
+function confirmMoveSelectedStudents(
+    fromClassId,
+    academicYearId
+) {
+
+    const destinationClassId =
+        document.getElementById(
+            "moveStudentsDestination"
+        )?.value;
+
+    if (!destinationClassId) {
+
+        alert(
+            "Please select a destination class."
+        );
+
+        return;
+    }
+
+    const selectedIds =
+        Array.from(
+            document.querySelectorAll(
+                ".student-checkbox:checked"
+            )
+        ).map(
+            checkbox => checkbox.value
+        );
+
+    if (!selectedIds.length) {
+        return;
+    }
+
+    const destinationClass =
+        ClassManager.getById(
+            destinationClassId
+        );
+
+    if (!destinationClass) {
+        return;
+    }
+
+    const confirmed =
+        confirm(
+            `Move ${selectedIds.length} student${
+                selectedIds.length !== 1
+                    ? "s"
+                    : ""
+            } to "${destinationClass.name}"?`
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        selectedIds.forEach(
+            studentId => {
+
+                EnrollmentManager.move(
+                    studentId,
+                    fromClassId,
+                    destinationClassId,
+                    academicYearId
+                );
+
+            }
+        );
+
+        document
+            .querySelector(
+                ".modal-overlay"
+            )
+            ?.remove();
+
+        renderSingleClassView(
+            fromClassId
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error moving students:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Some students could not be moved."
+        );
+    }
+}
 
 // ---------------------------------------------------------
 // REMOVE SELECTED STUDENTS
@@ -417,6 +730,220 @@ function removeSelectedStudents() {
 
 }
 
+function deleteSelectedStudents() {
+
+    const selectedIds =
+        Array.from(
+            document.querySelectorAll(
+                ".student-checkbox:checked"
+            )
+        ).map(
+            checkbox => checkbox.value
+        );
+
+    if (!selectedIds.length) {
+        return;
+    }
+
+    const students =
+        selectedIds
+            .map(
+                studentId =>
+                    StudentManager.getById(
+                        studentId
+                    )
+            )
+            .filter(Boolean);
+
+    if (!students.length) {
+        return;
+    }
+
+    const studentNames =
+        students
+            .map(
+                student =>
+                    `${student.lastName}, ${student.firstName}`
+            )
+            .join("\n");
+
+    const confirmed =
+        confirm(
+            `DELETE ${students.length} STUDENT${
+                students.length !== 1
+                    ? "S"
+                    : ""
+            }?\n\n` +
+
+            `${studentNames}\n\n` +
+
+            `WARNING: This will permanently delete ` +
+            `the student record, enrollments, ` +
+            `attendance records and assessment results.\n\n` +
+
+            `This action cannot be undone.`
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        students.forEach(
+            student => {
+
+                StudentManager.deleteCompletely(
+                    student.id
+                );
+
+            }
+        );
+
+        renderSingleClassView(
+            AppState.currentClassId
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error deleting students:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Some students could not be deleted."
+        );
+    }
+}
+
+
+// ---------------------------------------------------------
+// CLASS CURRICULUM
+// ---------------------------------------------------------
+
+function renderClassCurriculumSelector(classItem) {
+
+    const curricula =
+        CurriculumManager.getAll();
+
+    const currentCurriculum =
+        classItem.curriculumId
+            ? CurriculumManager.getById(
+                classItem.curriculumId
+            )
+            : null;
+
+    const options = curricula
+        .map(curriculum => {
+
+            const label =
+                curriculum.name ||
+                curriculum.title ||
+                curriculum.id;
+
+            return `
+                <option
+                    value="${curriculum.id}"
+                    ${curriculum.id === classItem.curriculumId
+                        ? "selected"
+                        : ""}
+                >
+                    ${escapeHTML(label)}
+                </option>
+            `;
+        })
+        .join("");
+
+    return `
+
+        <div class="class-curriculum-control">
+
+            <select
+                id="classCurriculumSelect"
+                class="form-input"
+                onchange="changeClassCurriculum(
+                    '${classItem.id}'
+                )"
+            >
+
+                <option value="">
+                    Select curriculum...
+                </option>
+
+                ${options}
+
+            </select>
+
+            ${
+                currentCurriculum
+                    ? `
+                        <div class="class-curriculum-current">
+                            Currently assigned:
+                            <strong>
+                                ${escapeHTML(
+                                    currentCurriculum.name ||
+                                    currentCurriculum.title ||
+                                    currentCurriculum.id
+                                )}
+                            </strong>
+                        </div>
+                    `
+                    : `
+                        <div class="class-curriculum-current">
+                            No curriculum assigned.
+                        </div>
+                    `
+            }
+
+        </div>
+
+    `;
+}
+
+// ---------------------------------------------------------
+// CHANGE CLASS CURRICULUM
+// ---------------------------------------------------------
+
+function changeClassCurriculum(classId) {
+
+    const select =
+        document.getElementById(
+            "classCurriculumSelect"
+        );
+
+    if (!select) {
+        return;
+    }
+
+    const curriculumId =
+        select.value || null;
+
+    try {
+
+        ClassManager.setCurriculum(
+            classId,
+            curriculumId
+        );
+
+        renderSingleClassView(
+            classId
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error assigning curriculum:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "The curriculum could not be assigned."
+        );
+    }
+}
 
 // ---------------------------------------------------------
 // EMPTY

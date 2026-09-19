@@ -1,30 +1,71 @@
+// =========================================================
+// T-CHIT — ASSESSMENT ACTIVITY MANAGER
+// =========================================================
+
+
 const AssessmentActivityManager = {
 
-    // ----------------------------------------
-    // Normalize activity data
-    // ----------------------------------------
+    // -----------------------------------------------------
+    // NORMALIZE SPECIFIC COMPETENCES
+    // -----------------------------------------------------
 
-    normalizeCriteria(criteria = []) {
+    normalizeSpecificCompetences(
+        specificCompetences = []
+    ) {
 
-        if (!Array.isArray(criteria)) {
+        if (!Array.isArray(specificCompetences)) {
             return [];
         }
 
-        return criteria
-            .map(item => ({
-                criterionId:
-                    String(item.criterionId || "").trim(),
+        const normalized = specificCompetences
+            .map(item => {
 
-                weight:
-                    Number.isFinite(Number(item.weight))
-                        ? Number(item.weight)
-                        : 0
-            }))
-            .filter(
-                item => item.criterionId
-            );
+                const specificCompetenceId =
+                    String(
+                        item.specificCompetenceId || ""
+                    ).trim();
+
+                if (!specificCompetenceId) {
+                    return null;
+                }
+
+                return {
+                    specificCompetenceId,
+
+                    weight: this.normalizeWeight(
+                        item.weight
+                    )
+                };
+
+            })
+            .filter(Boolean);
+
+
+        // Prevent the same CE from being added twice.
+        const unique = [];
+
+        normalized.forEach(item => {
+
+            const alreadyExists =
+                unique.some(
+                    existing =>
+                        existing.specificCompetenceId ===
+                        item.specificCompetenceId
+                );
+
+            if (!alreadyExists) {
+                unique.push(item);
+            }
+
+        });
+
+        return unique;
     },
 
+
+    // -----------------------------------------------------
+    // NORMALIZE BASIC KNOWLEDGE
+    // -----------------------------------------------------
 
     normalizeBasicKnowledgeIds(
         basicKnowledgeIds = []
@@ -37,62 +78,109 @@ const AssessmentActivityManager = {
         return [
             ...new Set(
                 basicKnowledgeIds
-                    .map(id =>
-                        String(id || "").trim()
+                    .map(
+                        id =>
+                            String(
+                                id || ""
+                            ).trim()
                     )
                     .filter(Boolean)
             )
         ];
+
     },
 
 
-    // ----------------------------------------
-    // Create
-    // ----------------------------------------
+    // -----------------------------------------------------
+    // NORMALIZE WEIGHT
+    // -----------------------------------------------------
+
+    normalizeWeight(
+        weight = 0
+    ) {
+
+        const value =
+            Number(weight);
+
+        if (!Number.isFinite(value)) {
+            return 0;
+        }
+
+        return Math.min(
+            100,
+            Math.max(
+                0,
+                value
+            )
+        );
+
+    },
+
+
+    // -----------------------------------------------------
+    // CREATE
+    // -----------------------------------------------------
 
     create({
         lessonId,
         title,
         instrumentId = null,
-        criteria = [],
+        specificCompetences = [],
         basicKnowledgeIds = []
     }) {
 
         if (!lessonId) {
+
             throw new Error(
                 "Lesson is required."
             );
+
         }
+
 
         const lesson =
             AppState.data.lessons.find(
-                item => item.id === lessonId
+                item =>
+                    item.id === lessonId
             );
 
+
         if (!lesson) {
+
             throw new Error(
                 "Lesson not found."
             );
+
         }
 
 
         title =
-            String(title || "").trim();
+            String(
+                title || ""
+            ).trim();
+
 
         if (!title) {
+
             throw new Error(
                 "Assessment activity title cannot be empty."
             );
+
         }
 
 
-        const normalizedCriteria =
-            this.normalizeCriteria(criteria);
-
-        if (!normalizedCriteria.length) {
-            throw new Error(
-                "At least one assessment criterion is required."
+        const normalizedCompetences =
+            this.normalizeSpecificCompetences(
+                specificCompetences
             );
+
+
+        if (!normalizedCompetences.length) {
+
+            throw new Error(
+                "At least one specific competence is required."
+            );
+
         }
 
 
@@ -108,9 +196,10 @@ const AssessmentActivityManager = {
 
         const activity = {
 
-            id: Utils.createId(
-                "assessment"
-            ),
+            id:
+                Utils.createId(
+                    "assessment"
+                ),
 
             lessonId,
 
@@ -119,135 +208,293 @@ const AssessmentActivityManager = {
             instrumentId:
                 instrumentId || null,
 
-            criteria:
-                normalizedCriteria,
+            specificCompetences:
+                normalizedCompetences,
 
             basicKnowledgeIds:
                 normalizedKnowledge,
 
-            createdAt: now,
-            updatedAt: now
+            createdAt:
+                now,
+
+            updatedAt:
+                now
+
         };
 
 
-        AppState.data.assessmentActivities
-            .push(activity);
+        AppState.data.assessmentActivities.push(
+            activity
+        );
+
 
         AppState.save();
 
+
         return activity;
+
     },
 
 
-    // ----------------------------------------
-    // Get by ID
-    // ----------------------------------------
+    // -----------------------------------------------------
+    // GET BY ID
+    // -----------------------------------------------------
 
     getById(id) {
 
-        return AppState.data.assessmentActivities
+        return AppState
+            .data
+            .assessmentActivities
             .find(
                 activity =>
                     activity.id === id
             ) || null;
+
     },
 
 
-    // ----------------------------------------
-    // Get by lesson
-    // ----------------------------------------
+    // -----------------------------------------------------
+    // GET BY LESSON
+    // -----------------------------------------------------
 
-    getByLessonId(lessonId) {
+    getByLessonId(
+        lessonId
+    ) {
 
-        return AppState.data.assessmentActivities
+        return AppState
+            .data
+            .assessmentActivities
             .filter(
                 activity =>
-                    activity.lessonId === lessonId
+                    activity.lessonId ===
+                    lessonId
             );
+
     },
 
 
-    // ----------------------------------------
-    // Update
-    // ----------------------------------------
+    // -----------------------------------------------------
+    // GET BY CLASS
+    // -----------------------------------------------------
 
-    update(id, {
-        lessonId,
-        title,
-        instrumentId,
-        criteria,
-        basicKnowledgeIds
-    }) {
+    getByClassId(
+        classId
+    ) {
+
+        const lessonIds =
+            AppState
+                .data
+                .lessons
+                .filter(
+                    lesson =>
+                        lesson.classId ===
+                        classId
+                )
+                .map(
+                    lesson =>
+                        lesson.id
+                );
+
+
+        return AppState
+            .data
+            .assessmentActivities
+            .filter(
+                activity =>
+                    lessonIds.includes(
+                        activity.lessonId
+                    )
+            );
+
+    },
+
+
+    // -----------------------------------------------------
+    // GET BY ACADEMIC YEAR
+    // -----------------------------------------------------
+
+    getByAcademicYearId(
+        academicYearId
+    ) {
+
+        const lessonIds =
+            AppState
+                .data
+                .lessons
+                .filter(
+                    lesson =>
+                        lesson.academicYearId ===
+                        academicYearId
+                )
+                .map(
+                    lesson =>
+                        lesson.id
+                );
+
+
+        return AppState
+            .data
+            .assessmentActivities
+            .filter(
+                activity =>
+                    lessonIds.includes(
+                        activity.lessonId
+                    )
+            );
+
+    },
+
+
+    // -----------------------------------------------------
+    // GET ALL
+    // -----------------------------------------------------
+
+    getAll() {
+
+        return AppState
+            .data
+            .assessmentActivities;
+
+    },
+
+
+    // -----------------------------------------------------
+    // UPDATE
+    // -----------------------------------------------------
+
+    update(
+        id,
+        {
+            lessonId,
+            title,
+            instrumentId,
+            specificCompetences,
+            basicKnowledgeIds
+        }
+    ) {
 
         const activity =
             this.getById(id);
 
+
         if (!activity) {
+
             throw new Error(
                 "Assessment activity not found."
             );
+
         }
 
 
-        if (lessonId !== undefined) {
+        // ---------------------------------------------
+        // LESSON
+        // ---------------------------------------------
+
+        if (
+            lessonId !== undefined
+        ) {
 
             const lesson =
-                AppState.data.lessons.find(
-                    item =>
-                        item.id === lessonId
-                );
+                AppState
+                    .data
+                    .lessons
+                    .find(
+                        item =>
+                            item.id ===
+                            lessonId
+                    );
+
 
             if (!lesson) {
+
                 throw new Error(
                     "Lesson not found."
                 );
+
             }
+
 
             activity.lessonId =
                 lessonId;
+
         }
 
 
-        if (title !== undefined) {
+        // ---------------------------------------------
+        // TITLE
+        // ---------------------------------------------
+
+        if (
+            title !== undefined
+        ) {
 
             const cleanTitle =
-                String(title || "").trim();
+                String(
+                    title || ""
+                ).trim();
+
 
             if (!cleanTitle) {
+
                 throw new Error(
                     "Assessment activity title cannot be empty."
                 );
+
             }
+
 
             activity.title =
                 cleanTitle;
+
         }
 
 
-        if (instrumentId !== undefined) {
+        // ---------------------------------------------
+        // INSTRUMENT
+        // ---------------------------------------------
+
+        if (
+            instrumentId !== undefined
+        ) {
 
             activity.instrumentId =
                 instrumentId || null;
+
         }
 
 
-        if (criteria !== undefined) {
+        // ---------------------------------------------
+        // SPECIFIC COMPETENCES
+        // ---------------------------------------------
 
-            const normalizedCriteria =
-                this.normalizeCriteria(
-                    criteria
+        if (
+            specificCompetences !== undefined
+        ) {
+
+            const normalizedCompetences =
+                this.normalizeSpecificCompetences(
+                    specificCompetences
                 );
 
-            if (!normalizedCriteria.length) {
+
+            if (!normalizedCompetences.length) {
+
                 throw new Error(
-                    "At least one assessment criterion is required."
+                    "At least one specific competence is required."
                 );
+
             }
 
-            activity.criteria =
-                normalizedCriteria;
+
+            activity.specificCompetences =
+                normalizedCompetences;
+
         }
 
+
+        // ---------------------------------------------
+        // BASIC KNOWLEDGE
+        // ---------------------------------------------
 
         if (
             basicKnowledgeIds !== undefined
@@ -257,50 +504,65 @@ const AssessmentActivityManager = {
                 this.normalizeBasicKnowledgeIds(
                     basicKnowledgeIds
                 );
+
         }
 
 
         activity.updatedAt =
             new Date().toISOString();
 
+
         AppState.save();
 
+
         return activity;
+
     },
 
 
-    // ----------------------------------------
-    // Delete
-    // ----------------------------------------
+    // -----------------------------------------------------
+    // DELETE
+    // -----------------------------------------------------
 
     delete(id) {
 
         const exists =
             this.getById(id);
 
+
         if (!exists) {
             return;
         }
 
 
+        // Delete the activity.
+
         AppState.data.assessmentActivities =
-            AppState.data.assessmentActivities
+            AppState
+                .data
+                .assessmentActivities
                 .filter(
                     activity =>
                         activity.id !== id
                 );
 
 
-        // Remove associated results too.
+        // Delete all grades/results
+        // belonging to this activity.
+
         AppState.data.assessmentResults =
-            AppState.data.assessmentResults
+            AppState
+                .data
+                .assessmentResults
                 .filter(
                     result =>
-                        result.assessmentActivityId !== id
+                        result.assessmentActivityId !==
+                        id
                 );
 
 
         AppState.save();
+
     }
 
 };

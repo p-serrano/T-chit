@@ -63,7 +63,7 @@
     margin-left: 5px;
 
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
 
     background: var(--paper-dark);
     padding: 3px 5px;
@@ -133,7 +133,7 @@
     justify-content: center;
 
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 }
@@ -153,7 +153,7 @@
 .timetable-day-header span {
 
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
 
     color: var(--purple-dark);
@@ -165,7 +165,7 @@
 
     margin-top: 2px;
 
-    font-size: 9px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 
@@ -187,7 +187,7 @@
     padding-top: 10px;
 
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 
@@ -273,7 +273,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 8px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 
@@ -291,7 +291,7 @@
 
 .timetable-entry-subject {
 
-    font-size: 9px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 
@@ -364,7 +364,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 7px;
+    font-size: 11px;
 
     font-weight: 400;
 
@@ -460,7 +460,7 @@
     margin-top: 3px;
     color: var(--ink-soft);
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
 }
@@ -482,7 +482,7 @@
     background: var(--paper);
     color: var(--ink);
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -538,7 +538,7 @@
 .course-plan-day-header span {
     color: var(--purple);
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.08em;
 }
@@ -558,7 +558,7 @@
     margin-top: 5px;
     color: var(--ink-soft);
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
@@ -588,7 +588,7 @@
     min-height: 90px;
     color: var(--ink-soft);
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     opacity: 0.65;
@@ -638,7 +638,7 @@
     margin-bottom: 5px;
     color: var(--ink-soft);
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: 0.02em;
 }
 
@@ -669,7 +669,7 @@
     padding-top: 9px;
     color: var(--purple);
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.05em;
 }
@@ -711,7 +711,7 @@
     margin-top: auto;
     padding-top: 7px;
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -819,7 +819,7 @@
     background: var(--paper-dark);
     color: var(--ink);
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -879,7 +879,7 @@
     margin-bottom: 7px;
     color: var(--ink-soft);
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -911,7 +911,7 @@
     border-radius: 4px;
     color: var(--ink);
     font-family: var(--font-ui);
-    font-size: 9px;
+    font-size: 11px;
     cursor: pointer;
     transition:
         background 0.12s ease,
@@ -955,7 +955,7 @@
 .assessment-check-option small {
     color: var(--ink-soft);
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.04em;
 }
@@ -974,7 +974,7 @@
     background: var(--pink-light);
     color: var(--purple-dark);
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
     font-weight: 700;
     line-height: 1;
     letter-spacing: 0.06em;
@@ -997,6 +997,621 @@
     }
 
 }
+
+ /* =========================================================
+    T-CHIT — PLANNER ASSESSMENT HELPERS
+    ========================================================= */
+
+
+ /* ---------------------------------------------------------
+    EMPTY ASSESSMENT STATES
+    --------------------------------------------------------- */
+
+ .assessment-form-empty {
+
+     padding: 11px 12px;
+
+     border: 1px dashed var(--line);
+     border-radius: var(--radius-small);
+
+     background: var(--paper-dark);
+
+     color: var(--ink-soft);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+
+     line-height: 1.5;
+
+     text-transform: uppercase;
+     letter-spacing: 0.04em;
+
+ }
+
+
+ /* ---------------------------------------------------------
+    SPECIFIC COMPETENCES
+    --------------------------------------------------------- */
+
+ .assessment-specific-competences {
+
+     display: flex;
+     flex-direction: column;
+
+     gap: 6px;
+
+ }
+
+
+ /* ---------------------------------------------------------
+    COMPETENCE OPTION
+    --------------------------------------------------------- */
+
+ .assessment-competence-option {
+
+     padding: 8px 9px;
+
+     border: 1px solid transparent;
+     border-radius: var(--radius-small);
+
+     background: var(--paper);
+
+     transition:
+         background 0.12s ease,
+         border-color 0.12s ease,
+         box-shadow 0.12s ease;
+
+ }
+
+
+ .assessment-competence-option:hover {
+
+     border-color: var(--line);
+
+     background: var(--paper-dark);
+
+ }
+
+
+ .assessment-competence-option.selected {
+
+     border-color:
+         rgba(112, 70, 168, 0.18);
+
+     background: var(--pink-light);
+
+     box-shadow:
+         1px 2px 4px
+         rgba(45, 35, 50, 0.04);
+
+ }
+
+
+ /* ---------------------------------------------------------
+    COMPETENCE MAIN ROW
+    --------------------------------------------------------- */
+
+ .assessment-competence-main {
+
+     display: flex;
+     align-items: center;
+
+     gap: 10px;
+
+ }
+
+
+ .assessment-competence-main > label {
+
+     flex: 1;
+     min-width: 0;
+
+     display: flex;
+     align-items: center;
+
+     gap: 8px;
+
+     margin: 0;
+
+     cursor: pointer;
+
+ }
+
+
+ /* ---------------------------------------------------------
+    COMPETENCE CHECKBOX
+    --------------------------------------------------------- */
+
+ .assessment-competence-main input[type="checkbox"] {
+
+     flex: 0 0 auto;
+
+     width: 15px;
+     height: 15px;
+
+     margin: 0;
+
+     accent-color: var(--purple);
+
+     cursor: pointer;
+
+ }
+
+
+ /* ---------------------------------------------------------
+    COMPETENCE TEXT
+    --------------------------------------------------------- */
+
+ .assessment-competence-main label > span {
+
+     min-width: 0;
+
+     display: flex;
+     align-items: baseline;
+
+     gap: 7px;
+
+     line-height: 1.3;
+
+ }
+
+
+ .assessment-competence-main strong {
+
+     flex: 0 0 auto;
+
+     color: var(--purple-dark);
+
+     font-family: var(--font-mono);
+     font-size: 13px;
+     font-weight: 700;
+
+     letter-spacing: 0.04em;
+
+ }
+
+
+ .assessment-competence-main label > span > span {
+
+     min-width: 0;
+
+     overflow: hidden;
+
+     color: var(--ink);
+
+     font-family: var(--font-ui);
+     font-size: 13px;
+
+     text-overflow: ellipsis;
+
+ }
+
+
+ /* ---------------------------------------------------------
+    COMPETENCE WEIGHT
+    --------------------------------------------------------- */
+
+ .assessment-competence-weight {
+
+     flex: 0 0 auto;
+
+     display: flex;
+     align-items: center;
+
+     gap: 3px;
+
+ }
+
+
+ .assessment-competence-weight input {
+
+     box-sizing: border-box;
+
+     width: 58px;
+     height: 28px;
+
+     padding: 4px 6px;
+
+     border: 1px solid var(--line);
+     border-radius: 4px;
+
+     background: var(--paper-light);
+
+     color: var(--ink);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+
+     text-align: right;
+
+     outline: none;
+
+     transition:
+         border-color 0.15s ease,
+         box-shadow 0.15s ease,
+         background 0.15s ease;
+
+ }
+
+
+ .assessment-competence-weight input:focus {
+
+     border-color: var(--purple-light);
+
+     background: var(--paper);
+
+     box-shadow:
+         0 0 0 2px
+         rgba(154, 114, 199, 0.10);
+
+ }
+
+
+ .assessment-competence-weight input:disabled {
+
+     background: var(--paper-dark);
+
+     color: var(--ink-soft);
+
+     opacity: 0.45;
+
+     cursor: not-allowed;
+
+ }
+
+
+ .assessment-competence-weight > span {
+
+     color: var(--ink-soft);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+     font-weight: 700;
+
+ }
+
+
+ /* ---------------------------------------------------------
+    REMOVE NUMBER INPUT SPINNERS
+    --------------------------------------------------------- */
+
+ .assessment-competence-weight input::-webkit-inner-spin-button,
+ .assessment-competence-weight input::-webkit-outer-spin-button {
+
+     margin: 0;
+
+     appearance: none;
+
+ }
+
+
+ .assessment-competence-weight input[type="number"] {
+
+     appearance: textfield;
+
+ }
+
+
+ /* =========================================================
+    OPERATIONAL DESCRIPTORS
+    ========================================================= */
+
+
+ .assessment-operational-descriptors {
+
+     margin-top: 8px;
+     padding-top: 7px;
+
+     border-top: 1px dashed
+         rgba(112, 70, 168, 0.10);
+
+ }
+
+
+ .assessment-operational-descriptors-label {
+
+     margin-bottom: 5px;
+
+     color: var(--ink-soft);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+     font-weight: 600;
+
+     text-transform: uppercase;
+     letter-spacing: 0.08em;
+
+ }
+
+
+ .assessment-operational-descriptors-list {
+
+     display: flex;
+     flex-wrap: wrap;
+
+     gap: 4px;
+
+ }
+
+
+ .assessment-operational-descriptor {
+
+     display: inline-flex;
+     align-items: center;
+
+     padding: 3px 5px;
+
+     border: 1px solid var(--line);
+     border-radius: 3px;
+
+     background: var(--paper-dark);
+
+     color: var(--purple-dark);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+     font-weight: 600;
+
+     line-height: 1;
+
+ }
+
+
+ /* =========================================================
+    BASIC KNOWLEDGE RESULTS
+    ========================================================= */
+
+
+ .assessment-basic-knowledge-results {
+
+     display: flex;
+     flex-direction: column;
+
+     gap: 4px;
+
+ }
+
+
+ .assessment-basic-knowledge-results
+ .assessment-check-option {
+
+     align-items: flex-start;
+
+     min-height: 34px;
+
+     padding: 6px 8px;
+
+ }
+
+
+ .assessment-basic-knowledge-results
+ .assessment-check-option > span {
+
+     display: flex;
+     flex-direction: column;
+
+     gap: 2px;
+
+     min-width: 0;
+
+ }
+
+
+ .assessment-basic-knowledge-results
+ .assessment-check-option strong {
+
+     color: var(--ink);
+
+     font-family: var(--font-ui);
+     font-size: 11px;
+     font-weight: 600;
+
+     line-height: 1.25;
+
+ }
+
+
+ .assessment-basic-knowledge-results
+ .assessment-check-option small {
+
+     display: block;
+
+     overflow: hidden;
+
+     color: var(--ink-soft);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+
+     line-height: 1.3;
+
+ }
+
+
+ /* ---------------------------------------------------------
+    BASIC KNOWLEDGE CODE
+    --------------------------------------------------------- */
+
+ .assessment-basic-knowledge-results
+ .assessment-check-option small:first-of-type {
+
+     color: var(--purple);
+
+     font-weight: 700;
+
+     text-transform: uppercase;
+     letter-spacing: 0.03em;
+
+ }
+
+
+ /* =========================================================
+    SELECTED BASIC KNOWLEDGE
+    ========================================================= */
+
+
+ .assessment-basic-knowledge-selected {
+
+     display: flex;
+     flex-direction: column;
+
+     gap: 4px;
+
+ }
+
+
+ .assessment-selected-knowledge-item {
+
+     position: relative;
+
+     padding: 7px 9px 7px 12px;
+
+     border: 1px solid var(--line);
+     border-radius: 4px;
+
+     background: var(--yellow-light);
+
+     color: var(--ink);
+
+     font-family: var(--font-ui);
+     font-size: 11px;
+
+     line-height: 1.35;
+
+ }
+
+
+ .assessment-selected-knowledge-item::before {
+
+     content: "";
+
+     position: absolute;
+
+     left: 0;
+     top: 0;
+     bottom: 0;
+
+     width: 3px;
+
+     border-radius:
+         4px 0 0 4px;
+
+     background: var(--yellow);
+
+ }
+
+
+ /* ---------------------------------------------------------
+    NO SELECTED KNOWLEDGE
+    --------------------------------------------------------- */
+
+ .assessment-selected-empty {
+
+     padding: 6px 8px;
+
+     color: var(--ink-soft);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+
+     font-style: italic;
+
+     opacity: 0.7;
+
+ }
+
+
+ /* =========================================================
+    ASSESSMENT WEIGHT — FUTURE SUMMARY
+    ========================================================= */
+
+ .assessment-weight-summary {
+
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+
+     margin-top: 9px;
+     padding: 7px 9px;
+
+     border-top: 1px dashed var(--line);
+
+     color: var(--ink-soft);
+
+     font-family: var(--font-mono);
+     font-size: 11px;
+
+ }
+
+
+ .assessment-weight-summary strong {
+
+     color: var(--purple-dark);
+
+     font-weight: 700;
+
+ }
+
+
+ .assessment-weight-summary.warning strong {
+
+     color: var(--yellow-dark, var(--yellow));
+
+ }
+
+
+ .assessment-weight-summary.complete strong {
+
+     color: var(--green);
+
+ }
+
+
+ /* =========================================================
+    RESPONSIVE
+    ========================================================= */
+
+ @media (max-width: 560px) {
+
+     .assessment-competence-main {
+
+         align-items: flex-start;
+
+     }
+
+
+     .assessment-competence-main > label {
+
+         align-items: flex-start;
+
+     }
+
+
+     .assessment-competence-main label > span {
+
+         flex-direction: column;
+
+         align-items: flex-start;
+
+         gap: 2px;
+
+     }
+
+
+     .assessment-competence-weight input {
+
+         width: 52px;
+
+     }
+
+
+     .assessment-operational-descriptors {
+
+         margin-left: 23px;
+
+     }
+
+ }
 
 /* =========================================================
    LESSON MODAL — SCROLLABLE BODY
@@ -1075,7 +1690,7 @@
     color: var(--purple-dark);
 
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 0.08em;
@@ -1086,7 +1701,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-ui);
-    font-size: 9px;
+    font-size: 11px;
 }
 
 
@@ -1102,7 +1717,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 0.06em;
@@ -1272,7 +1887,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 0.12em;
@@ -1294,7 +1909,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
 
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -1329,7 +1944,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 0.09em;
@@ -1352,7 +1967,7 @@
     color: var(--ink);
 
     font-family: var(--font-ui);
-    font-size: 10px;
+    font-size: 11px;
 
     outline: none;
 
@@ -1399,7 +2014,7 @@
     color: var(--green);
 
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 0.08em;
@@ -1410,7 +2025,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-ui);
-    font-size: 9px;
+    font-size: 11px;
 }
 
 
@@ -1433,7 +2048,7 @@
     color: var(--ink);
 
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 0.08em;
@@ -1502,7 +2117,7 @@
     color: var(--red);
 
     font-family: var(--font-mono);
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 0.08em;
@@ -1513,7 +2128,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-ui);
-    font-size: 9px;
+    font-size: 11px;
 }
 
 
@@ -1523,7 +2138,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
 
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1542,7 +2157,7 @@
     color: var(--ink-soft);
 
     font-family: var(--font-mono);
-    font-size: 7px;
+    font-size: 11px;
 
     letter-spacing: 0.03em;
 }
@@ -1600,7 +2215,7 @@
     background: var(--paper-dark);
     color: var(--ink-soft);
     font-family: var(--font-ui);
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.5;
 }
 
@@ -1666,7 +2281,7 @@
     background: var(--paper-dark);
     color: var(--ink-soft);
     font-family: var(--font-ui);
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.5;
 }
 

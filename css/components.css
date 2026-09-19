@@ -281,7 +281,7 @@
 
     color: var(--ink-muted);
 
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 400;
 }
 
@@ -339,7 +339,7 @@
     color: var(--purple);
 
     font-family: var(--font-ui);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
 
     white-space: nowrap;
@@ -584,7 +584,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 9px;
+    font-size: 11px;
 
     font-weight: 700;
 
@@ -858,7 +858,7 @@
 
     .academic-year-badge {
 
-        font-size: 9px;
+        font-size: 11px;
 
         padding: 6px 8px;
     }
@@ -897,7 +897,7 @@
 
         width: 45px;
 
-        font-size: 10px;
+        font-size: 11px;
     }
 
 
@@ -905,7 +905,7 @@
 
         padding: 7px 9px;
 
-        font-size: 9px;
+        font-size: 11px;
     }
 }
 
@@ -935,7 +935,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 10px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 
@@ -1036,7 +1036,7 @@
 
     border-radius: 4px;
 
-    font-size: 9px;
+    font-size: 11px;
 
     text-transform: uppercase;
 
@@ -1090,7 +1090,7 @@
 
     border-radius: 5px;
 
-    font-size: 10px;
+    font-size: 11px;
 
     font-weight: 700;
 }
@@ -1120,7 +1120,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 10px;
+    font-size: 11px;
 
     font-weight: 600;
 }
@@ -1152,7 +1152,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 10px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 
@@ -1213,7 +1213,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 10px;
+    font-size: 11px;
 }
 
 
@@ -1264,7 +1264,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 9px;
+    font-size: 11px;
 
     text-transform: uppercase;
 
@@ -1276,7 +1276,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 10px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 }
@@ -1346,7 +1346,7 @@
 
 #studentSelectionCount {
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--ink-soft);
@@ -1367,7 +1367,7 @@
     border-radius: 4px;
 
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 600;
 
     letter-spacing: 0.04em;
@@ -1452,7 +1452,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 9px;
+    font-size: 11px;
 
     color: var(--purple);
 
@@ -1583,7 +1583,7 @@
 
     font-family: var(--font-mono);
 
-    font-size: 8px;
+    font-size: 11px;
 
     color: var(--ink-soft);
 
@@ -1631,6 +1631,389 @@
     color: var(--ink-soft);
 
     line-height: 1.5;
+}
+
+/* =========================================================
+   T-CHIT — ASSESSMENT ACTIVITY FORM
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   ACTIVITY WEIGHT
+   --------------------------------------------------------- */
+
+.lesson-assessment-weight {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.lesson-assessment-weight input {
+    width: 90px;
+    box-sizing: border-box;
+
+    padding: 7px 9px;
+
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+
+    background: var(--paper);
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+
+    outline: none;
+}
+
+
+.lesson-assessment-weight input:focus {
+    border-color: var(--purple-light);
+
+    box-shadow:
+        0 0 0 2px rgba(154, 114, 199, 0.12);
+}
+
+
+.lesson-assessment-weight span {
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+
+
+/* ---------------------------------------------------------
+   INSTRUMENT SELECT
+   --------------------------------------------------------- */
+
+.lesson-assessment-select {
+
+    width: 100%;
+    min-height: 36px;
+
+    box-sizing: border-box;
+
+    padding: 7px 10px;
+
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+
+    background: var(--paper);
+
+    color: var(--ink);
+
+    font-family: var(--font-ui);
+    font-size: 11px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.lesson-assessment-select:focus {
+
+    border-color: var(--purple-light);
+
+    box-shadow:
+        0 0 0 2px rgba(154, 114, 199, 0.12);
+}
+
+
+/* ---------------------------------------------------------
+   CRITERIA
+   --------------------------------------------------------- */
+
+.lesson-assessment-criteria {
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+/* Individual criterion */
+
+.assessment-criterion-option {
+
+    display: grid;
+
+    grid-template-columns:
+        18px
+        minmax(0, 1fr)
+        70px;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 8px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    background: transparent;
+
+    transition:
+        background 0.12s ease,
+        border-color 0.12s ease;
+}
+
+
+.assessment-criterion-option:hover {
+
+    background: var(--paper-dark);
+
+    border-color: var(--line);
+}
+
+
+.assessment-criterion-option input[type="checkbox"] {
+
+    width: 14px;
+    height: 14px;
+
+    margin: 0;
+
+    accent-color: var(--purple);
+
+    cursor: pointer;
+}
+
+
+.assessment-criterion-info {
+
+    min-width: 0;
+}
+
+
+.assessment-criterion-code {
+
+    display: block;
+
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+
+.assessment-criterion-description {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-ui);
+    font-size: 11px;
+
+    line-height: 1.3;
+}
+
+
+/* Criterion weight */
+
+.assessment-criterion-weight {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 5px 6px;
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    background: var(--paper);
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+
+    text-align: right;
+
+    outline: none;
+}
+
+
+.assessment-criterion-weight:focus {
+
+    border-color: var(--purple-light);
+
+    box-shadow:
+        0 0 0 2px rgba(154, 114, 199, 0.10);
+}
+
+
+/* ---------------------------------------------------------
+   BASIC KNOWLEDGE
+   --------------------------------------------------------- */
+
+.lesson-assessment-knowledge {
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    max-height: 190px;
+
+    overflow-y: auto;
+
+    padding-right: 3px;
+}
+
+
+.assessment-knowledge-option {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    padding: 6px 8px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    color: var(--ink);
+
+    font-family: var(--font-ui);
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.12s ease,
+        border-color 0.12s ease;
+}
+
+
+.assessment-knowledge-option:hover {
+
+    background: var(--paper-dark);
+
+    border-color: var(--line);
+}
+
+
+.assessment-knowledge-option input {
+
+    flex: 0 0 auto;
+
+    width: 14px;
+    height: 14px;
+
+    margin: 1px 0 0;
+
+    accent-color: var(--purple);
+
+    cursor: pointer;
+}
+
+
+.assessment-knowledge-option span {
+
+    flex: 1;
+
+    line-height: 1.3;
+}
+
+
+/* ---------------------------------------------------------
+   KNOWLEDGE BLOCK LABEL
+   --------------------------------------------------------- */
+
+.assessment-knowledge-block {
+
+    margin-top: 9px;
+    margin-bottom: 3px;
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+}
+
+
+/* ---------------------------------------------------------
+   ASSESSMENT TOTAL / HINT
+   --------------------------------------------------------- */
+
+.assessment-weight-hint {
+
+    margin-top: 5px;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+
+    letter-spacing: 0.03em;
+}
+
+
+/* ---------------------------------------------------------
+   SELECTED STATE
+   --------------------------------------------------------- */
+
+.assessment-check-option:has(input:checked),
+.assessment-criterion-option:has(input[type="checkbox"]:checked),
+.assessment-knowledge-option:has(input:checked) {
+
+    background: rgba(112, 70, 168, 0.045);
+
+    border-color: rgba(112, 70, 168, 0.16);
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 560px) {
+
+    .assessment-criterion-option {
+
+        grid-template-columns:
+            18px
+            minmax(0, 1fr)
+            62px;
+
+        gap: 5px;
+
+        padding: 7px 6px;
+    }
+
+
+    .assessment-criterion-description {
+
+        font-size: 11px;
+    }
+
+
+    .lesson-assessment-knowledge {
+
+        max-height: 160px;
+    }
+
 }
 
 

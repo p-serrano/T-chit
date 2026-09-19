@@ -947,26 +947,35 @@ detectNames(lines, items = []) {
         names.forEach(
             fullName => {
 
-                const parts =
+                const nameParts =
                     String(
                         fullName
                     )
                         .trim()
-                        .split(
-                            /\s+/
-                        );
+                        .split(",");
 
                 if (
-                    !parts.length
+                    nameParts.length < 2
                 ) {
                     return;
                 }
 
-                const firstName =
-                    parts.shift();
-
                 const lastName =
-                    parts.join(" ");
+                    nameParts[0]
+                        .trim();
+
+                const firstName =
+                    nameParts
+                        .slice(1)
+                        .join(",")
+                        .trim();
+
+                if (
+                    !firstName ||
+                    !lastName
+                ) {
+                    return;
+                }
 
                 const normalizeName =
                     value =>

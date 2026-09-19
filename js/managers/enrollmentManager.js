@@ -185,6 +185,123 @@ const EnrollmentManager = {
     },
 
     // ------------------------------------
+    // Move student to another class
+    // ------------------------------------
+
+    move(
+        studentId,
+        fromClassId,
+        toClassId,
+        academicYearId
+    ) {
+
+        if (!studentId) {
+            throw new Error(
+                "Student ID is required."
+            );
+        }
+
+        if (!fromClassId) {
+            throw new Error(
+                "Current class ID is required."
+            );
+        }
+
+        if (!toClassId) {
+            throw new Error(
+                "Destination class ID is required."
+            );
+        }
+
+        if (!academicYearId) {
+            throw new Error(
+                "Academic year ID is required."
+            );
+        }
+
+        if (fromClassId === toClassId) {
+            throw new Error(
+                "Destination class must be different."
+            );
+        }
+
+        const destinationClass =
+            ClassManager.getById(
+                toClassId
+            );
+
+        if (!destinationClass) {
+            throw new Error(
+                "Destination class not found."
+            );
+        }
+
+        if (
+            destinationClass.academicYearId !==
+            academicYearId
+        ) {
+            throw new Error(
+                "Destination class belongs to another academic year."
+            );
+        }
+
+        const currentEnrollment =
+            this.getForStudentInClass(
+                studentId,
+                fromClassId
+            );
+
+        if (!currentEnrollment) {
+            throw new Error(
+                "Student is not enrolled in the current class."
+            );
+        }
+
+        const destinationEnrollment =
+            this.getForStudentInClass(
+                studentId,
+                toClassId
+            );
+
+        if (destinationEnrollment) {
+            throw new Error(
+                "Student is already enrolled in the destination class."
+            );
+        }
+
+        currentEnrollment.active =
+            false;
+
+        const newEnrollment = {
+
+            id:
+                Utils.createId(
+                    "enrollment"
+                ),
+
+            studentId,
+
+            classId:
+                toClassId,
+
+            academicYearId,
+
+            active: true,
+
+            createdAt:
+                new Date().toISOString()
+        };
+
+        AppState.data.enrollments.push(
+            newEnrollment
+        );
+
+        AppState.save();
+
+        return newEnrollment;
+    },
+
+    // ------------------------------------
     // Delete enrollment permanently
     // ------------------------------------
 

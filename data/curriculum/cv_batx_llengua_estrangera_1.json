@@ -1,350 +1,361 @@
 {
-  "id": "cv_batx_llengua_estrangera_1",
+  "id": "cv_batx_llengua_estrangera_1r",
   "jurisdiction": "Comunitat Valenciana",
   "stage": "Batxillerat",
-  "course": "1r Batxillerat (Llengua Estrangera I)",
+  "course": "1r Batxillerat",
   "subject": "Llengua Estrangera",
-  "source": "Decret 103/2026, de 26 de juny, del Consell, de modificació del Decret 108/2022 (DOGV)",
+  "source": "Currículum de Llengua Estrangera Batxillerat (Generalitat Valenciana)",
+
   "specificCompetences": [
     {
-      "id": "cv_batx_llengua_estrangera_1_sc_1",
-      "code": "1",
-      "title": "Comprensió",
-      "description": "Comprendre i interpretar les idees principals i les línies argumentals bàsiques de textos expressats en la llengua estàndard, buscant fonts fiables i fent ús d'estratègies d'inferència i comprovació de significats, per a respondre a les necessitats comunicatives plantejades.",
+      "id": "CE1",
+      "code": "CE1",
+      "title": "Comprensió i interpretació",
       "operationalDescriptors": [
-        "CCL2",
-        "CCL3",
-        "CP1",
-        "CP2",
-        "STEM1",
-        "CD1",
-        "CPSAA4"
+        "CCL",
+        "CP",
+        "STEM",
+        "CD",
+        "CPSAA"
       ],
       "criteria": [
         {
-          "id": "cv_batx_llengua_estrangera_1_c_1_1",
+          "id": "CE1_C1_1",
           "code": "1.1",
-          "description": "Extraure i analitzar les idees principals, la informació rellevant i les implicacions generals de textos d'una certa longitud, ben organitzats i d'una certa complexitat, orals, escrits i multimodals, sobre temes de rellevància personal o d'interés públic, tant concrets com abstractes, expressats de manera clara i en la llengua estàndard, fins i tot en entorns moderadament sorollosos, a través de diversos suports."
+          "specificCompetenceId": "CE1",
+          "description": "Extraure i analitzar les idees principals, la informació rellevant i les implicacions generals de textos d’una certa longitud, ben organitzats i d’una certa complexitat, orals, escrits i multimodals, sobre temes de rellevància personal o d’interès públic, tant concrets com abstractes, expressats de manera clara i en la llengua estàndard, fins i tot en entorns moderadament sorollosos, a través de diversos suports."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_1_2",
+          "id": "CE1_C1_2",
           "code": "1.2",
-          "description": "Interpretar i valorar de manera crítica el contingut, la intenció i els trets discursius de textos d'una certa longitud i complexitat, amb especial èmfasi en els textos acadèmics i dels mitjans de comunicació, així com de textos de ficció, sobre temes generals o més específics, de rellevància personal o d'interés públic."
+          "specificCompetenceId": "CE1",
+          "description": "Interpretar i valorar de manera crítica el contingut, la intenció i els trets discursius de textos d’una certa longitud i complexitat, amb especial èmfasi en els textos acadèmics i dels mitjans de comunicació, així com de textos de ficció, sobre temes generals o més específics, de rellevància personal o d’interès públic."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_1_3",
+          "id": "CE1_C1_3",
           "code": "1.3",
+          "specificCompetenceId": "CE1",
           "description": "Seleccionar, organitzar i aplicar les estratègies i coneixements adequats per a comprendre la informació global i específica, i distingir la intenció i les opinions, tant implícites com explícites (sempre que estiguen clarament senyalitzades), dels textos; inferir significats i interpretar elements no verbals, i buscar, seleccionar i contrastar informació."
         }
       ]
     },
+
     {
-      "id": "cv_batx_llengua_estrangera_1_sc_2",
-      "code": "2",
-      "title": "Producció",
-      "description": "Produir textos originals, de creixent extensió, clars, ben organitzats i detallats, usant estratègies com ara la planificació, la síntesi, la compensació o l'autoreparació, per a expressar idees i arguments de manera creativa, adequada i coherent, d'acord amb propòsits comunicatius concrets.",
+      "id": "CE2",
+      "code": "CE2",
+      "title": "Producció de textos",
       "operationalDescriptors": [
-        "CCL1",
-        "CCL5",
-        "CP1",
-        "CP2",
-        "STEM1",
-        "CD1",
-        "CD3",
-        "CPSAA4",
-        "CCEC3.2"
+        "CCL",
+        "CP",
+        "STEM",
+        "CD",
+        "CPSAA",
+        "CCEC"
       ],
       "criteria": [
         {
-          "id": "cv_batx_llengua_estrangera_1_c_2_1",
+          "id": "CE2_C2_1",
           "code": "2.1",
-          "description": "Expressar oralment amb suficient fluïdesa i correcció textos clars, coherents, ben organitzats, adequats a la situació comunicativa i en diferents registres sobre assumptes de rellevància personal o d'interés públic coneguts per l'alumnat, amb la finalitat de descriure, narrar, argumentar i informar, en diferents suports, utilitzant recursos verbals i no verbals, així com estratègies de planificació, control, compensació i cooperació."
+          "specificCompetenceId": "CE2",
+          "description": "Expressar oralment amb suficient fluïdesa i correcció textos clars, coherents, ben organitzats, adequats a la situació comunicativa i en diferents registres sobre assumptes de rellevància personal o d’interès públic coneguts per l’alumnat, amb la finalitat de descriure, narrar, argumentar i informar, en diferents suports, utilitzant recursos verbals i no verbals, així com estratègies de planificació, control, compensació i cooperació."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_2_2",
+          "id": "CE2_C2_2",
           "code": "2.2",
-          "description": "Redactar i difondre textos detallats d'una certa extensió i complexitat i d'estructura clara, adequats a la situació comunicativa, a la tipologia textual i a les ferramentes analògiques i digitals utilitzades, evitant errors que dificulten o impedisquen la comprensió, reformulant i organitzant de manera coherent informació i idees de diverses fonts i justificant les pròpies opinions, sobre assumptes de rellevància personal o d'interés públic coneguts per l'alumnat, fent un ús ètic del llenguatge, respectant la propietat intel·lectual i evitant el plagi."
+          "specificCompetenceId": "CE2",
+          "description": "Redactar i difondre textos detallats d’una certa extensió i complexitat i d’estructura clara, adequats a la situació comunicativa, a la tipologia textual i a les ferramentes analògiques i digitals utilitzades, evitant errors que dificulten o impedisquen la comprensió, reformulant i organitzant de manera coherent informació i idees de diverses fonts i justificant les pròpies opinions, sobre assumptes de rellevància personal o d’interès públic coneguts per l’alumnat, fent un ús ètic del llenguatge, respectant la propietat intel·lectual i evitant el plagi."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_2_3",
+          "id": "CE2_C2_3",
           "code": "2.3",
-          "description": "Seleccionar, organitzar i aplicar coneixements i estratègies de planificació, producció, revisió i cooperació, per a compondre textos d'estructura clara i adequats a les intencions comunicatives, les característiques contextuals, els aspectes socioculturals i la tipologia textual, usant els recursos físics o digitals més adequats en funció de la tasca i dels interlocutors i interlocutores reals o potencials."
+          "specificCompetenceId": "CE2",
+          "description": "Seleccionar, organitzar i aplicar coneixements i estratègies de planificació, producció, revisió i cooperació, per a compondre textos d’estructura clara i adequats a les intencions comunicatives, les característiques contextuals, els aspectes socioculturals i la tipologia textual, usant els recursos físics o digitals més adequats en funció de la tasca i dels interlocutors i interlocutores reals o potencials."
         }
       ]
     },
+
     {
-      "id": "cv_batx_llengua_estrangera_1_sc_3",
-      "code": "3",
+      "id": "CE3",
+      "code": "CE3",
       "title": "Interacció",
-      "description": "Interactuar activament amb altres persones, amb suficient fluïdesa i precisió i amb espontaneïtat, usant estratègies de cooperació i emprant recursos analògics i digitals, per a respondre a propòsits comunicatius en intercanvis respectuosos amb les normes de cortesia.",
       "operationalDescriptors": [
-        "CCL5",
-        "CP1",
-        "CP2",
-        "STEM1",
-        "CPSAA3.1",
-        "CC3"
+        "CCL",
+        "CP",
+        "STEM",
+        "CPSAA",
+        "CC"
       ],
       "criteria": [
         {
-          "id": "cv_batx_llengua_estrangera_1_c_3_1",
+          "id": "CE3_C3_1",
           "code": "3.1",
-          "description": "Planificar, participar i col·laborar assertivament i activament, a través de diversos suports, en situacions interactives sobre temes de rellevància personal o d'interés públic coneguts per l'alumnat, mostrant iniciativa, empatia i respecte per la cortesia lingüística i l'etiqueta digital, així com per les diferents necessitats, idees, inquietuds, iniciatives i motivacions dels interlocutors i interlocutores, i oferint explicacions, arguments i comentaris."
+          "specificCompetenceId": "CE3",
+          "description": "Planificar, participar i col·laborar assertivament i activament, a través de diversos suports, en situacions interactives sobre temes de rellevància personal o d’interès públic coneguts per l’alumnat, mostrant iniciativa, empatia i respecte per la cortesia lingüística i l’etiqueta digital, així com per les diferents necessitats, idees, inquietuds, iniciatives i motivacions dels interlocutors i interlocutores, i oferint explicacions, arguments i comentaris."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_3_2",
+          "id": "CE3_C3_2",
           "code": "3.2",
+          "specificCompetenceId": "CE3",
           "description": "Seleccionar, organitzar i utilitzar, de manera flexible i en diferents entorns, estratègies adequades per a iniciar, mantindre i acabar la comunicació, prendre i cedir la paraula, sol·licitar i formular aclariments i explicacions, reformular, comparar i contrastar, resumir, col·laborar, debatre, resoldre problemes i gestionar situacions compromeses."
         }
       ]
     },
+
     {
-      "id": "cv_batx_llengua_estrangera_1_sc_4",
-      "code": "4",
+      "id": "CE4",
+      "code": "CE4",
       "title": "Mediació",
-      "description": "Mediar entre diferents llengües o varietats, o entre les modalitats o registres d'una mateixa llengua, usant estratègies i coneixements eficaços orientats a explicar conceptes i opinions o simplificar missatges, per a transmetre informació de manera eficaç, clara i responsable, i crear una atmosfera positiva que facilite la comunicació.",
       "operationalDescriptors": [
-        "CCL5",
-        "CP1",
-        "CP2",
-        "CP3",
-        "STEM1",
-        "CPSAA3.1"
+        "CCL",
+        "CP",
+        "STEM",
+        "CPSAA"
       ],
       "criteria": [
         {
-          "id": "cv_batx_llengua_estrangera_1_c_4_1",
+          "id": "CE4_C4_1",
           "code": "4.1",
-          "description": "Interpretar i explicar textos, conceptes i comunicacions en situacions en les quals cal atendre la diversitat, mostrant respecte i estima pels interlocutors i interlocutores i per les llengües, varietats o registres emprats, i participant en la solució de problemes freqüents d'intercomprensió i d'enteniment, a partir de diversos recursos i suports."
+          "specificCompetenceId": "CE4",
+          "description": "Interpretar i explicar textos, conceptes i comunicacions en situacions en les quals cal atendre la diversitat, mostrant respecte i estima pels interlocutors i interlocutores i per les llengües, varietats o registres emprats, i participant en la solució de problemes freqüents d’intercomprensió i d’enteniment, a partir de diversos recursos i suports."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_4_2",
+          "id": "CE4_C4_2",
           "code": "4.2",
+          "specificCompetenceId": "CE4",
           "description": "Aplicar estratègies que ajuden a crear ponts, faciliten la comunicació i servisquen per a explicar i simplificar textos, conceptes i missatges, i que siguen adequades a les intencions comunicatives, les característiques contextuals, els aspectes socioculturals i la tipologia textual, usant recursos i suports físics o digitals en funció de la tasca i el coneixement previ dels interlocutors i interlocutores."
         }
       ]
     },
+
     {
-      "id": "cv_batx_llengua_estrangera_1_sc_5",
-      "code": "5",
-      "title": "Plurilingüisme",
-      "description": "Ampliar i usar els repertoris lingüístics personals entre diferents llengües i varietats, i reflexionar de manera crítica sobre el seu funcionament, fent explícits i compartint les estratègies i els coneixements propis per a millorar la resposta a les seues necessitats comunicatives.",
+      "id": "CE5",
+      "code": "CE5",
+      "title": "Plurilingüisme i repertori lingüístic",
       "operationalDescriptors": [
-        "CP2",
-        "STEM1",
-        "CD3",
-        "CPSAA1.1"
+        "CP",
+        "STEM",
+        "CD",
+        "CPSAA"
       ],
       "criteria": [
         {
-          "id": "cv_batx_llengua_estrangera_1_c_5_1",
+          "id": "CE5_C5_1",
           "code": "5.1",
+          "specificCompetenceId": "CE5",
           "description": "Comparar i argumentar les semblances i diferències entre diferents llengües reflexionant sobre el seu funcionament i establint relacions entre estes."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_5_2",
+          "id": "CE5_C5_2",
           "code": "5.2",
-          "description": "Utilitzar amb iniciativa i de manera creativa estratègies i coneixements de millora de la capacitat de comunicar i d'aprendre la llengua estrangera amb l'ajuda d'altres participants i de suports analògics i digitals."
+          "specificCompetenceId": "CE5",
+          "description": "Utilitzar amb iniciativa i de manera creativa estratègies i coneixements de millora de la capacitat de comunicar i d’aprendre la llengua estrangera amb l’ajuda d’altres participants i de suports analògics i digitals."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_5_3",
+          "id": "CE5_C5_3",
           "code": "5.3",
-          "description": "Registrar i reflexionar sobre els progressos i les dificultats d'aprenentatge de la llengua estrangera, seleccionant les estratègies més adequades i eficaces per a superar eixes dificultats i consolidar l'aprenentatge, i realitzant activitats de planificació del propi aprenentatge, autoavaluació i coavaluació, com les proposades en el Portfolio europeu de les llengües (PEL) o en un diari d'aprenentatge, i fer eixos progressos i dificultats explícits i compartir-los."
+          "specificCompetenceId": "CE5",
+          "description": "Registrar i reflexionar sobre els progressos i les dificultats d’aprenentatge de la llengua estrangera, seleccionant les estratègies més adequades i eficaces per a superar eixes dificultats i consolidar l’aprenentatge, i realitzant activitats de planificació del propi aprenentatge, autoavaluació i coavaluació, com les proposades en el Portfolio europeu de les llengües (PEL) o en un diari d’aprenentatge, i fer eixos progressos i dificultats explícits i compartir-los."
         }
       ]
     },
+
     {
-      "id": "cv_batx_llengua_estrangera_1_sc_6",
-      "code": "6",
+      "id": "CE6",
+      "code": "CE6",
       "title": "Interculturalitat",
-      "description": "Valorar críticament i adequar-se a la diversitat lingüística, cultural i artística a partir de la llengua estrangera, reflexionant i compartint les semblances i les diferències entre llengües i cultures, per a actuar de manera empàtica, respectuosa i eficaç, i fomentar la comprensió mútua en situacions interculturals.",
       "operationalDescriptors": [
-        "CCL5",
-        "CP3",
-        "CPSAA3.1",
-        "CC3",
-        "CCEC1"
+        "CCL",
+        "CP",
+        "CPSAA",
+        "CC",
+        "CCEC"
       ],
       "criteria": [
         {
-          "id": "cv_batx_llengua_estrangera_1_c_6_1",
+          "id": "CE6_C6_1",
           "code": "6.1",
-          "description": "Actuar de manera adequada, empàtica i respectuosa en situacions interculturals construint vincles entre les diferents llengües i cultures, analitzant i rebutjant qualsevol tipus de discriminació, prejudici i estereotip, i solucionant aquells factors socioculturals que dificulten la comunicació."
+          "specificCompetenceId": "CE6",
+          "description": "Actuar de manera adequada, empàtica i respectuosa en situacions interculturals construint vincles entre les diferents llengües i cultures, analitzant i rebutjant qualsevol tipus de discriminació, prejui i estereotip, i solucionant aquells factors socioculturals que dificulten la comunicació."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_6_2",
+          "id": "CE6_C6_2",
           "code": "6.2",
-          "description": "Valorar críticament la diversitat lingüística, cultural i artística pròpia de països a on es parla la llengua estrangera tenint en compte els drets humans i adequar-se a esta, de manera que s'afavorisca el desenrotllament d'una cultura compartida i una ciutadania compromesa amb la sostenibilitat i els valors democràtics."
+          "specificCompetenceId": "CE6",
+          "description": "Valorar críticament la diversitat lingüística, cultural i artística pròpia de països a on es parla la llengua estrangera tenint en compte els drets humans i adequar-se a esta, de manera que s’afavorisca el desenrotllament d’una cultura compartida i una ciutadania compromesa amb la sostenibilitat i els valors democràtics."
         },
         {
-          "id": "cv_batx_llengua_estrangera_1_c_6_3",
+          "id": "CE6_C6_3",
           "code": "6.3",
+          "specificCompetenceId": "CE6",
           "description": "Aplicar estratègies per a defendre i apreciar la diversitat lingüística, cultural i artística, atenent valors ecosocials i democràtics i respectant els principis de justícia, equitat i igualtat."
         }
       ]
     }
   ],
+
   "basicKnowledge": [
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_autoconfiança",
+      "id": "SB_A_1",
+      "code": "A.1",
       "block": "A. Comunicació",
-      "code": null,
       "title": "Autoconfiança, iniciativa i assertivitat",
-      "description": "Autoconfiança, iniciativa i assertivitat. Estratègies d'autoreparació i autoavaluació com a manera de progressar en l'aprenentatge autònom de la llengua estrangera."
+      "description": "Autoconfiança, iniciativa i assertivitat. Estratègies d’autoreparació i autoavaluació com a manera de progressar en l’aprenentatge autònom de la llengua estrangera."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_estrategies",
+      "id": "SB_A_2",
+      "code": "A.2",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Estratègies de planificació, execució, control i reparació",
-      "description": "Estratègies per a la planificació, l'execució, el control i la reparació de la comprensió, la producció i la coproducció de textos orals, escrits i multimodals."
+      "title": "Estratègies de comprensió i producció",
+      "description": "Estratègies per a la planificació, l’execució, el control i la reparació de la comprensió, la producció i la coproducció de textos orals, escrits i multimodals."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_mediacio",
+      "id": "SB_A_3",
+      "code": "A.3",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Activitats de mediació",
+      "title": "Mediació",
       "description": "Coneixements, destreses, actituds i estratègies que permeten dur a terme activitats de mediació en situacions quotidianes en contextos personals, socials, educatius i professionals."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_funcions",
+      "id": "SB_A_4",
+      "code": "A.4",
       "block": "A. Comunicació",
-      "code": null,
       "title": "Funcions comunicatives",
-      "description": "Funcions comunicatives adequades a l'àmbit i al context comunicatiu: descriure fenòmens i esdeveniments; donar instruccions i consells; narrar esdeveniments passats puntuals i habituals, descriure estats i situacions presents i expressar successos futurs i de prediccions a curt, mitjà i llarg termini; expressar emocions; expressar l'opinió; expressar argumentacions; reformular, presentar les opinions d'altres, resumir."
+      "description": "Funcions comunicatives adequades a l’àmbit i al context comunicatiu: descriure fenòmens i esdeveniments; donar instruccions i consells; narrar esdeveniments passats puntuals i habituals, descriure estats i situacions presents i expressar successos futurs i de prediccions a curt, mitjà i llarg termini; expressar emocions; expressar l’opinió; expressar argumentacions; reformular, presentar les opinions d’altres, resumir."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_models",
+      "id": "SB_A_5",
+      "code": "A.5",
       "block": "A. Comunicació",
-      "code": null,
       "title": "Models contextuals i gèneres discursius",
-      "description": "Models contextuals i gèneres discursius d'ús comú en la comprensió, producció i coproducció de textos orals, escrits i multimodals, breus i senzills, literaris i no literaris: característiques i reconeixement del context (participants i situació), expectatives generades pel context; organització i estructuració segons el gènere i la funció textual."
+      "description": "Models contextuals i gèneres discursius d’ús comú en la comprensió, producció i coproducció de textos orals, escrits i multimodals, breus i senzills, literaris i no literaris: característiques i reconeixement del context (participants i situació), expectatives generades pel context; organització i estructuració segons el gènere i la funció textual."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_unitats",
+      "id": "SB_A_6",
+      "code": "A.6",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Unitats lingüístiques",
-      "description": "Unitats lingüístiques i significats associats a estes unitats, com ara l'expressió de l'entitat i les seues propietats, la quantitat i la qualitat, l'espai i les relacions espacials, el temps i les relacions temporals, l'afirmació, la negació, la interrogació i l'exclamació, les relacions lògiques."
+      "title": "Unitats lingüístiques (Gramàtica)",
+      "description": "Unitats lingüístiques (Gramàtica) i significats associats a estes unitats, com ara l’expressió de l’entitat i les seues propietats, la quantitat i la qualitat, l’espai i les relacions espacials, el temps i les relacions temporals, l’afirmació, la negació, la interrogació i l’exclamació, les relacions lògiques."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_lexic",
+      "id": "SB_A_7",
+      "code": "A.7",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Lèxic comú i especialitzat",
-      "description": "Lèxic comú i especialitzat d'interès per a l'alumnat relatiu a temps i espai; estats, esdeveniments i successos; activitats, procediments i processos; relacions personals, socials, acadèmiques i professionals; educació, treball i emprenedoria; llengua i comunicació intercultural; ciència i tecnologia; història i cultura; així com estratègies d'enriquiment lèxic (derivació, famílies lèxiques, polisèmia, sinonímia, antonímia...)."
+      "title": "Lèxic",
+      "description": "Lèxic comú i especialitzat d’interès per a l’alumnat relatiu a temps i espai; estats, esdeveniments i successos…; activitats, procediments i processos; relacions personals, socials, acadèmiques i professionals; educació, treball i emprenedoria; llengua i comunicació intercultural; ciència i tecnologia; història i cultura; així com estratègies d’enriquiment lèxic (derivació, famílies lèxiques, polisèmia, sinonímia, antonímia…)."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_patrons",
+      "id": "SB_A_8",
+      "code": "A.8",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Patrons sonors, accentuals, rítmics i d'entonació",
-      "description": "Patrons sonors, accentuals, rítmics i d'entonació, i significats i intencions comunicatives generals associades a estos patrons. Alfabet fonètic bàsic."
+      "title": "Patrons sonors, accentuals, rítmics i d’entonació",
+      "description": "Patrons sonors, accentuals, rítmics i d’entonació, i significats i intencions comunicatives generals associades a estos patrons. Alfabet fonètic bàsic."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_ortografia",
+      "id": "SB_A_9",
+      "code": "A.9",
       "block": "A. Comunicació",
-      "code": null,
       "title": "Convencions ortogràfiques",
       "description": "Convencions ortogràfiques i significats i intencions comunicatives associats als formats, patrons i elements gràfics."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_conversacionals",
+      "id": "SB_A_10",
+      "code": "A.10",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Convencions i estratègies conversacionals",
+      "title": "Estratègies conversacionals",
       "description": "Convencions i estratègies conversacionals, en format síncron o asíncron, per a iniciar, mantindre i acabar la comunicació, prendre i cedir la paraula, demanar i fer aclariments i explicacions, reformular, comparar i contrastar, resumir i parafrasejar, col·laborar, negociar significats, detectar la ironia, etc."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_recursos",
+      "id": "SB_A_11",
+      "code": "A.11",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Recursos per a l'aprenentatge i estratègies de busca",
-      "description": "Recursos per a l'aprenentatge i estratègies de busca i selecció d'informació i cura de continguts: diccionaris, llibres de consulta, biblioteques, mediateques, etiquetes en la xarxa, recursos digitals i informàtics, etc."
+      "title": "Recursos per a l’aprenentatge",
+      "description": "Recursos per a l’aprenentatge i estratègies de busca i selecció d’informació i cura de continguts: diccionaris, llibres de consulta, biblioteques, mediateques, etiquetes en la xarxa, recursos digitals i informàtics, etc."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_propietat",
+      "id": "SB_A_12",
+      "code": "A.12",
       "block": "A. Comunicació",
-      "code": null,
-      "title": "Respecte de la propietat intel·lectual",
-      "description": "Respecte de la propietat intel·lectual i drets d'autor sobre les fonts consultades i continguts utilitzats: ferramentes per al tractament de dades bibliogràfiques i recursos per a evitar el plagi. Anàlisi de fonts documentals, valoració de la informació continguda en estes i normes que regixen la propietat intel·lectual."
+      "title": "Propietat intel·lectual i fonts documentals",
+      "description": "Respecte de la propietat intel·lectual i drets d’autor sobre les fonts consultades i continguts utilitzats: ferramentes per al tractament de dades bibliogràfiques i recursos per a evitar el plagi. Anàlisi de fonts documentals, valoració de la informació continguda en estes i normes que regixen la propietat intel·lectual."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_a_ferramentes",
+      "id": "SB_A_13",
+      "code": "A.13",
       "block": "A. Comunicació",
-      "code": null,
       "title": "Ferramentes analògiques i digitals",
-      "description": "Ferramentes analògiques i digitals per a la comprensió, producció i coproducció oral, escrita i multimodal, i plataformes virtuals d'interacció, col·laboració i cooperació educativa (aules virtuals, videoconferències, ferramentes digitals col·laboratives...) per a l'aprenentatge, la comunicació i el desenrotllament de projectes amb parlants o estudiants de la llengua estrangera."
+      "description": "Ferramentes analògiques i digitals per a la comprensió, producció i coproducció oral, escrita i multimodal, i plataformes virtuals d’interacció, col·laboració i cooperació educativa (aules virtuals, videoconferències, ferramentes digitals col·laboratives…) per a l’aprenentatge, la comunicació i el desenrotllament de projectes amb parlants o estudiants de la llengua estrangera."
     },
+
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_b_estrategies",
+      "id": "SB_B_1",
+      "code": "B.1",
       "block": "B. Plurilingüisme",
-      "code": null,
-      "title": "Estratègies i tècniques de resposta",
-      "description": "Estratègies i tècniques per a respondre eficaçment i amb un alt grau d'autonomia, adequació i correcció a una necessitat comunicativa concreta superant les limitacions derivades del nivell de competència en la llengua estrangera i en la resta de llengües del repertori lingüístic propi."
+      "title": "Estratègies per a superar limitacions lingüístiques",
+      "description": "Estratègies i tècniques per a respondre eficaçment i amb un alt grau d’autonomia, adequació i correcció a una necessitat comunicativa concreta superant les limitacions derivades del nivell de competència en la llengua estrangera i en la resta de llengües del repertori lingüístic propi."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_b_unitats",
+      "id": "SB_B_2",
+      "code": "B.2",
       "block": "B. Plurilingüisme",
-      "code": null,
-      "title": "Estratègies d'unitats lingüístiques",
-      "description": "Estratègies per a identificar, organitzar, retindre, recuperar i utilitzar creativament unitats lingüístiques (lèxic, morfosintaxi, patrons sonors, etc.) a partir de la comparació de les llengües i varietats que conformen el repertori lingüístic personal."
+      "title": "Estratègies d’identificació i ús d’Unitats lingüístiques (Gramàtica)",
+      "description": "Estratègies per a identificar, organitzar, retindre, recuperar i utilitzar creativament Unitats lingüístiques (Gramàtica) (lèxic, morfosintaxi, patrons sonors, etc.) a partir de la comparació de les llengües i varietats que conformen el repertori lingüístic personal."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_b_autoavaluacio",
+      "id": "SB_B_3",
+      "code": "B.3",
       "block": "B. Plurilingüisme",
-      "code": null,
-      "title": "Estratègies d'autoavaluació i coavaluació",
-      "description": "Estratègies i ferramentes, analògiques i digitals, individuals i cooperatives per a l'autoavaluació, la coavaluació i l'autoreparació."
+      "title": "Autoavaluació, coavaluació i autoreparació",
+      "description": "Estratègies i ferramentes, analògiques i digitals, individuals i cooperatives per a l’autoavaluació, la coavaluació i l’autoreparació."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_b_metallenguatge",
+      "id": "SB_B_4",
+      "code": "B.4",
       "block": "B. Plurilingüisme",
-      "code": null,
-      "title": "Expressions i lèxic de metallenguatge",
-      "description": "Expressions i lèxic específic per a reflexionar i compartir la reflexió sobre la comunicació, la llengua, l'aprenentatge i les ferramentes de comunicació i aprenentatge (metallenguatge)."
+      "title": "Metallenguatge",
+      "description": "Expressions i lèxic específic per a reflexionar i compartir la reflexió sobre la comunicació, la llengua, l’aprenentatge i les ferramentes de comunicació i aprenentatge (metallenguatge)."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_b_comparacio",
+      "id": "SB_B_5",
+      "code": "B.5",
       "block": "B. Plurilingüisme",
-      "code": null,
-      "title": "Comparació sistemàtica entre llengües",
-      "description": "Comparació sistemàtica entre llengües a partir d'elements de la llengua estrangera i altres llengües: origen i parentius."
+      "title": "Comparació entre llengües",
+      "description": "Comparació sistemàtica entre llengües a partir d’elements de la llengua estrangera i altres llengües: origen i parentius."
     },
+
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_c_mitja",
+      "id": "SB_C_1",
+      "code": "C.1",
       "block": "C. Interculturalitat",
-      "code": null,
-      "title": "La llengua estrangera com a mitjà",
-      "description": "La llengua estrangera com a mitjà de comunicació i entesa entre pobles, com a facilitadora de l'accés a altres cultures i altres llengües i com a ferramenta de participació social i d'enriquiment personal. Patrons culturals propis de la llengua estrangera."
+      "title": "La llengua estrangera com a mitjà de comunicació",
+      "description": "La llengua estrangera com a mitjà de comunicació i entesa entre pobles, com a facilitadora de l’accés a altres cultures i altres llengües i com a ferramenta de participació social i d’enriquiment personal. Patrons culturals propis de la llengua estrangera."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_c_interes",
+      "id": "SB_C_2",
+      "code": "C.2",
       "block": "C. Interculturalitat",
-      "code": null,
-      "title": "Interès i iniciativa en intercanvis",
-      "description": "Interès i iniciativa en la realització d'intercanvis comunicatius a través de diferents mitjans amb parlants o estudiants de la llengua estrangera, així com per conéixer informacions culturals dels països a on es parla la llengua estrangera."
+      "title": "Intercanvis comunicatius i culturals",
+      "description": "Interès i iniciativa en la realització d’intercanvis comunicatius a través de diferents mitjans amb parlants o estudiants de la llengua estrangera, així com per conéixer informacions culturals dels països a on es parla la llengua estrangera."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_c_aspectes",
+      "id": "SB_C_3",
+      "code": "C.3",
       "block": "C. Interculturalitat",
-      "code": null,
       "title": "Aspectes socioculturals i sociolingüístics",
       "description": "Aspectes socioculturals i sociolingüístics relatius a convencions socials, normes de cortesia i registres; institucions, costums i rituals; valors, normes, creences i actituds; estereotips i tabús; llenguatge no verbal; història, cultura i comunitats; relacions interpersonals i processos de globalització en països a on es parla la llengua estrangera."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_c_estrategies",
+      "id": "SB_C_4",
+      "code": "C.4",
       "block": "C. Interculturalitat",
-      "code": null,
-      "title": "Estratègies de diversitat",
+      "title": "Diversitat lingüística, cultural i artística",
       "description": "Estratègies per a entendre i apreciar la diversitat lingüística, cultural i artística atenent valors ecosocials i democràtics. Diferències entre llengua i societat, varietats geogràfiques de la llengua estrangera, registres (estàndard, informal, formal i col·loquial)."
     },
     {
-      "id": "cv_batx_llengua_estrangera_1_bk_c_deteccio",
+      "id": "SB_C_5",
+      "code": "C.5",
       "block": "C. Interculturalitat",
-      "code": null,
-      "title": "Estratègies de detecció i rebuig",
-      "description": "Estratègies de detecció, rebuig i actuació davant d'usos discriminatoris del llenguatge verbal i no verbal. Respecte i valoració crítica de les diferències i de la diversitat plurilingüe i intercultural."
+      "title": "Usos discriminatoris del llenguatge",
+      "description": "Estratègies de detecció, rebuig i actuació davant d’usos discriminatoris del llenguatge verbal i no verbal. Respecte i valoració crítica de les diferències i de la diversitat plurilingüe i intercultural."
     }
   ]
 }

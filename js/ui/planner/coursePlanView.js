@@ -353,7 +353,11 @@ function renderCoursePlanLesson(
     // -----------------------------------------------------
 
     const isEvaluable =
-        lesson.assessment?.isEvaluable === true;
+        AssessmentActivityManager
+            .getByLessonId(
+                lesson.id
+            )
+            .length > 0;
 
 
     return `

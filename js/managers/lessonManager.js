@@ -397,6 +397,38 @@ const LessonManager = {
         }
 
 
+        // ---------------------------------------------
+        // DELETE LINKED ASSESSMENT ACTIVITIES
+        // ---------------------------------------------
+
+        if (
+            typeof AssessmentActivityManager !==
+            "undefined"
+        ) {
+
+            const activities =
+                AssessmentActivityManager
+                    .getByLessonId(id);
+
+
+            activities.forEach(
+                activity => {
+
+                    AssessmentActivityManager
+                        .delete(
+                            activity.id
+                        );
+
+                }
+            );
+
+        }
+
+
+        // ---------------------------------------------
+        // DELETE LESSON
+        // ---------------------------------------------
+
         AppState.data.lessons =
             AppState.data.lessons.filter(
                 lesson =>
