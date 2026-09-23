@@ -4,11 +4,52 @@
 
 
 /* ---------------------------------------------------------
-   LESSON MODAL — SIZE
+   LESSON MODAL — SIZE + SCROLL
    --------------------------------------------------------- */
 
 #modalContainer .modal {
     width: min(620px, calc(100vw - 40px));
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+#modalContainer .modal-body {
+    flex: 1 1 auto;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 10px;
+}
+
+/* MODAL BODY SCROLLBAR */
+#modalContainer .modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+#modalContainer .modal-body::-webkit-scrollbar-track {
+    background: var(--paper-dark);
+    border-radius: 6px;
+}
+
+#modalContainer .modal-body::-webkit-scrollbar-thumb {
+    background: var(--purple-light);
+    border-radius: 6px;
+}
+
+#modalContainer .modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
+}
+
+/* FIREFOX */
+#modalContainer .modal-body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--purple-light) var(--paper-dark);
 }
 
 
@@ -20,28 +61,20 @@
     position: relative;
 }
 
-
 #modalContainer .modal-kicker {
     margin-bottom: 4px;
-
     color: var(--purple);
-
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 700;
-
     letter-spacing: 0.14em;
     text-transform: uppercase;
-
     opacity: 0.8;
 }
 
-
 #modalContainer .modal-header h3 {
     margin: 0;
-
     color: var(--ink);
-
     font-family: var(--font-hand);
     font-size: 28px;
     font-weight: 400;
@@ -82,20 +115,31 @@
         transform 0.15s ease;
 }
 
-
 #modalContainer .modal-close:hover {
     color: var(--purple-dark);
-
     border-color: var(--purple-light);
-
     background: var(--paper-dark);
-
     transform: rotate(4deg);
 }
 
 
+/* =========================================================
+   MODAL BODY
+   ========================================================= */
+
+#modalContainer .modal-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    flex: 1;
+    min-height: 0;
+
+    padding-right: 10px;
+}
+
+
 /* ---------------------------------------------------------
-   MODAL BODY — FORM
+   FORM LABELS
    --------------------------------------------------------- */
 
 #modalContainer .modal-body > label {
@@ -114,7 +158,6 @@
     letter-spacing: 0.09em;
 }
 
-
 #modalContainer .modal-body > label:first-child {
     margin-top: 0;
 }
@@ -127,7 +170,6 @@
 #modalContainer .modal-body > input,
 #modalContainer .modal-body > textarea,
 #modalContainer .modal-body > select {
-
     box-sizing: border-box;
 
     width: 100%;
@@ -149,34 +191,24 @@
         background 0.15s ease;
 }
 
-
 #modalContainer .modal-body > input,
 #modalContainer .modal-body > select {
-
     min-height: 38px;
-
     padding: 8px 10px;
 }
 
-
 #modalContainer .modal-body > textarea {
-
     min-height: 105px;
-
     padding: 10px;
 
     resize: vertical;
-
     line-height: 1.5;
 }
-
 
 #modalContainer .modal-body > input:focus,
 #modalContainer .modal-body > textarea:focus,
 #modalContainer .modal-body > select:focus {
-
     border-color: var(--purple-light);
-
     background: var(--paper);
 
     box-shadow:
@@ -189,9 +221,7 @@
    --------------------------------------------------------- */
 
 #modalContainer .modal-body > input:disabled {
-
     background: var(--paper-dark);
-
     color: var(--purple-dark);
 
     font-family: var(--font-mono);
@@ -199,22 +229,20 @@
     font-weight: 600;
 
     cursor: not-allowed;
-
     opacity: 0.9;
 }
 
 
 /* =========================================================
-   ASSESSMENT AREA
+   LESSON ASSESSMENT
    ========================================================= */
 
 
 /* ---------------------------------------------------------
-   ASSESSMENT INTRO
+   ASSESSMENT CONTAINER
    --------------------------------------------------------- */
 
 .lesson-assessment {
-
     position: relative;
 
     margin-top: 22px;
@@ -229,7 +257,6 @@
    --------------------------------------------------------- */
 
 .lesson-assessment-toggle {
-
     position: relative;
 
     display: flex;
@@ -243,7 +270,6 @@
     border-radius: var(--radius-small);
 
     background: var(--paper-dark);
-
     color: var(--ink);
 
     font-family: var(--font-mono);
@@ -261,19 +287,14 @@
         transform 0.15s ease;
 }
 
-
 .lesson-assessment-toggle:hover {
-
     border-color: var(--purple-light);
-
     background: var(--pink-light);
 
     transform: translateX(1px);
 }
 
-
 .lesson-assessment-toggle input {
-
     flex: 0 0 auto;
 
     width: 15px;
@@ -282,17 +303,15 @@
     margin: 0 9px 0 0;
 
     accent-color: var(--purple);
-
     cursor: pointer;
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    ASSESSMENT FIELDS
-   ========================================================= */
+   --------------------------------------------------------- */
 
 .lesson-assessment-fields {
-
     margin-top: 12px;
     padding: 14px;
 
@@ -310,7 +329,6 @@
         inset 0 1px 0 rgba(112, 70, 168, 0.025);
 }
 
-
 .lesson-assessment-fields.hidden {
     display: none;
 }
@@ -321,7 +339,6 @@
    --------------------------------------------------------- */
 
 .lesson-assessment-fields > label {
-
     display: block;
 
     margin-top: 13px;
@@ -337,7 +354,6 @@
     letter-spacing: 0.08em;
 }
 
-
 .lesson-assessment-fields > label:first-child {
     margin-top: 0;
 }
@@ -350,7 +366,6 @@
 .lesson-assessment-fields input[type="text"],
 .lesson-assessment-fields input[type="search"],
 .lesson-assessment-fields select {
-
     box-sizing: border-box;
 
     width: 100%;
@@ -362,7 +377,6 @@
     border-radius: var(--radius-small);
 
     background: var(--paper);
-
     color: var(--ink);
 
     font-family: var(--font-ui);
@@ -375,11 +389,9 @@
         box-shadow 0.15s ease;
 }
 
-
 .lesson-assessment-fields input[type="text"]:focus,
 .lesson-assessment-fields input[type="search"]:focus,
 .lesson-assessment-fields select:focus {
-
     border-color: var(--purple-light);
 
     box-shadow:
@@ -392,18 +404,14 @@
    --------------------------------------------------------- */
 
 .lesson-assessment-fields input[type="search"] {
-
     margin-bottom: 8px;
 
     font-family: var(--font-mono);
     font-size: 11px;
 }
 
-
 .lesson-assessment-fields input[type="search"]::placeholder {
-
     color: var(--ink-soft);
-
     opacity: 0.7;
 }
 
@@ -413,7 +421,6 @@
    ========================================================= */
 
 .lesson-assessment-group {
-
     margin-top: 18px;
     padding-top: 13px;
 
@@ -426,7 +433,6 @@
    --------------------------------------------------------- */
 
 .lesson-assessment-label {
-
     margin-bottom: 5px;
 
     color: var(--purple-dark);
@@ -445,7 +451,6 @@
    --------------------------------------------------------- */
 
 .lesson-assessment-help {
-
     max-width: 540px;
 
     margin-bottom: 10px;
@@ -454,7 +459,6 @@
 
     font-family: var(--font-ui);
     font-size: 11px;
-
     line-height: 1.45;
 }
 
@@ -464,7 +468,6 @@
    ========================================================= */
 
 .lesson-assessment-options {
-
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -485,17 +488,14 @@
     width: 5px;
 }
 
-
 .lesson-assessment-options::-webkit-scrollbar-track {
     background: var(--paper-dark);
 }
-
 
 .lesson-assessment-options::-webkit-scrollbar-thumb {
     background: var(--purple-light);
     border-radius: 5px;
 }
-
 
 .lesson-assessment-options::-webkit-scrollbar-thumb:hover {
     background: var(--purple);
@@ -507,7 +507,6 @@
    --------------------------------------------------------- */
 
 .assessment-check-option {
-
     position: relative;
 
     display: flex;
@@ -518,14 +517,12 @@
     min-height: 30px;
 
     margin: 0;
-
     padding: 5px 8px;
 
     border: 1px solid transparent;
     border-radius: 4px;
 
     background: transparent;
-
     color: var(--ink);
 
     font-family: var(--font-ui);
@@ -539,11 +536,8 @@
         transform 0.12s ease;
 }
 
-
 .assessment-check-option:hover {
-
     background: var(--paper-dark);
-
     border-color: var(--line);
 
     transform: translateX(1px);
@@ -555,11 +549,8 @@
    --------------------------------------------------------- */
 
 .assessment-check-option.selected {
-
     background: var(--pink-light);
-
     border-color: rgba(112, 70, 168, 0.16);
-
 }
 
 
@@ -567,8 +558,7 @@
    CHECKBOX
    --------------------------------------------------------- */
 
-.assessment-check-option input[type="checkbox"] {
-
+.assessment-check-option input {
     flex: 0 0 auto;
 
     width: 14px;
@@ -577,7 +567,6 @@
     margin: 0;
 
     accent-color: var(--purple);
-
     cursor: pointer;
 }
 
@@ -587,9 +576,7 @@
    --------------------------------------------------------- */
 
 .assessment-check-option span {
-
     flex: 1;
-
     min-width: 0;
 
     line-height: 1.3;
@@ -601,7 +588,6 @@
    --------------------------------------------------------- */
 
 .assessment-check-option small {
-
     flex: 0 0 auto;
 
     color: var(--purple);
@@ -620,7 +606,6 @@
 
 #lessonSelectedBasicKnowledge,
 #editLessonSelectedBasicKnowledge {
-
     display: flex;
     flex-wrap: wrap;
 
@@ -629,15 +614,8 @@
     margin-top: 8px;
 }
 
-
-/*
- * These rules intentionally support several possible
- * markup structures returned by the renderer.
- */
-
 #lessonSelectedBasicKnowledge > *,
 #editLessonSelectedBasicKnowledge > * {
-
     max-width: 100%;
 }
 
@@ -647,7 +625,6 @@
    --------------------------------------------------------- */
 
 .assessment-selected-item {
-
     display: inline-flex;
     align-items: center;
 
@@ -659,7 +636,6 @@
     border-radius: 4px;
 
     background: var(--yellow-light);
-
     color: var(--ink);
 
     font-family: var(--font-mono);
@@ -668,13 +644,12 @@
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    ASSESSMENT INSTRUMENT SELECT
-   ========================================================= */
+   --------------------------------------------------------- */
 
 #lessonAssessmentInstrument,
 #editLessonAssessmentInstrument {
-
     width: 100%;
 }
 
@@ -685,7 +660,6 @@
 
 #modalContainer #lessonStatus,
 #modalContainer #editLessonStatus {
-
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 600;
@@ -697,7 +671,6 @@
    ========================================================= */
 
 #modalContainer .modal-footer {
-
     flex: 0 0 auto;
 
     display: flex;
@@ -714,24 +687,30 @@
    --------------------------------------------------------- */
 
 #modalContainer .modal-footer .btn-danger {
-
     margin-right: auto;
 }
 
 
 /* =========================================================
-   PAPER IMPERFECTION
+   SCROLLBAR
    ========================================================= */
 
-.lesson-assessment-fields::before {
+#modalContainer .modal-body::-webkit-scrollbar {
+    width: 7px;
+}
 
-    content: "";
+#modalContainer .modal-body::-webkit-scrollbar-track {
+    background: var(--paper-dark);
+    border-radius: 10px;
+}
 
-    position: absolute;
+#modalContainer .modal-body::-webkit-scrollbar-thumb {
+    background: var(--purple-light);
+    border-radius: 10px;
+}
 
-    pointer-events: none;
-
-    opacity: 0.15;
+#modalContainer .modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
 }
 
 
@@ -742,7 +721,6 @@
 @media (max-width: 700px) {
 
     #modalContainer .modal {
-
         width: min(
             620px,
             calc(100vw - 24px)
@@ -751,71 +729,106 @@
         max-height: 94vh;
     }
 
-
     #modalContainer .modal-body {
-
         padding-right: 6px;
     }
 
-
     .lesson-assessment-fields {
-
         padding: 11px;
-
         border-left-width: 2px;
     }
-
 }
 
 
 @media (max-width: 560px) {
 
     #modalContainer .modal {
-
         width: calc(100vw - 16px);
-
         max-height: 96vh;
     }
 
-
     #modalContainer .modal-header h3 {
-
         font-size: 25px;
     }
 
-
     #modalContainer .modal-footer {
-
         flex-wrap: wrap;
     }
 
-
     #modalContainer .modal-footer .btn-danger {
-
         width: 100%;
 
         margin-right: 0;
-
         margin-bottom: 4px;
     }
 
-
     #modalContainer .modal-footer .btn-secondary,
     #modalContainer .modal-footer .btn-primary {
-
         flex: 1;
     }
 
-
     .lesson-assessment-toggle {
-
         font-size: 11px;
     }
 
-
     .lesson-assessment-options {
-
         max-height: 190px;
     }
+}
 
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    #modalContainer .modal {
+        width: min(620px, calc(100vw - 24px));
+        max-height: 94vh;
+    }
+
+    #modalContainer .modal-body {
+        padding-right: 6px;
+    }
+
+    .lesson-assessment-fields {
+        padding: 11px;
+        border-left-width: 2px;
+    }
+}
+
+@media (max-width: 560px) {
+
+    #modalContainer .modal {
+        width: calc(100vw - 16px);
+        max-height: 96vh;
+    }
+
+    #modalContainer .modal-header h3 {
+        font-size: 25px;
+    }
+
+    #modalContainer .modal-footer {
+        flex-wrap: wrap;
+    }
+
+    #modalContainer .modal-footer .btn-danger {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 4px;
+    }
+
+    #modalContainer .modal-footer .btn-secondary,
+    #modalContainer .modal-footer .btn-primary {
+        flex: 1;
+    }
+
+    .lesson-assessment-toggle {
+        font-size: 11px;
+    }
+
+    .lesson-assessment-options {
+        max-height: 190px;
+    }
 }

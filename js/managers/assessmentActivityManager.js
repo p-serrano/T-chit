@@ -118,13 +118,82 @@ const AssessmentActivityManager = {
 
 
     // -----------------------------------------------------
+    // NORMALIZE EVALUATIONS
+    // -----------------------------------------------------
+
+    normalizeEvaluations(
+        evaluations = []
+    ) {
+
+        if (!Array.isArray(evaluations)) {
+            return [];
+        }
+
+        const validEvaluators = [
+            "teacher",
+            "self",
+            "peer"
+        ];
+
+        const normalized = evaluations
+            .map(item => {
+
+                const evaluator =
+                    String(
+                        item.evaluator || ""
+                    ).trim();
+
+                const instrumentId =
+                    String(
+                        item.instrumentId || ""
+                    ).trim();
+
+                if (
+                    !validEvaluators.includes(evaluator) ||
+                    !instrumentId
+                ) {
+                    return null;
+                }
+
+                return {
+                    evaluator,
+                    instrumentId
+                };
+
+            })
+            .filter(Boolean);
+
+
+        // Only one instrument per evaluator.
+        const unique = [];
+
+        normalized.forEach(item => {
+
+            const alreadyExists =
+                unique.some(
+                    existing =>
+                        existing.evaluator ===
+                        item.evaluator
+                );
+
+            if (!alreadyExists) {
+                unique.push(item);
+            }
+
+        });
+
+        return unique;
+    },
+
+
+    // -----------------------------------------------------
     // CREATE
     // -----------------------------------------------------
 
     create({
         lessonId,
         title,
-        instrumentId = null,
+        evaluations = [],
         specificCompetences = [],
         basicKnowledgeIds = []
     }) {
@@ -183,6 +252,11 @@ const AssessmentActivityManager = {
 
         }
 
+        const normalizedEvaluations =
+            this.normalizeEvaluations(
+                evaluations
+            );
+
 
         const normalizedKnowledge =
             this.normalizeBasicKnowledgeIds(
@@ -205,8 +279,8 @@ const AssessmentActivityManager = {
 
             title,
 
-            instrumentId:
-                instrumentId || null,
+            evaluations:
+                normalizedEvaluations,
 
             specificCompetences:
                 normalizedCompetences,
@@ -367,7 +441,7 @@ const AssessmentActivityManager = {
         {
             lessonId,
             title,
-            instrumentId,
+            evaluations,
             specificCompetences,
             basicKnowledgeIds
         }
@@ -448,17 +522,19 @@ const AssessmentActivityManager = {
 
         }
 
-
+        
         // ---------------------------------------------
-        // INSTRUMENT
+        // EVALUATIONS
         // ---------------------------------------------
 
         if (
-            instrumentId !== undefined
+            evaluations !== undefined
         ) {
 
-            activity.instrumentId =
-                instrumentId || null;
+            activity.evaluations =
+                this.normalizeEvaluations(
+                    evaluations
+                );
 
         }
 

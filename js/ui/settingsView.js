@@ -94,72 +94,107 @@ function renderSettingsView() {
 function renderAcademicYears(years) {
 
     return `
-
         <div class="academic-years-list">
 
-            ${years.map(year => `
+            ${years.map(year => {
 
-                <article
-                    class="academic-year-card
-                    ${year.id === AppState.currentAcademicYearId
-                        ? "active"
-                        : ""}">
+                const terms = Array.isArray(year.terms)
+                    ? year.terms
+                    : [];
 
-                    <div class="academic-year-card-info">
+                return `
+                    <article class="academic-year-card ${year.id === AppState.currentAcademicYearId ? "active" : ""}">
 
-                        <div class="view-label">
-                            ACADEMIC YEAR
-                        </div>
+                        <div class="academic-year-card-info">
 
-                        <h3>
-                            ${escapeHTML(year.name)}
-                        </h3>
+                            <div class="view-label">
+                                ACADEMIC YEAR
+                            </div>
 
-                        <div class="academic-year-dates">
+                            <h3>
+                                ${escapeHTML(year.name)}
+                            </h3>
+
+                            <div class="academic-year-dates">
+                                ${
+                                    year.startDate && year.endDate
+                                        ? `${escapeHTML(year.startDate)} → ${escapeHTML(year.endDate)}`
+                                        : "Dates not configured"
+                                }
+                            </div>
 
                             ${
-                                year.startDate && year.endDate
-                                    ? `${year.startDate} → ${year.endDate}`
-                                    : "Dates not configured"
+                                terms.length
+                                    ? `
+                                        <div class="academic-year-terms">
+
+                                            ${terms.map(term => `
+                                                <div class="academic-year-term">
+
+                                                    <span class="academic-year-term-name">
+                                                        ${escapeHTML(term.name)}
+                                                    </span>
+
+                                                    <span class="academic-year-term-dates">
+                                                        ${
+                                                            term.startDate && term.endDate
+                                                                ? `${escapeHTML(term.startDate)} → ${escapeHTML(term.endDate)}`
+                                                                : "Dates not configured"
+                                                        }
+                                                    </span>
+
+                                                </div>
+                                            `).join("")}
+
+                                        </div>
+                                    `
+                                    : `
+                                        <div class="academic-year-terms-empty">
+                                            Terms not configured
+                                        </div>
+                                    `
                             }
 
                         </div>
 
-                    </div>
 
-                    <div class="academic-year-card-actions">
+                        <div class="academic-year-card-actions">
 
-                        ${
-                            year.id ===
-                            AppState.currentAcademicYearId
+                            <button
+                                class="btn-secondary"
+                                onclick="openEditAcademicYearModal('${year.id}')">
+                                EDIT
+                            </button>
 
-                                ? `
-                                    <span class="active-badge">
-                                        ACTIVE
-                                    </span>
-                                  `
+                            ${
+                                year.id === AppState.currentAcademicYearId
+                                    ? `
+                                        <span class="active-badge">
+                                            ACTIVE
+                                        </span>
+                                    `
+                                    : `
+                                        <button
+                                            class="btn-secondary"
+                                            onclick="selectAcademicYear('${year.id}')">
+                                            USE THIS YEAR
+                                        </button>
+                                    `
+                            }
 
-                                : `
-                                    <button
-                                        class="btn-secondary"
-                                        onclick="selectAcademicYear('${year.id}')">
-                                        USE THIS YEAR
-                                    </button>
-                                  `
-                        }
+                            <button
+                                class="small-icon-button"
+                                onclick="deleteAcademicYearFromView('${year.id}')"
+                                title="Delete academic year">
+                                ×
+                            </button>
 
-                        <button
-                            class="small-icon-button"
-                            onclick="deleteAcademicYearFromView('${year.id}')"
-                            title="Delete academic year">
-                            ×
-                        </button>
+                        </div>
 
-                    </div>
+                    </article>
+                `;
 
-                </article>
-
-            `).join("")}
+            }).join("")}
 
         </div>
     `;
@@ -361,6 +396,310 @@ function openNewAcademicYearModal() {
     document
         .getElementById("newAcademicYearName")
         .focus();
+}
+
+
+function openEditAcademicYearModal(id) {
+
+    const year =
+        AcademicYearManager.getById(id);
+
+    if (!year) {
+        return;
+    }
+
+    const terms =
+        Array.isArray(year.terms)
+            ? year.terms
+            : [];
+
+    document.getElementById("modalContainer").innerHTML = `
+
+        <div class="modal-backdrop">
+
+            <div class="modal">
+
+                <div class="modal-header">
+
+                    <div>
+                        <div class="view-label">
+                            ACADEMIC YEAR
+                        </div>
+
+                        <h2>
+                            Edit academic year
+                        </h2>
+                    </div>
+
+                    <button
+                        class="modal-close"
+                        onclick="closeModal()">
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <label for="editAcademicYearName">
+                        Name
+                    </label>
+
+                    <input
+                        id="editAcademicYearName"
+                        type="text"
+                        value="${escapeHTML(year.name)}"
+                    >
+
+
+                    <div class="modal-section">
+
+                        <div class="modal-section-title">
+                            ACADEMIC YEAR DATES
+                        </div>
+
+                        <div class="date-range-row">
+
+                            <input
+                                id="editAcademicYearStartDate"
+                                type="date"
+                                value="${escapeHTML(year.startDate || "")}"
+                            >
+
+                            <span>→</span>
+
+                            <input
+                                id="editAcademicYearEndDate"
+                                type="date"
+                                value="${escapeHTML(year.endDate || "")}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-section">
+
+                        <div class="modal-section-title">
+                            TERMS
+                        </div>
+
+                        <div class="term-editor">
+
+                            ${[0, 1, 2].map(index => {
+
+                                const term =
+                                    terms[index] || {};
+
+                                return `
+                                    <div class="term-row">
+
+                                        <div class="term-name">
+                                            ${escapeHTML(
+                                                term.name ||
+                                                `Term ${index + 1}`
+                                            )}
+                                        </div>
+
+                                        <input
+                                            id="editTerm${index + 1}StartDate"
+                                            type="date"
+                                            value="${escapeHTML(term.startDate || "")}"
+                                        >
+
+                                        <span>→</span>
+
+                                        <input
+                                            id="editTerm${index + 1}EndDate"
+                                            type="date"
+                                            value="${escapeHTML(term.endDate || "")}"
+                                        >
+
+                                    </div>
+                                `;
+
+                            }).join("")}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        class="btn-secondary"
+                        onclick="closeModal()">
+                        CANCEL
+                    </button>
+
+                    <button
+                        class="btn-primary"
+                        onclick="saveAcademicYearEdit('${id}')">
+                        SAVE CHANGES
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+function saveAcademicYearEdit(id) {
+
+    const year =
+        AcademicYearManager.getById(id);
+
+    if (!year) {
+        return;
+    }
+
+
+    const name =
+        document
+            .getElementById("editAcademicYearName")
+            .value
+            .trim();
+
+    const startDate =
+        document
+            .getElementById("editAcademicYearStartDate")
+            .value;
+
+    const endDate =
+        document
+            .getElementById("editAcademicYearEndDate")
+            .value;
+
+
+    if (!name) {
+        alert("Academic year name is required.");
+        return;
+    }
+
+
+    if (!startDate || !endDate) {
+        alert("Academic year dates are required.");
+        return;
+    }
+
+
+    if (startDate >= endDate) {
+        alert("Academic year start date must be before the end date.");
+        return;
+    }
+
+
+    const terms = [0, 1, 2].map(index => {
+
+        const existingTerm =
+            year.terms?.[index] || {};
+
+        return {
+            id:
+                existingTerm.id ||
+                Utils.createId("term"),
+
+            name:
+                existingTerm.name ||
+                `Term ${index + 1}`,
+
+            startDate:
+                document
+                    .getElementById(
+                        `editTerm${index + 1}StartDate`
+                    )
+                    .value,
+
+            endDate:
+                document
+                    .getElementById(
+                        `editTerm${index + 1}EndDate`
+                    )
+                    .value
+        };
+    });
+
+
+    const incompleteTerm =
+        terms.some(term =>
+            !term.startDate ||
+            !term.endDate
+        );
+
+    if (incompleteTerm) {
+        alert("All term dates are required.");
+        return;
+    }
+
+
+    const invalidTerm =
+        terms.some(term =>
+            term.startDate >= term.endDate
+        );
+
+    if (invalidTerm) {
+        alert("Each term must start before it ends.");
+        return;
+    }
+
+
+    const outsideAcademicYear =
+        terms.some(term =>
+            term.startDate < startDate ||
+            term.endDate > endDate
+        );
+
+    if (outsideAcademicYear) {
+        alert(
+            "All terms must be inside the academic year."
+        );
+        return;
+    }
+
+
+    const overlappingTerms =
+        terms.some((term, index) => {
+
+            if (index === 0) {
+                return false;
+            }
+
+            return (
+                term.startDate <
+                terms[index - 1].endDate
+            );
+        });
+
+    if (overlappingTerms) {
+        alert("Terms cannot overlap.");
+        return;
+    }
+
+
+    AcademicYearManager.update(
+        id,
+        {
+            name,
+            startDate,
+            endDate,
+            terms
+        }
+    );
+
+
+    closeModal();
+
+    renderSettingsView();
+
+    updateAcademicYearBadge();
 }
 
 

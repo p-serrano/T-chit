@@ -224,61 +224,253 @@ function getAssessmentCurriculum(
 // =========================================================
 
 
-// ---------------------------------------------------------
-// RENDER INSTRUMENT SELECT
-// ---------------------------------------------------------
-
 function renderAssessmentInstrumentSelect(
-    selected = ""
+    selected = "",
+    id = "lessonAssessmentInstrument",
+    disabled = false
 ) {
 
-    const instruments =
-        Array.isArray(
-            AppState.data.assessmentInstruments
-        )
-            ? AppState.data.assessmentInstruments
-            : [];
-
+    const instruments = [
+        {
+            id: "rubric",
+            name: "Rubric"
+        },
+        {
+            id: "checklist",
+            name: "Checklist"
+        },
+        {
+            id: "rating_scale",
+            name: "Rating scale"
+        },
+        {
+            id: "learning_diary",
+            name: "Learning diary"
+        },
+        {
+            id: "portfolio",
+            name: "Portfolio"
+        },
+        {
+            id: "objective_test",
+            name: "Objective test"
+        }
+    ];
 
     return `
-
         <select
-            id="lessonAssessmentInstrument">
-
+            id="${id}"
+            ${disabled ? "disabled" : ""}
+        >
             <option value="">
                 Select instrument
             </option>
 
             ${
-                instruments
-                    .map(
-                        instrument => `
+                instruments.map(instrument => `
+                    <option
+                        value="${escapeHTML(instrument.id)}"
+                        ${selected === instrument.id ? "selected" : ""}
+                    >
+                        ${escapeHTML(instrument.name)}
+                    </option>
+                `).join("")
+            }
+        </select>
+    `;
+}
 
-                            <option
-                                value="${escapeHTML(
-                                    instrument.id
-                                )}"
-                                ${
-                                    selected ===
-                                    instrument.id
-                                        ? "selected"
-                                        : ""
-                                }>
 
-                                ${escapeHTML(
-                                    instrument.name
+// ---------------------------------------------------------
+// RENDER ASSESSMENT EVALUATORS
+// ---------------------------------------------------------
+
+function renderAssessmentEvaluators(
+    evaluations = [],
+    prefix = "lesson"
+) {
+
+    const evaluationMap = new Map(
+        evaluations.map(item => [
+            item.evaluator,
+            item.instrumentId
+        ])
+    );
+
+    const evaluators = [
+        {
+            id: "teacher",
+            label: "Teacher assessment"
+        },
+        {
+            id: "self",
+            label: "Self-assessment"
+        },
+        {
+            id: "peer",
+            label: "Peer-assessment"
+        }
+    ];
+
+    return `
+        <div class="assessment-evaluators">
+
+            ${
+                evaluators.map(evaluator => {
+
+                    const selected =
+                        evaluationMap.has(evaluator.id);
+
+                    const instrumentId =
+                        evaluationMap.get(evaluator.id) || "";
+
+                    const capitalized =
+                        evaluator.id.charAt(0).toUpperCase() +
+                        evaluator.id.slice(1);
+
+                    return `
+                        <div
+                            class="
+                                assessment-evaluator-option
+                                ${selected ? "selected" : ""}
+                            "
+                        >
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="${prefix}Evaluator"
+                                    value="${evaluator.id}"
+                                    ${selected ? "checked" : ""}
+                                    onchange="
+                                        toggleAssessmentEvaluator(
+                                            this,
+                                            '${prefix}'
+                                        )
+                                    "
+                                >
+
+                                <span>
+                                    ${evaluator.label}
+                                </span>
+                            </label>
+
+                            <div
+                                class="assessment-evaluator-instrument"
+                                ${selected ? "" : 'style="display:none;"'}
+                            >
+
+                                ${renderAssessmentInstrumentSelect(
+                                    instrumentId,
+                                    `${prefix}${capitalized}Instrument`,
+                                    !selected
                                 )}
 
-                            </option>
+                            </div>
 
-                        `
-                    )
-                    .join("")
+                        </div>
+                    `;
+
+                }).join("")
             }
 
-        </select>
-
+        </div>
     `;
+}
+
+
+// ---------------------------------------------------------
+// TOGGLE ASSESSMENT EVALUATOR
+// ---------------------------------------------------------
+
+function toggleAssessmentEvaluator(
+    input,
+    prefix = "lesson"
+) {
+
+    const option =
+        input.closest(".assessment-evaluator-option");
+
+    if (!option) return;
+
+    const instrumentContainer =
+        option.querySelector(
+            ".assessment-evaluator-instrument"
+        );
+
+    const instrument =
+        instrumentContainer?.querySelector("select");
+
+    const isChecked = input.checked;
+
+    option.classList.toggle(
+        "selected",
+        isChecked
+    );
+
+    if (instrumentContainer) {
+        instrumentContainer.style.display =
+            isChecked ? "" : "none";
+    }
+
+    if (instrument) {
+        instrument.disabled = !isChecked;
+
+        if (!isChecked) {
+            instrument.value = "";
+        }
+    }
+}
+
+
+// ---------------------------------------------------------
+// GET SELECTED ASSESSMENT EVALUATORS
+// ---------------------------------------------------------
+
+function getSelectedAssessmentEvaluations(
+    container = document,
+    prefix = "lesson"
+) {
+
+    return Array.from(
+        container.querySelectorAll(
+            `input[name="${prefix}Evaluator"]:checked`
+        )
+    )
+        .map(
+            input => {
+
+                const evaluator =
+                    input.value;
+
+
+                const capitalized =
+                    evaluator.charAt(0).toUpperCase() +
+                    evaluator.slice(1);
+
+
+                const instrument =
+                    document.getElementById(
+                        `${prefix}${capitalized}Instrument`
+                    );
+
+
+                return {
+
+                    evaluator,
+
+                    instrumentId:
+                        instrument?.value ||
+                        null
+
+                };
+
+            }
+        )
+        .filter(
+            item =>
+                item.instrumentId
+        );
 
 }
 
@@ -931,7 +1123,15 @@ function renderAssessmentBasicKnowledgeOptions(
                                         )
                                             ? "checked"
                                             : ""
-                                    }>
+                                    }
+                                    onchange="
+                                        updateAssessmentBasicKnowledgeState(
+                                            this,
+                                            '${prefix}',
+                                            '${escapeHTML(classId)}'
+                                        )
+                                    "
+                                >
 
                                 <span>
 
@@ -982,6 +1182,59 @@ function renderAssessmentBasicKnowledgeOptions(
         </div>
 
     `;
+
+}
+
+
+// ---------------------------------------------------------
+// UPDATE BASIC KNOWLEDGE SELECTION
+// ---------------------------------------------------------
+
+function updateAssessmentBasicKnowledgeState(
+    input,
+    prefix = "lesson",
+    classId = ""
+) {
+
+    if (!input) {
+        return;
+    }
+
+
+    const container =
+        input.closest(
+            ".lesson-assessment-fields"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    const selectedIds =
+        getSelectedAssessmentBasicKnowledge(
+            container,
+            prefix
+        );
+
+
+    const selectedContainer =
+        container.querySelector(
+            `#${prefix}SelectedBasicKnowledge`
+        );
+
+
+    if (!selectedContainer) {
+        return;
+    }
+
+
+    selectedContainer.innerHTML =
+        renderSelectedAssessmentBasicKnowledge(
+            classId,
+            selectedIds
+        );
 
 }
 

@@ -525,6 +525,7 @@
 
 .academic-year-card-info {
 
+    flex: 1;
     min-width: 0;
 
 }
@@ -542,6 +543,44 @@
 
     color: var(--purple-dark);
 
+}
+
+
+.academic-year-terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 11px;
+}
+
+.academic-year-term {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 8px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.2;
+}
+
+.academic-year-term-name {
+    color: var(--purple-dark);
+    font-weight: 700;
+}
+
+.academic-year-term-dates {
+    color: var(--ink-soft);
+}
+
+.academic-year-terms-empty {
+    margin-top: 9px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    font-style: italic;
 }
 
 
@@ -1518,6 +1557,45 @@
 }
 
 
+.modal-section {
+    margin-top: 8px;
+    padding-top: 15px;
+    border-top: 1px solid var(--line);
+}
+
+.modal-section-title {
+    margin-bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+}
+
+.term-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.term-row {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 7px;
+}
+
+.term-name {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--purple-dark);
+}
+
+.term-row span {
+    color: var(--ink-soft);
+    text-align: center;
+}
+
 /* ---------------------------------------------------------
    IMPORT
    --------------------------------------------------------- */
@@ -2047,6 +2125,23 @@
     .classes-grid {
 
         grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .term-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+
+    .term-name {
+        grid-column: 1 / -1;
+    }
+
+    .term-row span {
+        display: none;
     }
 
 }

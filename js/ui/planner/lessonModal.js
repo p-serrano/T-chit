@@ -159,14 +159,33 @@ function openAddLessonModal(
 
 
                             <!-- =================================
-                                 INSTRUMENT
-                                 ================================= -->
+                                EVALUATION
+                                ================================= -->
 
-                            <label>
-                                Assessment instrument
-                            </label>
+                            <div
+                                class="lesson-assessment-group">
 
-                            ${renderAssessmentInstrumentSelect()}
+                                <div
+                                    class="lesson-assessment-label">
+
+                                    Evaluation
+
+                                </div>
+
+                                <div
+                                    class="lesson-assessment-help">
+
+                                    Select who evaluates this activity
+                                    and the instrument used by each evaluator.
+
+                                </div>
+
+                                ${renderAssessmentEvaluators(
+                                    [],
+                                    "lesson"
+                                )}
+
+                            </div>
 
 
                             <!-- =================================
@@ -234,6 +253,15 @@ function openAddLessonModal(
 
                                 </div>
 
+                                <div
+                                    id="lessonSelectedBasicKnowledge">
+
+                                    ${renderSelectedAssessmentBasicKnowledge(
+                                        classId,
+                                        []
+                                    )}
+
+                                </div>
 
                                 <input
                                     id="lessonBasicKnowledgeSearch"
@@ -251,17 +279,6 @@ function openAddLessonModal(
                                         classId,
                                         [],
                                         "lesson"
-                                    )}
-
-                                </div>
-
-
-                                <div
-                                    id="lessonSelectedBasicKnowledge">
-
-                                    ${renderSelectedAssessmentBasicKnowledge(
-                                        classId,
-                                        []
                                     )}
 
                                 </div>
@@ -722,10 +739,11 @@ function createLesson(
         )?.value || "";
 
 
-    const instrumentId =
-        document.getElementById(
-            "lessonAssessmentInstrument"
-        )?.value || null;
+    const evaluations =
+        getSelectedAssessmentEvaluations(
+            document,
+            "lesson"
+        );
 
 
     const specificCompetences =
@@ -799,12 +817,10 @@ function createLesson(
     }
 
 
-    if (
-        !instrumentId
-    ) {
+    if (!evaluations.length) {
 
         alert(
-            "Please select an assessment instrument."
+            "Please select at least one evaluator and instrument."
         );
 
         return;
@@ -902,7 +918,11 @@ function createLesson(
                         assessmentTitle,
 
                     instruments:
-                        [instrumentId],
+                        evaluations
+                            .map(
+                                item =>
+                                    item.instrumentId
+                            ),
 
                     competences:
                         specificCompetences
@@ -922,21 +942,22 @@ function createLesson(
 
         try {
 
-            AssessmentActivityManager.create({
+            AssessmentActivityManager
+                .create({
 
-                lessonId:
-                    lesson.id,
+                    lessonId:
+                        lesson.id,
 
-                title:
-                    assessmentTitle,
+                    title:
+                        assessmentTitle,
 
-                instrumentId,
+                    evaluations,
 
-                specificCompetences,
+                    specificCompetences,
 
-                basicKnowledgeIds
+                    basicKnowledgeIds
 
-            });
+                });
 
         }
         catch (error) {
@@ -1112,12 +1133,22 @@ function openEditLessonModal(
         [];
 
 
-    const selectedInstrument =
-        assessmentActivity
-            ?.instrumentId ||
-        legacyAssessment
-            ?.instruments?.[0] ||
-        "";
+    const selectedEvaluations =
+        Array.isArray(
+            assessmentActivity?.evaluations
+        )
+            ? assessmentActivity.evaluations
+            : (
+                legacyAssessment?.instruments?.[0]
+                    ? [
+                        {
+                            evaluator: "teacher",
+                            instrumentId:
+                                legacyAssessment.instruments[0]
+                        }
+                    ]
+                    : []
+            );
 
 
     const assessmentTitle =
@@ -1273,20 +1304,33 @@ function openEditLessonModal(
 
 
                             <!-- =================================
-                                 INSTRUMENT
-                                 ================================= -->
+                                EVALUATION
+                                ================================= -->
 
-                            <label>
-                                Assessment instrument
-                            </label>
+                            <div
+                                class="lesson-assessment-group">
 
-                            ${renderAssessmentInstrumentSelect(
-                                selectedInstrument
-                            )
-                                .replace(
-                                    'id="lessonAssessmentInstrument"',
-                                    'id="editLessonAssessmentInstrument"'
+                                <div
+                                    class="lesson-assessment-label">
+
+                                    Evaluation
+
+                                </div>
+
+                                <div
+                                    class="lesson-assessment-help">
+
+                                    Select who evaluates this activity
+                                    and the instrument used by each evaluator.
+
+                                </div>
+
+                                ${renderAssessmentEvaluators(
+                                    selectedEvaluations,
+                                    "editLesson"
                                 )}
+
+                            </div>
 
 
                             <!-- =================================
@@ -1354,6 +1398,15 @@ function openEditLessonModal(
 
                                 </div>
 
+                                <div
+                                    id="editLessonSelectedBasicKnowledge">
+
+                                    ${renderSelectedAssessmentBasicKnowledge(
+                                        classItem.id,
+                                        selectedKnowledge
+                                    )}
+
+                                </div>
 
                                 <input
                                     id="editLessonBasicKnowledgeSearch"
@@ -1371,17 +1424,6 @@ function openEditLessonModal(
                                         classItem.id,
                                         selectedKnowledge,
                                         "editLesson"
-                                    )}
-
-                                </div>
-
-
-                                <div
-                                    id="editLessonSelectedBasicKnowledge">
-
-                                    ${renderSelectedAssessmentBasicKnowledge(
-                                        classItem.id,
-                                        selectedKnowledge
                                     )}
 
                                 </div>
@@ -1547,10 +1589,11 @@ function saveLessonEdit(
         )?.value || "";
 
 
-    const instrumentId =
-        document.getElementById(
-            "editLessonAssessmentInstrument"
-        )?.value || null;
+    const evaluations =
+        getSelectedAssessmentEvaluations(
+            document,
+            "editLesson"
+        );
 
 
     const specificCompetences =
@@ -1620,7 +1663,10 @@ function saveLessonEdit(
 
                     instruments:
                         isEvaluable
-                            ? [instrumentId]
+                            ? evaluations.map(
+                                item =>
+                                    item.instrumentId
+                            )
                             : [],
 
                     competences:
@@ -1694,12 +1740,10 @@ function saveLessonEdit(
         }
 
 
-        if (
-            !instrumentId
-        ) {
+        if (!evaluations.length) {
 
             alert(
-                "Please select an assessment instrument."
+                "Please select at least one evaluator and instrument."
             );
 
             return;
@@ -1780,7 +1824,7 @@ function saveLessonEdit(
                         title:
                             assessmentTitle,
 
-                        instrumentId,
+                        evaluations,
 
                         specificCompetences,
 
@@ -1813,12 +1857,13 @@ function saveLessonEdit(
             AssessmentActivityManager
                 .create({
 
-                    lessonId,
+                    lessonId:
+                        lesson.id,
 
                     title:
                         assessmentTitle,
 
-                    instrumentId,
+                    evaluations,
 
                     specificCompetences,
 
