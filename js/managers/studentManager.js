@@ -14,10 +14,14 @@ const StudentManager = {
     }) {
 
         firstName =
-            String(firstName || "").trim();
+            String(firstName || "")
+                .trim()
+                .toLocaleUpperCase();
 
         lastName =
-            String(lastName || "").trim();
+            String(lastName || "")
+                .trim()
+                .toLocaleUpperCase();
 
         if (!firstName) {
 

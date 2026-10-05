@@ -92,6 +92,77 @@ const AcademicYearManager = {
 
 
     // ------------------------------------
+    // Get term by ID
+    // ------------------------------------
+
+    getTermById(
+        academicYearId,
+        termId
+    ) {
+
+        const year =
+            this.getById(
+                academicYearId
+            );
+
+
+        if (!year) {
+            return null;
+        }
+
+
+        const terms =
+            Array.isArray(year.terms)
+                ? year.terms
+                : [];
+
+
+        return terms.find(
+            term =>
+                term.id === termId
+        ) || null;
+
+    },
+
+
+    // ------------------------------------
+    // Get term by date
+    // ------------------------------------
+
+    getTermByDate(
+        academicYearId,
+        date
+    ) {
+
+        const year =
+            this.getById(
+                academicYearId
+            );
+
+
+        if (!year || !date) {
+            return null;
+        }
+
+
+        const terms =
+            Array.isArray(year.terms)
+                ? year.terms
+                : [];
+
+
+        return terms.find(
+            term =>
+                term.startDate &&
+                term.endDate &&
+                date >= term.startDate &&
+                date <= term.endDate
+        ) || null;
+
+    },
+
+
+    // ------------------------------------
     // Get all
     // ------------------------------------
 

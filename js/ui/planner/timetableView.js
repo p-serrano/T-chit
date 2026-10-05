@@ -137,12 +137,8 @@ function renderTimetableGrid(
                         class="timetable-day-header">
 
                         <span>
-                            ${day.short}
-                        </span>
-
-                        <small>
                             ${day.name}
-                        </small>
+                        </span>
 
                     </div>
 
@@ -222,10 +218,16 @@ function renderTimetableEntry(
     }
 
 
+    const classColor =
+        classItem.color ||
+        "#7C5B96";
+
+
     return `
 
         <button
             class="timetable-entry"
+            style="--class-color: ${escapeHTML(classColor)};"
             onclick="openEditTimetableModal(
                 '${entry.id}'
             )">

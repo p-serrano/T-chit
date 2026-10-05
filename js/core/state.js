@@ -69,7 +69,7 @@ const AppState = {
             return false;
         }
 
-        this.data = remote.data;
+        this.data = Storage.migrate(remote.data);
 
         Storage.save(this.data);
 

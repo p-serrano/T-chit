@@ -15,65 +15,6 @@
 
 
 /* ---------------------------------------------------------
-   TABS
-   --------------------------------------------------------- */
-
-.planner-tabs {
-    display: flex;
-    gap: 6px;
-
-    border-bottom: 1px solid var(--line);
-}
-
-.planner-tab {
-    position: relative;
-
-    background: transparent;
-    color: var(--ink-soft);
-
-    padding: 10px 14px;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    border-bottom: 2px solid transparent;
-}
-
-.planner-tab:hover {
-    color: var(--purple);
-    transform: none;
-}
-
-.planner-tab.active {
-    color: var(--purple);
-    border-bottom-color: var(--purple);
-}
-
-.planner-tab:disabled {
-    cursor: default;
-    opacity: 0.45;
-}
-
-.planner-tab:disabled:hover {
-    color: var(--ink-soft);
-    transform: none;
-}
-
-.planner-tab span {
-    margin-left: 5px;
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-
-    background: var(--paper-dark);
-
-    padding: 3px 5px;
-
-    border-radius: 3px;
-}
-
-
-/* ---------------------------------------------------------
    DESCRIPTION
    --------------------------------------------------------- */
 
@@ -265,6 +206,32 @@
 .timetable-entry-subject {
     font-size: 11px;
     color: var(--ink-soft);
+}
+
+
+/* ---------------------------------------------------------
+   TIMETABLE — CLASS COLOUR
+   --------------------------------------------------------- */
+
+.timetable-entry {
+    border-left: 4px solid var(--class-color);
+    background: color-mix(
+        in srgb,
+        var(--class-color) 30%,
+        var(--paper-light)
+    );
+}
+
+.timetable-entry {
+    border-left: 4px solid var(--class-color);
+}
+
+.timetable-entry strong {
+    color: var(--class-color);
+}
+
+.timetable-entry-subject {
+    color: var(--class-color);
 }
 
 
@@ -469,7 +436,6 @@
    --------------------------------------------------------- */
 
 .course-plan-day-header {
-    min-height: 70px;
 
     padding: 11px 13px;
 
@@ -564,49 +530,53 @@
    --------------------------------------------------------- */
 
 .course-plan-slot {
-    position: relative;
+	position: relative;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 
-    width: 100%;
-    min-height: 92px;
+	width: 100%;
+	min-height: 72px;
 
-    padding: 11px;
+	padding: 11px;
 
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--purple-light);
+	border: 1px solid var(--line);
+	border-left: 5px solid var(--class-color);
 
-    border-radius: var(--radius-small);
+	border-radius: var(--radius-small);
 
-    background: var(--paper);
-    color: var(--ink);
+	background: var(--paper);
+	color: var(--ink);
 
-    text-align: left;
+	text-align: left;
 
-    cursor: pointer;
+	cursor: pointer;
 
-    box-shadow:
-        1px 2px 4px rgba(
-            45,
-            35,
-            50,
-            0.07
-        );
+	box-shadow:
+		1px 2px 4px rgba(
+			45,
+			35,
+			50,
+			0.07
+		);
 
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        border-color 0.15s ease;
+	transition:
+		transform 0.15s ease,
+		box-shadow 0.15s ease,
+		border-color 0.15s ease;
 }
 
 .course-plan-slot:hover {
-    transform: translateY(-2px);
+	transform: translateY(-2px);
 
-    border-color: var(--purple-light);
+	border-top-color: var(--purple-light);
+	border-right-color: var(--purple-light);
+	border-bottom-color: var(--purple-light);
 
-    box-shadow: var(--shadow);
+	background-color: var(--paper-dark);
+
+	box-shadow: var(--shadow);
 }
 
 
@@ -640,7 +610,7 @@
     color: var(--purple-dark);
 
     font-family: var(--font-ui);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
 
     text-overflow: ellipsis;
@@ -653,17 +623,17 @@
    --------------------------------------------------------- */
 
 .course-plan-add {
-    margin-top: auto;
-    padding-top: 9px;
-
-    color: var(--purple);
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-
-    letter-spacing: 0.05em;
+	align-self: flex-end;
+	margin-top: auto;
+    padding-top: 8px;
+	color: var(--purple);
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.05em;
 }
+
+
 
 
 /* ---------------------------------------------------------
@@ -750,6 +720,119 @@
     line-height: 1;
 
     letter-spacing: 0.06em;
+}
+
+
+/* =========================================================
+   T-CHIT — CENTRE ACTIVITY
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   ACTIVITY SLOT
+   --------------------------------------------------------- */
+
+.course-plan-activity {
+	border-left-color: var(--class-color);
+
+	background: color-mix(
+		in srgb,
+		var(--purple) 30%,
+		var(--paper-light)
+	);
+
+	transform: rotate(0.25deg);
+}
+
+.course-plan-activity:hover {
+	border-top-color: var(--class-color);
+	border-right-color: var(--class-color);
+	border-bottom-color: var(--class-color);
+	border-left-color: var(--class-color);
+
+	background: var(--paper-dark);
+
+	transform:
+		translateY(-2px)
+		rotate(-0.25deg);
+
+	box-shadow: var(--shadow);
+}
+
+
+/* ---------------------------------------------------------
+   ACTIVITY NAME
+   --------------------------------------------------------- */
+
+.course-plan-activity strong {
+    color: var(--purple-dark);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+
+/* ---------------------------------------------------------
+   ACTIVITY NOTE / LABEL
+   --------------------------------------------------------- */
+
+.course-plan-activity-note {
+
+    align-self: flex-end;
+
+    margin-top: auto;
+
+    padding-top: 8px;
+
+    color: var(--paper-light);
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* ---------------------------------------------------------
+   EMPTY NOTE
+   --------------------------------------------------------- */
+
+.course-plan-activity:not(.has-note)
+.course-plan-activity-note {
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+
+    opacity: 0.75;
+}
+
+
+/* ---------------------------------------------------------
+   REAL NOTE
+   --------------------------------------------------------- */
+
+.course-plan-activity.has-note
+.course-plan-activity-note {
+
+    color: var(--ink);
+
+    font-family: var(--font-hand);
+
+    font-size: 17px;
+
+    line-height: 1.1;
+
+    letter-spacing: 0;
+
+    text-transform: none;
+
+    opacity: 1;
 }
 
 

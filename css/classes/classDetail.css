@@ -1,0 +1,605 @@
+/* =========================================================
+T-CHIT — CLASS DETAIL
+Styles specific to the individual class detail view.
+========================================================= */
+
+/* ---------------------------------------------------------
+CLASS DETAIL
+--------------------------------------------------------- */
+
+.class-detail {
+padding-bottom: 40px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.back-button {
+align-self: flex-start;
+padding: 0;
+border: 0;
+background: transparent;
+color: var(--purple);
+font-family: var(--font-mono);
+font-size: 11px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+cursor: pointer;
+}
+
+.class-detail-header {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 22px 24px;
+	background: var(--paper-light);
+	border: 1px solid var(--line);
+	border-left: 4px solid var(--purple);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+	transform: rotate(-0.25deg);
+}
+
+
+/* ---------------------------------------------------------
+   SECTION TITLE
+   --------------------------------------------------------- */
+
+.class-detail-section-title {
+	margin: 0;
+
+	color: var(--ink);
+	font-family: var(--font-hand);
+	font-size: 27px;
+	font-weight: 600;
+	line-height: 1.1;
+}
+
+
+/* ---------------------------------------------------------
+   CLASS DETAIL MAIN
+   --------------------------------------------------------- */
+
+.class-detail-main {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	flex-wrap: wrap;
+}
+
+.class-detail-name-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: nowrap;
+}
+
+.class-detail-context {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.class-detail-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 5px 9px;
+	background: var(--yellow);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	color: var(--ink);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	transform: rotate(-1deg);
+}
+
+.class-detail-pill:nth-child(2) {
+	transform: rotate(0.8deg);
+}
+
+
+/* ---------------------------------------------------------
+   CLASS DETAIL BOTTOM
+   --------------------------------------------------------- */
+
+.class-detail-bottom {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	width: 100%;
+}
+
+.class-detail-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex: 0 0 auto;
+}
+
+.class-colour-control {
+	display: flex;
+	align-items: center;
+	flex: 0 0 auto;
+	width: fit-content;
+	gap: 9px;
+	padding-left: 14px;
+	border-left: 1px dashed var(--line);
+}
+
+/* ---------------------------------------------------------
+BACK BUTTON
+--------------------------------------------------------- */
+
+.back-button {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+margin-bottom: 2px;
+transition:
+color 0.15s ease,
+transform 0.15s ease;
+}
+
+.back-button:hover {
+color: var(--purple-dark);
+transform: translateX(-2px);
+}
+
+/* ---------------------------------------------------------
+CLASS CONTEXT
+--------------------------------------------------------- */
+
+.class-detail-context {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin-top: 8px;
+}
+
+.class-detail-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+
+	padding: 5px 9px;
+
+	background: var(--yellow);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+
+	color: var(--ink);
+
+	font-family: var(--font-mono);
+	font-size: 9px;
+	font-weight: 700;
+
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+
+	transform: rotate(-1deg);
+}
+
+.class-detail-pill:nth-child(2) {
+	transform: rotate(0.8deg);
+}
+
+.class-detail-name-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: nowrap;
+}
+
+.class-detail-name-input {
+	min-width: 0;
+	width: min(420px, 100%);
+
+	padding: 10;
+
+	border: 0;
+	border-bottom: 2px solid var(--line);
+
+	background: var(--paper-dark);
+
+	color: var(--purple-dark);
+
+	font-family: var(--font-hand);
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 1.05;
+
+	outline: none;
+
+	transition:
+		border-color 0.15s ease,
+		color 0.15s ease;
+}
+
+.class-detail-name-input:focus {
+	border-bottom-color: var(--purple);
+}
+
+.class-detail-name-save {
+	flex-shrink: 0;
+
+	padding: 6px 9px;
+
+	border: 1px solid var(--line);
+	border-radius: 4px;
+
+	background: var(--paper);
+	color: var(--purple);
+
+	font-family: var(--font-mono);
+	font-size: 9px;
+	font-weight: 700;
+
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+
+	cursor: pointer;
+
+	box-shadow: var(--shadow);
+
+	transform: rotate(1deg);
+
+	transition:
+		background 0.15s ease,
+		color 0.15s ease,
+		transform 0.15s ease;
+}
+
+.class-detail-name-save:hover {
+	background: var(--purple);
+	color: white;
+	transform: rotate(0deg);
+}
+
+/* ---------------------------------------------------------
+SUBJECT
+--------------------------------------------------------- */
+
+.class-detail-subject {
+display: inline-flex;
+align-items: center;
+gap: 5px;
+margin: 9px 0 0;
+padding: 5px 9px;
+background: var(--yellow);
+border: 1px solid var(--line);
+border-radius: 4px;
+color: var(--ink);
+font-family: var(--font-mono);
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+transform: rotate(-1deg);
+}
+
+/* ---------------------------------------------------------
+ACTIVITY LABEL
+--------------------------------------------------------- */
+
+.class-activity-label {
+display: inline-flex;
+align-items: center;
+margin-top: 9px;
+padding: 5px 9px;
+background: var(--yellow);
+border: 1px solid var(--line);
+border-radius: 4px;
+color: var(--ink);
+font-family: var(--font-mono);
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+transform: rotate(-1deg);
+}
+
+/* ---------------------------------------------------------
+CLASS ACTIONS
+--------------------------------------------------------- */
+
+.class-detail-actions {
+display: flex;
+align-items: center;
+justify-content: flex-end;
+gap: 8px;
+flex-wrap: wrap;
+}
+
+.class-detail-actions button {
+flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------
+CLASS COLOUR
+--------------------------------------------------------- */
+
+.class-colour-label {
+display: block;
+margin-bottom: 8px;
+color: var(--ink-soft);
+font-family: var(--font-mono);
+font-size: 9px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+}
+
+.class-colour-options {
+display: flex;
+align-items: center;
+gap: 8px;
+flex-wrap: wrap;
+}
+
+.class-colour-option {
+width: 25px;
+height: 25px;
+padding: 0;
+border: 2px solid transparent;
+border-radius: 50%;
+cursor: pointer;
+transition:
+transform 0.15s ease,
+border-color 0.15s ease,
+box-shadow 0.15s ease;
+}
+
+.class-colour-option:hover {
+transform: scale(1.1) rotate(-4deg);
+}
+
+.class-colour-option.selected {
+border-color: var(--ink);
+box-shadow:
+0 0 0 2px var(--paper-light),
+0 0 0 3px var(--ink);
+transform: scale(1.05);
+}
+
+.class-colour-empty {
+color: var(--ink-soft);
+font-family: var(--font-mono);
+font-size: 10px;
+}
+
+/* ---------------------------------------------------------
+CURRICULUM
+--------------------------------------------------------- */
+
+.class-curriculum-section {
+position: relative;
+padding: 18px 20px;
+background: var(--paper-light);
+border: 1px solid var(--line);
+border-left: 4px solid var(--purple);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+transform: rotate(-0.2deg);
+}
+
+.class-curriculum-control {
+display: flex;
+align-items: center;
+gap: 12px;
+flex-wrap: wrap;
+}
+
+.class-curriculum-control .form-input {
+min-width: min(360px, 100%);
+}
+
+.class-curriculum-current {
+display: flex;
+align-items: center;
+gap: 6px;
+color: var(--ink-soft);
+font-family: var(--font-mono);
+font-size: 10px;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+}
+
+.class-curriculum-current strong {
+color: var(--purple-dark);
+font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+STUDENTS
+--------------------------------------------------------- */
+
+.student-section {
+margin-top: 30px;
+}
+
+.student-total {
+margin-left: 8px;
+padding: 3px 7px;
+background: var(--paper-dark);
+border: 1px solid var(--line);
+border-radius: 4px;
+color: var(--ink-soft);
+font-family: var(--font-mono);
+font-size: 10px;
+font-weight: 700;
+line-height: 1;
+transform: rotate(1deg);
+}
+
+/* ---------------------------------------------------------
+STUDENT TABLE
+--------------------------------------------------------- */
+
+.student-table {
+overflow: hidden;
+background: var(--paper-light);
+border: 1px solid var(--line);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+}
+
+.student-row {
+display: grid;
+grid-template-columns: 42px 42px minmax(0, 1fr) 80px;
+align-items: center;
+min-height: 46px;
+border-bottom: 1px solid var(--paper-dark);
+background: var(--paper-light);
+}
+
+.student-row:last-child {
+border-bottom: none;
+}
+
+.student-header {
+min-height: 36px;
+background: var(--paper-dark);
+color: var(--ink-soft);
+font-family: var(--font-mono);
+font-size: 9px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+}
+
+.student-number {
+padding-left: 12px;
+color: var(--ink-soft);
+font-family: var(--font-mono);
+font-size: 10px;
+}
+
+.student-name {
+min-width: 0;
+color: var(--ink);
+font-family: var(--font-ui);
+font-size: 13px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.student-edit {
+justify-self: end;
+margin-right: 12px;
+padding: 5px 7px;
+border: 0;
+background: transparent;
+color: var(--purple);
+font-family: var(--font-mono);
+font-size: 9px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+cursor: pointer;
+}
+
+.student-edit:hover {
+color: var(--purple-dark);
+}
+
+/* ---------------------------------------------------------
+STUDENT SELECTION
+--------------------------------------------------------- */
+
+.student-select {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.student-select input {
+width: 15px;
+height: 15px;
+margin: 0;
+accent-color: var(--purple);
+cursor: pointer;
+}
+
+.student-selection-bar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 12px;
+margin-top: 14px;
+padding: 12px 14px;
+background: var(--paper-dark);
+border: 1px solid var(--line);
+border-radius: var(--radius-small);
+box-shadow: var(--shadow);
+transform: rotate(0.15deg);
+}
+
+.student-selection-bar.hidden {
+display: none;
+}
+
+#studentSelectionCount {
+color: var(--ink);
+font-family: var(--font-mono);
+font-size: 10px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+
+/* ---------------------------------------------------------
+RESPONSIVE
+--------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+.class-detail-header {
+	flex-direction: column;
+}
+
+.class-detail-name-input {
+	font-size: 34px;
+}
+
+.class-detail-side {
+	width: 100%;
+	align-items: stretch;
+}
+
+.class-detail-actions {
+	width: 100%;
+}
+
+.class-detail-actions button {
+	flex: 1;
+}
+
+.class-colour-options {
+	justify-content: flex-start;
+}
+
+.class-curriculum-control {
+	align-items: stretch;
+	flex-direction: column;
+}
+
+.class-curriculum-control .form-input {
+	width: 100%;
+}
+
+.student-selection-bar {
+	align-items: stretch;
+	flex-direction: column;
+}
+
+
+}

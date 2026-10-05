@@ -1,0 +1,694 @@
+/* =========================================================
+   T-CHIT — GRADEBOOK
+   Specific styling
+   ========================================================= */
+
+
+/* =========================================================
+   GRADEBOOK — STUDENT LIST
+   ========================================================= */
+
+.gradebook-students {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   GRADEBOOK — CLASS HEADING
+   ========================================================= */
+
+.gradebook-class-heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.gradebook-class-pill {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    background: var(--yellow);
+
+    border: 1px solid var(--line);
+    border-radius: 5px;
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    box-shadow: var(--shadow);
+
+    transform: rotate(-0.5deg);
+}
+
+
+.gradebook-student-count {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 8px;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   GRADEBOOK — STUDENT CARD
+   Scrapbook / paper note
+   ========================================================= */
+
+.gradebook-student {
+    position: relative;
+
+    margin: 16px 4px 22px;
+    padding: 18px 14px 14px;
+
+    background: color-mix(
+        in srgb,
+        var(--paper-dark) 50%,
+        var(--paper-light)
+    );
+    border: 1px solid rgba(91, 72, 105, 0.16);
+    border-radius: 15px;
+
+    box-shadow:
+        2px 3px 0 rgba(91, 72, 105, 0.06),
+        0 1px 8px rgba(91, 72, 105, 0.035);
+
+    overflow: visible;
+}
+
+/* ---------------------------------------------------------
+   SMALL PAPER IMPERFECTION
+   --------------------------------------------------------- */
+
+.gradebook-student:nth-child(odd) {
+    transform: rotate(-0.45deg);
+}
+
+.gradebook-student:nth-child(even) {
+    transform: rotate(0.38deg);
+}
+
+
+/* ---------------------------------------------------------
+   TOP TAPE / WASHI STRIP
+   --------------------------------------------------------- */
+
+.gradebook-student::before {
+    content: "";
+
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+
+    width: 72px;
+    height: 14px;
+
+    background: rgba(198, 170, 91, 0.32);
+
+    border: 1px solid rgba(150, 112, 91, 0.08);
+
+    opacity: 0.9;
+}
+
+
+/* ---------------------------------------------------------
+   LITTLE PAPER MARK
+   --------------------------------------------------------- */
+
+.gradebook-student::after {
+    content: "";
+
+    position: absolute;
+    right: 10px;
+    top: 9px;
+
+    width: 18px;
+    height: 18px;
+
+    border-top: 1px solid rgba(124, 91, 150, 0.14);
+    border-right: 1px solid rgba(124, 91, 150, 0.14);
+
+    opacity: 0.6;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER — VERY SUBTLE
+   --------------------------------------------------------- */
+
+.gradebook-student:hover {
+    box-shadow:
+        3px 4px 0 rgba(91, 72, 105, 0.08),
+        0 2px 10px rgba(91, 72, 105, 0.045);
+}
+
+
+/* =========================================================
+   GRADEBOOK — STUDENT HEADER
+   ========================================================= */
+
+.gradebook-student-header {
+    display: flex;
+    align-items: center;
+
+    padding: 12px 16px;
+
+    background: var(--paper-light);
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+.gradebook-student-name {
+    color: var(--purple-dark);
+
+    font-family: var(--font-hand);
+    font-size: 27px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   GRADEBOOK — COMPETENCE COLUMN
+   ========================================================= */
+
+.gradebook-competence-column {
+    width: 82px;
+    min-width: 82px;
+    max-width: 82px;
+
+    padding: 8px 5px !important;
+
+    text-align: center !important;
+
+    white-space: normal;
+}
+
+
+/* =========================================================
+   GRADEBOOK — ACTIVITY HEADER
+   ========================================================= */
+
+.gradebook-activity-header {
+    min-width: 100px;
+
+    padding: 8px 5px !important;
+
+    text-align: center !important;
+}
+
+
+.gradebook-activity-title {
+    color: var(--purple-dark);
+
+    font-family: var(--font-hand);
+    font-size: 17px;
+    font-weight: 600;
+
+    line-height: 1.1;
+}
+
+
+.gradebook-activity-date {
+    margin-top: 3px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+
+.gradebook-activity-meta {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   GRADEBOOK — ACTIVITY SUBHEADER
+   ========================================================= */
+
+.gradebook-subheader {
+    width: 50px;
+    min-width: 50px;
+
+    padding: 5px 3px !important;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px !important;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   GRADEBOOK — COMPETENCE CELL
+   ========================================================= */
+
+.gradebook-competence-cell {
+    width: 82px;
+    min-width: 82px;
+    max-width: 82px;
+
+    padding: 8px 5px !important;
+
+    text-align: center !important;
+
+    white-space: normal;
+}
+
+
+.gradebook-competence-code {
+    display: inline-block;
+
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+
+.gradebook-competence-name {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--ink-soft);
+
+    font-size: 10px;
+
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   GRADEBOOK — CELL CONTENT
+   ========================================================= */
+
+.gradebook-cell-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+
+.gradebook-grade-control,
+.gradebook-weight-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+}
+
+
+.gradebook-grade-control label,
+.gradebook-weight-control label {
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+.gradebook-weight-control > div {
+    display: flex;
+    align-items: center;
+
+    gap: 2px;
+}
+
+
+/* =========================================================
+   GRADEBOOK — GRADE CELL
+   ========================================================= */
+
+.gradebook-grade-cell {
+    width: 54px;
+    min-width: 54px;
+
+    padding: 6px 4px !important;
+
+    text-align: center;
+}
+
+
+.gradebook-grade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+/* =========================================================
+   GRADEBOOK — GRADE INPUT
+   ========================================================= */
+
+.gradebook-grade-cell input {
+    width: 44px;
+    height: 28px;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+.gradebook-grade-cell input::placeholder {
+    color: var(--ink-muted);
+
+    opacity: 0.6;
+}
+
+
+/* =========================================================
+   GRADEBOOK — WEIGHT CELL
+   ========================================================= */
+
+.gradebook-weight-cell {
+    width: 54px;
+    min-width: 54px;
+
+    padding: 6px 4px !important;
+
+    text-align: center;
+}
+
+
+.gradebook-weight-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+}
+
+
+.gradebook-weight-input input {
+    width: 36px;
+    height: 28px;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    background: transparent;
+
+    border: 1px solid var(--line);
+    border-radius: 3px;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+
+    text-align: center;
+}
+
+
+.gradebook-weight-input input:focus {
+    background: var(--paper);
+
+    color: var(--ink);
+}
+
+
+.gradebook-weight-input span {
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   GRADEBOOK — EMPTY GRADE
+   ========================================================= */
+
+.gradebook-grade-empty {
+    color: var(--ink-muted);
+
+    opacity: 0.6;
+}
+
+
+/* =========================================================
+   GRADEBOOK — TOTAL
+   ========================================================= */
+
+.gradebook-total-column {
+    width: 78px;
+    min-width: 78px;
+    max-width: 78px;
+
+    padding: 7px 5px !important;
+
+    text-align: center !important;
+}
+
+
+.gradebook-total-cell {
+    width: 78px;
+    min-width: 78px;
+    max-width: 78px;
+
+    padding: 8px 5px !important;
+
+    text-align: center;
+}
+
+
+.gradebook-total-value {
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.gradebook-total-weight {
+    margin-top: 3px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   GRADEBOOK — ACTIVITY COLOURS
+   ========================================================= */
+
+.gradebook-activity-column-0 {
+    background: rgba(124, 91, 150, 0.16) !important;
+}
+
+
+.gradebook-activity-column-1 {
+    background: rgba(194, 126, 153, 0.16) !important;
+}
+
+
+.gradebook-activity-column-2 {
+    background: rgba(198, 170, 91, 0.18) !important;
+}
+
+
+.gradebook-activity-column-3 {
+    background: rgba(91, 139, 137, 0.16) !important;
+}
+
+
+.gradebook-activity-column-4 {
+    background: rgba(150, 112, 91, 0.16) !important;
+}
+
+
+.gradebook-activity-column-5 {
+    background: rgba(108, 113, 151, 0.16) !important;
+}
+
+
+.gradebook-activity-column-6 {
+    background: rgba(171, 126, 91, 0.16) !important;
+}
+
+
+.gradebook-activity-column-7 {
+    background: rgba(117, 145, 108, 0.16) !important;
+}
+
+
+/* =========================================================
+   GRADEBOOK — WEIGHT STATUS
+   ========================================================= */
+
+.gradebook-weight-warning {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 11px;
+
+    background: var(--yellow);
+
+    border: 1px solid var(--line);
+    border-radius: 5px;
+
+    color: var(--ink-soft);
+
+    font-size: 11px;
+}
+
+
+.gradebook-weight-warning-icon {
+    font-size: 13px;
+}
+
+
+.gradebook-weight-warning-text {
+    color: var(--ink-soft);
+}
+
+
+.gradebook-weight-warning strong {
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+}
+
+
+/* =========================================================
+   GRADEBOOK — EMPTY STATE
+   ========================================================= */
+
+.gradebook-empty {
+    padding: 40px 20px;
+
+    background: var(--paper-light);
+
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+
+    text-align: center;
+}
+
+
+.gradebook-empty h3 {
+    margin-bottom: 5px;
+
+    color: var(--purple-dark);
+
+    font-family: var(--font-hand);
+    font-size: 25px;
+}
+
+
+.gradebook-empty p {
+    max-width: 420px;
+
+    margin: 0 auto;
+
+    color: var(--ink-soft);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .gradebook-student-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    .gradebook-cell-content {
+        gap: 7px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .gradebook-student:nth-child(odd),
+    .gradebook-student:nth-child(even) {
+        transform: none;
+    }
+}

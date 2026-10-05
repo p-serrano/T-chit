@@ -1,0 +1,84 @@
+/* =========================================================
+   T-CHIT — STUDENT IMPORT
+   ========================================================= */
+
+
+/* =========================================================
+   IMPORT RESULT
+   ========================================================= */
+
+.import-result-summary {
+    margin-top: 12px;
+    padding: 9px 11px;
+
+    background: var(--pink-light);
+
+    border-radius: 5px;
+
+    color: var(--ink);
+
+    font-size: 11px;
+}
+
+.import-result-summary strong {
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+}
+
+
+/* =========================================================
+   IMPORT NAME LIST
+   ========================================================= */
+
+.import-name-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    max-height: 230px;
+
+    margin-top: 10px;
+
+    overflow-y: auto;
+}
+
+.import-name-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 8px;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--paper-dark);
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.import-name-row:hover {
+    background: rgba(112, 70, 168, 0.04);
+}
+
+.import-name-row input {
+    flex-shrink: 0;
+
+    accent-color: var(--purple);
+}
+
+
+/* =========================================================
+   DROP ZONE — IMPORT STATE
+   ========================================================= */
+
+.file-drop-zone.drag-active {
+    border-color: var(--purple);
+
+    background: rgba(112, 70, 168, 0.06);
+
+    transform: rotate(-0.2deg);
+}

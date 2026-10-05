@@ -1,0 +1,385 @@
+/* =========================================================
+   T-CHIT — CALENDAR
+   ========================================================= */
+
+
+/* =========================================================
+   CALENDAR VIEW
+   ========================================================= */
+
+.calendar-view {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+
+/* =========================================================
+   CALENDAR TAB CONTENT
+   ========================================================= */
+
+#calendarTabContent {
+	min-width: 0;
+}
+
+.calendar-academic-year,
+.calendar-events-section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+
+/* =========================================================
+   VIEW TOOLBAR
+   ========================================================= */
+
+.calendar-view .view-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.calendar-view .academic-year-name {
+	color: var(--purple-dark);
+	font-family: var(--font-hand);
+	font-size: 25px;
+	line-height: 1;
+}
+
+
+/* =========================================================
+   ACADEMIC YEARS
+   ========================================================= */
+
+.academic-years-list {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.academic-year-card {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 24px;
+	padding: 18px 20px;
+	background: var(--paper-light);
+	border: 1px solid var(--line);
+	border-left: 4px solid var(--purple-light);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+}
+
+.academic-year-card:nth-child(odd) {
+	transform: rotate(-0.15deg);
+}
+
+.academic-year-card:nth-child(even) {
+	transform: rotate(0.15deg);
+}
+
+.academic-year-card.active {
+	border-left-color: var(--pink);
+	background: var(--paper-light);
+}
+
+.academic-year-card-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.academic-year-card-info h3 {
+	margin: 3px 0 5px;
+	color: var(--purple-dark);
+	font-family: var(--font-hand);
+	font-size: 27px;
+	font-weight: 400;
+	line-height: 1;
+}
+
+.academic-year-dates {
+	color: var(--ink-soft);
+	font-family: var(--font-mono);
+	font-size: 10px;
+	letter-spacing: 0.04em;
+}
+
+.academic-year-terms {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 8px;
+	margin-top: 16px;
+}
+
+.academic-year-term {
+	padding: 9px 10px;
+	background: color-mix(
+		in srgb,
+		var(--paper-dark) 45%,
+		var(--paper-light)
+	);
+	border: 1px solid var(--line);
+}
+
+.academic-year-term-name {
+	display: block;
+	color: var(--purple-dark);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.academic-year-term-dates {
+	display: block;
+	margin-top: 4px;
+	color: var(--ink-soft);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	line-height: 1.4;
+}
+
+.academic-year-terms-empty {
+	margin-top: 14px;
+	color: var(--ink-soft);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.75;
+}
+
+
+/* =========================================================
+   ACADEMIC YEAR ACTIONS
+   ========================================================= */
+
+.academic-year-card-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.active-badge {
+	padding: 6px 9px;
+	background: color-mix(
+		in srgb,
+		var(--pink-light) 45%,
+		var(--paper-light)
+	);
+	border: 1px solid var(--pink-light);
+	color: var(--purple-dark);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CALENDAR EVENTS
+   ========================================================= */
+
+.calendar-events-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.calendar-event-card {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 14px 16px;
+	background: var(--paper-light);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow);
+}
+
+.calendar-event-card:nth-child(odd) {
+	transform: rotate(-0.2deg);
+}
+
+.calendar-event-card:nth-child(even) {
+	transform: rotate(0.15deg);
+}
+
+.calendar-event-date {
+	flex: 0 0 105px;
+	padding-right: 14px;
+	border-right: 1px solid var(--line);
+}
+
+.calendar-event-date-day {
+	color: var(--purple-dark);
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.calendar-event-type {
+	margin-top: 4px;
+	color: var(--ink-soft);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+.calendar-event-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.calendar-event-title {
+	color: var(--purple-dark);
+	font-family: var(--font-hand);
+	font-size: 24px;
+	line-height: 1;
+}
+
+.calendar-event-description {
+	margin-top: 5px;
+	color: var(--ink-soft);
+	font-size: 12px;
+}
+
+.calendar-event-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.calendar-empty-state {
+	padding-top: 35px;
+	padding-bottom: 35px;
+}
+
+
+/* =========================================================
+   MODAL — ACADEMIC YEAR
+   ========================================================= */
+
+.calendar-view .modal-section {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 20px;
+}
+
+.calendar-view .modal-section-title {
+	color: var(--ink-soft);
+	font-family: var(--font-mono);
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.calendar-view .term-editor {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.calendar-view .term-row {
+	display: grid;
+	grid-template-columns: minmax(70px, 1fr) minmax(120px, 1fr) auto minmax(120px, 1fr);
+	align-items: center;
+	gap: 8px;
+}
+
+.calendar-view .term-name {
+	color: var(--purple-dark);
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.calendar-view .term-row > span {
+	color: var(--ink-soft);
+	text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+	.academic-year-card {
+		flex-direction: column;
+	}
+
+	.academic-year-card-actions {
+		width: 100%;
+		justify-content: flex-end;
+	}
+
+	.academic-year-terms {
+		grid-template-columns: 1fr;
+	}
+
+	.calendar-view .term-row {
+		grid-template-columns: 1fr;
+	}
+
+	.calendar-view .term-row > span {
+		display: none;
+	}
+}
+
+@media (max-width: 650px) {
+	.calendar-view .view-tabs {
+		overflow-x: auto;
+	}
+
+	.calendar-view .view-tab {
+		flex: 0 0 auto;
+	}
+
+	.calendar-view .view-toolbar {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.calendar-view .view-toolbar .btn-primary {
+		width: 100%;
+	}
+
+	.academic-year-card-actions {
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+
+	.calendar-event-card {
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.calendar-event-date {
+		flex: 0 0 100%;
+		padding-right: 0;
+		padding-bottom: 8px;
+		border-right: none;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.calendar-event-info {
+		flex: 1;
+		min-width: 180px;
+	}
+
+	.calendar-event-actions {
+		width: 100%;
+		justify-content: flex-end;
+	}
+}

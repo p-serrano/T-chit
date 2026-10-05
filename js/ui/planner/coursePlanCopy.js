@@ -1045,64 +1045,144 @@ function createCopiedLesson(
     targetDate
 ) {
 
-    LessonManager.create({
+    // -----------------------------------------------------
+    // CREATE LESSON
+    // -----------------------------------------------------
 
-        academicYearId:
-            sourceLesson.academicYearId,
+    const copiedLesson =
+        LessonManager.create({
 
-        classId:
-            targetClassId,
+            academicYearId:
+                sourceLesson.academicYearId,
 
-        date:
-            targetDate,
+            classId:
+                targetClassId,
 
-        title:
-            sourceLesson.title,
-
-        notes:
-            sourceLesson.notes,
-
-        status:
-            "planned",
-
-        assessment: {
-
-            isEvaluable:
-                sourceLesson.assessment
-                    ?.isEvaluable === true,
+            date:
+                targetDate,
 
             title:
-                sourceLesson.assessment
-                    ?.title || "",
+                sourceLesson.title,
 
-            instruments:
-                Array.isArray(
-                    sourceLesson.assessment
-                        ?.instruments
-                )
-                    ? [
-                        ...sourceLesson
-                            .assessment
-                            .instruments
-                    ]
-                    : [],
+            notes:
+                sourceLesson.notes,
 
-            competences:
-                Array.isArray(
+            status:
+                "planned",
+
+            assessment: {
+
+                isEvaluable:
                     sourceLesson.assessment
-                        ?.competences
-                )
-                    ? [
-                        ...sourceLesson
-                            .assessment
-                            .competences
-                    ]
-                    : []
+                        ?.isEvaluable === true,
+
+                title:
+                    sourceLesson.assessment
+                        ?.title || "",
+
+                instruments:
+                    Array.isArray(
+                        sourceLesson.assessment
+                            ?.instruments
+                    )
+                        ? [
+                            ...sourceLesson
+                                .assessment
+                                .instruments
+                        ]
+                        : [],
+
+                competences:
+                    Array.isArray(
+                        sourceLesson.assessment
+                            ?.competences
+                    )
+                        ? [
+                            ...sourceLesson
+                                .assessment
+                                .competences
+                        ]
+                        : []
+
+            }
+
+        });
+
+
+    // -----------------------------------------------------
+    // COPY ASSESSMENT ACTIVITY
+    // -----------------------------------------------------
+
+    const sourceActivities =
+        AssessmentActivityManager
+            .getByLessonId(
+                sourceLesson.id
+            );
+
+
+    sourceActivities.forEach(
+        sourceActivity => {
+
+            AssessmentActivityManager.create({
+
+                lessonId:
+                    copiedLesson.id,
+
+                title:
+                    sourceActivity.title,
+
+                evaluations:
+                    Array.isArray(
+                        sourceActivity.evaluations
+                    )
+                        ? sourceActivity.evaluations.map(
+                            evaluation => ({
+                                evaluator:
+                                    evaluation.evaluator,
+
+                                instrumentId:
+                                    evaluation.instrumentId
+                            })
+                        )
+                        : [],
+
+                specificCompetences:
+                    Array.isArray(
+                        sourceActivity.specificCompetences
+                    )
+                        ? sourceActivity
+                            .specificCompetences
+                            .map(
+                                competence => ({
+                                    specificCompetenceId:
+                                        competence
+                                            .specificCompetenceId,
+
+                                    weight:
+                                        competence.weight
+                                })
+                            )
+                        : [],
+
+                basicKnowledgeIds:
+                    Array.isArray(
+                        sourceActivity.basicKnowledgeIds
+                    )
+                        ? [
+                            ...sourceActivity
+                                .basicKnowledgeIds
+                        ]
+                        : []
+
+            });
 
         }
+    );
 
-    });
 
+    // -----------------------------------------------------
+    // FINISH
+    // -----------------------------------------------------
 
     exitCoursePlanCopyMode();
 

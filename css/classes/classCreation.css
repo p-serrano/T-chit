@@ -1,0 +1,106 @@
+/* =========================================================
+   T-CHIT — CLASS CREATION
+   Class type and colour selectors used by class modals.
+   ========================================================= */
+
+
+/* =========================================================
+   CLASS TYPE
+   ========================================================= */
+
+.class-type-selector {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 14px;
+}
+
+.class-type-option {
+    flex: 1;
+
+    min-height: 38px;
+
+    padding: 7px 10px;
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+}
+
+.class-type-option.active {
+    background: var(--purple);
+
+    border-color: var(--purple);
+
+    color: var(--paper-light);
+}
+
+
+/* =========================================================
+   CLASS COLOUR
+   ========================================================= */
+
+.class-color-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    padding: 8px 0 4px;
+}
+
+.class-color-option {
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    background: var(--class-color-option);
+
+    border: 2px solid var(--paper-light);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 1px var(--line);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+.class-color-option:hover {
+    transform: scale(1.08);
+}
+
+.class-color-option.selected {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 0 2px var(--paper-light),
+        0 0 0 3px var(--purple);
+}
+
+.class-color-empty {
+    padding: 9px 11px;
+
+    background: var(--yellow);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink-soft);
+
+    font-size: 11px;
+}

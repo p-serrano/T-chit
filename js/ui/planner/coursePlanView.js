@@ -1,6 +1,16 @@
 // =========================================================
-// COURSE PLAN
+// T-CHIT — COURSE PLAN VIEW
 // =========================================================
+
+
+// ---------------------------------------------------------
+// COURSE PLAN STATE
+// ---------------------------------------------------------
+
+let coursePlanWeekStart =
+    getMonday(
+        new Date()
+    );
 
 
 // ---------------------------------------------------------
@@ -89,7 +99,7 @@ function renderCoursePlanSection(
 
                     <button
                         id="coursePlanCopyButton"
-                        class="btn-secondary"
+                        class="btn-primary"
                         onclick="toggleCoursePlanCopyMode()">
 
                         COPY PLAN
@@ -214,7 +224,7 @@ function renderCoursePlanDay(
                 <div>
 
                     <span>
-                        ${day.short}
+                        ${day.name}
                     </span>
 
                     <strong>
@@ -224,12 +234,6 @@ function renderCoursePlanDay(
                     </strong>
 
                 </div>
-
-                <small>
-                    ${formatDayName(
-                        date
-                    )}
-                </small>
 
             </div>
 
@@ -288,6 +292,21 @@ function renderCoursePlanLesson(
     }
 
 
+    // ---------------------------------------------------------
+    // CENTRE ACTIVITY
+    // ---------------------------------------------------------
+
+    if (classItem.type === ClassManager.TYPES.ACTIVITY) {
+
+        return renderCoursePlanActivity(
+            academicYearId,
+            timetableEntry,
+            date,
+            classItem
+        );
+    }
+
+
     const lessons =
         LessonManager.getByDate(
             academicYearId,
@@ -313,6 +332,7 @@ function renderCoursePlanLesson(
 
             <button
                 class="course-plan-slot"
+                style="--class-color: ${classItem.color || "var(--purple-light)"};"
                 onclick="openAddLessonModal(
                     '${timetableEntry.classId}',
                     '${date}'
@@ -438,81 +458,99 @@ function renderCoursePlanLesson(
 
 function renderCoursePlan() {
 
-    const container =
-        document.getElementById(
-            "appView"
-        );
+	const container =
+		document.getElementById(
+			"appView"
+		);
 
 
-    if (!container) {
-        return;
-    }
+	if (!container) {
+		return;
+	}
 
 
-    const academicYear =
-        AppState.getCurrentAcademicYear();
+	const currentFilter =
+		document.getElementById(
+			"coursePlanClassFilter"
+		)?.value || "all";
 
 
-    if (!academicYear) {
-        return;
-    }
+	const academicYear =
+		AppState.getCurrentAcademicYear();
 
 
-    container.innerHTML = `
-
-        <div class="planner-view">
-
-            <div class="view-toolbar">
-
-                <div>
-
-                    <div class="view-label">
-                        ACADEMIC YEAR
-                    </div>
-
-                    <div class="academic-year-name">
-                        ${escapeHTML(
-                            academicYear.name
-                        )}
-                    </div>
-
-                </div>
-
-            </div>
+	if (!academicYear) {
+		return;
+	}
 
 
-            <div class="planner-tabs">
+	container.innerHTML = `
 
-                <button
-                    class="planner-tab"
-                    onclick="switchPlannerTab(
-                        'timetable'
-                    )">
+		<div class="planner-view">
 
-                    MY TIMETABLE
+			<div class="view-toolbar">
 
-                </button>
+				<div>
+
+					<div class="view-label">
+						ACADEMIC YEAR
+					</div>
+
+					<div class="academic-year-name">
+						${escapeHTML(
+							academicYear.name
+						)}
+					</div>
+
+				</div>
+
+			</div>
 
 
-                <button
-                    class="planner-tab active">
+			<div class="planner-tabs">
 
-                    COURSE PLAN
+				<button
+					class="planner-tab"
+					onclick="switchPlannerTab(
+						'timetable'
+					)">
 
-                </button>
+					MY TIMETABLE
 
-            </div>
+				</button>
 
 
-            ${renderCoursePlanSection(
-                academicYear.id
-            )}
+				<button class="planner-tab active">
 
-        </div>
+					COURSE PLAN
 
-    `;
+				</button>
+
+			</div>
+
+
+			${renderCoursePlanSection(
+				academicYear.id
+			)}
+
+		</div>
+
+	`;
+
+
+	const filter =
+		document.getElementById(
+			"coursePlanClassFilter"
+		);
+
+
+	if (filter) {
+		filter.value = currentFilter;
+	}
+
 
 }
+
 
 
 // ---------------------------------------------------------
@@ -549,4 +587,77 @@ function goToCoursePlanToday() {
 
     renderCoursePlan();
 
+}
+
+
+// =========================================================
+// CENTRE ACTIVITY SLOT
+// =========================================================
+
+function renderCoursePlanActivity(
+    academicYearId,
+    timetableEntry,
+    date,
+    classItem
+) {
+
+    const activityNote =
+        ActivityNoteManager
+            .getByTimetableEntryAndDate(
+                timetableEntry.id,
+                date
+            );
+
+
+    const noteText =
+        activityNote?.note || "";
+
+
+    return `
+    
+        <button
+            type="button"
+            class="
+                course-plan-slot
+                course-plan-activity
+                ${noteText ? "has-note" : ""}
+            "
+            style="--class-color: ${classItem.color || "var(--yellow)"};"
+            data-timetable-entry-id="${timetableEntry.id}"
+            data-date="${date}"
+            onclick="
+                openCentreActivityModal(
+                    '${timetableEntry.id}',
+                    '${date}'
+                )
+            "
+        >
+
+
+            <span class="course-plan-time">
+                ${timetableEntry.startTime}
+                –
+                ${timetableEntry.endTime}
+            </span>
+
+            <strong>
+                ${escapeHTML(classItem.name)}
+            </strong>
+
+            ${
+                noteText
+                    ? `
+                        <span class="course-plan-activity-note">
+                            ${escapeHTML(noteText)}
+                        </span>
+                    `
+                    : `
+                        <span class="course-plan-activity-note">
+                            + ADD NOTE
+                        </span>
+                    `
+            }
+
+        </button>
+    `;
 }

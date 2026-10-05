@@ -1,23 +1,71 @@
 Listado de rutas de carpetas para el volumen OS
-El número de serie del volumen es 0000004A EC77:A371
+El número de serie del volumen es 00000065 EC77:A371
 C:.
+¦   .gitignore
 ¦   architecture.txt
 ¦   index.html
+¦   manifest.json
+¦   sw.js
 ¦   
++---assets
+¦   +---icons
+¦           tchit-192.png
+¦           tchit-512.png
+¦           
 +---css
-¦       assessment.css
-¦       attendance.css
-¦       base.css
-¦       components.css
-¦       layout.css
-¦       planner.css
-¦       
+¦   ¦   base.css
+¦   ¦   components.css
+¦   ¦   layout.css
+¦   ¦   
+¦   +---assessment
+¦   ¦       assessment.css
+¦   ¦       assessmentCompetence.css
+¦   ¦       assessmentGradebook.css
+¦   ¦       assessmentTables.css
+¦   ¦       assessmentTerm.css
+¦   ¦       
+¦   +---attendance
+¦   ¦       attendance.css
+¦   ¦       attendanceDetail.css
+¦   ¦       attendanceOverview.css
+¦   ¦       attendanceSession.css
+¦   ¦       attendanceTake.css
+¦   ¦       
+¦   +---calendar
+¦   ¦       calendar.css
+¦   ¦       
+¦   +---classes
+¦   ¦       classCreation.css
+¦   ¦       classDetail.css
+¦   ¦       classes.css
+¦   ¦       studentImport.css
+¦   ¦       
+¦   +---dashboard
+¦   ¦       dashboard.css
+¦   ¦       
+¦   +---planner
+¦   ¦       lessonModals.css
+¦   ¦       planner.css
+¦   ¦       
+¦   +---settings
+¦           settings.css
+¦           
++---data
+¦   +---curriculum
+¦           curricula.json
+¦           cv_batx_llengua_estrangera_1.json
+¦           cv_batx_llengua_estrangera_2.json
+¦           cv_eso_llengua_estrangera_1cicle.json
+¦           cv_eso_llengua_estrangera_2cicle.json
+¦           
 +---js
     ¦   app.js
     ¦   
     +---core
     ¦       state.js
     ¦       storage.js
+    ¦       supabaseClient.js
+    ¦       supabaseSync.js
     ¦       utils.js
     ¦       
     +---importers
@@ -27,28 +75,53 @@ C:.
     ¦       
     +---managers
     ¦       academicYearManager.js
+    ¦       activityNoteManager.js
+    ¦       assessmentActivityManager.js
+    ¦       assessmentResultManager.js
     ¦       attendanceManager.js
+    ¦       calendarManager.js
     ¦       classManager.js
+    ¦       curriculumManager.js
     ¦       enrollmentManager.js
+    ¦       gradebookManager.js
     ¦       lessonManager.js
     ¦       studentManager.js
     ¦       timetableManager.js
     ¦       
     +---ui
-        ¦   assessmentView.js
-        ¦   attendanceView.js
-        ¦   classDetailView.js
-        ¦   classesView.js
-        ¦   coursePlanCopy.js
-        ¦   dashboard.js
-        ¦   settingsView.js
-        ¦   studentImportView.js
-        ¦   
+        +---assessment
+        ¦       assessmentCompetence.js
+        ¦       assessmentTerm.js
+        ¦       assessmentView.js
+        ¦       gradebook.js
+        ¦       
+        +---attendance
+        ¦       attendanceDetails.js
+        ¦       attendanceOverview.js
+        ¦       attendanceSession.js
+        ¦       attendanceTake.js
+        ¦       attendanceView.js
+        ¦       
+        +---classes
+        ¦       classDetailView.js
+        ¦       classesView.js
+        ¦       studentImportView.js
+        ¦       
+        +---dashboard
+        ¦       dashboard.js
+        ¦       dashboardCalendarWidget.js
+        ¦       
         +---planner
-                coursePlanView.js
-                lessonModal.js
-                plannerConfig.js
-                plannerDateUtils.js
-                plannerView.js
-                timetableView.js
+        ¦       assessmentFormHelpers.js
+        ¦       centreActivityModal.js
+        ¦       coursePlanCopy.js
+        ¦       coursePlanView.js
+        ¦       lessonModal.js
+        ¦       plannerConfig.js
+        ¦       plannerDateUtils.js
+        ¦       plannerView.js
+        ¦       timetableView.js
+        ¦       
+        +---settings
+                settingsView.js
                 

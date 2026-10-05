@@ -46,40 +46,19 @@ function renderDashboard() {
 
 
     container.innerHTML = `
-
         <div class="dashboard">
-
-            <section class="dashboard-welcome">
-
-                <h3>
-                    Ready to teach?
-                </h3>
-
-                <p>
-                    Everything you need for your
-                    teaching day, in one place.
-                </p>
-
-            </section>
-
-            <section>
-
+            <section class="dashboard-section dashboard-classes-section">
                 <div class="section-header">
-
                     <h3 class="section-title">
                         Today's classes
                     </h3>
-
                     <span
                         class="section-link"
                         onclick="navigateTo('planner')"
                     >
                         VIEW PLANNER →
                     </span>
-
                 </div>
-
-
                 ${
                     todayClasses.length
                         ? renderDashboardClassCards(
@@ -87,9 +66,15 @@ function renderDashboard() {
                         )
                         : renderDashboardEmpty()
                 }
-
             </section>
-
+            <section class="dashboard-section dashboard-calendar-section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        Calendar
+                    </h3>
+                </div>
+                ${renderDashboardCalendarWidget()}
+            </section>
         </div>
     `;
 }
@@ -249,7 +234,7 @@ function renderDashboardEmpty() {
 
                 <button
                     class="btn-primary"
-                    onclick="navigateTo('settings')"
+                    onclick="navigateTo('calendar')"
                 >
                     SET UP YOUR TEACHING
                 </button>

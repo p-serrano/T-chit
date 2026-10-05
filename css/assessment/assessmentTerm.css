@@ -1,0 +1,391 @@
+/* =========================================================
+   T-CHIT — TERM WEIGHT
+   Specific styling
+   Mirrors Competence Weight
+   ========================================================= */
+
+
+/* =========================================================
+   VIEW
+   ========================================================= */
+
+.term-weight-view {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.term-weight-header-main {
+    min-width: 0;
+}
+
+
+.term-weight-header h3 {
+    margin: 0 0 4px;
+
+    color: var(--purple-dark);
+
+    font-family: var(--font-hand);
+    font-size: 32px;
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+
+.term-weight-header p {
+    margin: 0;
+
+    color: var(--ink-soft);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.term-weight-table {
+    min-width: 720px;
+
+    table-layout: fixed;
+}
+
+
+.term-weight-table thead th {
+    min-width: 105px;
+}
+
+
+.term-weight-table thead th:first-child {
+    width: 190px;
+    min-width: 190px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   TERM HEADER
+   ========================================================= */
+
+.term-weight-term-column {
+    text-align: center !important;
+}
+
+
+.term-weight-term-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3px;
+}
+
+
+.term-weight-term-code {
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+
+.term-weight-term-name {
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: 0.05em;
+}
+
+
+.term-weight-term-weight {
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   TERM WEIGHT INPUT
+   ========================================================= */
+
+.term-weight-input-wrapper {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 2px;
+}
+
+
+.term-weight-input {
+    width: 42px;
+    height: 27px;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+
+    text-align: center;
+}
+
+
+.term-weight-input:focus {
+    outline: none;
+
+    background: var(--paper-light);
+
+    border-color: var(--purple);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(112, 70, 168, 0.08);
+}
+
+
+.term-weight-percent {
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TERM GRADE
+   ========================================================= */
+
+.term-weight-grade-cell {
+    min-width: 105px;
+
+    text-align: center;
+}
+
+
+.term-weight-grade {
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.term-weight-grade-empty {
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 12px;
+
+    opacity: 0.6;
+}
+
+
+/* =========================================================
+   TOTAL COLUMN
+   ========================================================= */
+
+.term-weight-total-column {
+    position: sticky;
+    right: 0;
+    z-index: 5;
+
+    min-width: 105px;
+
+    background: var(--paper-dark) !important;
+
+    border-left: 1px solid var(--line);
+
+    text-align: center !important;
+}
+
+
+.term-weight-total-cell {
+    position: sticky;
+    right: 0;
+    z-index: 5;
+
+    min-width: 105px;
+
+    background: var(--paper-light) !important;
+
+    border-left: 1px solid var(--line);
+
+    text-align: center;
+}
+
+
+.term-weight-total-value {
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TERM COLUMN DIFFERENTIATION
+   ========================================================= */
+
+/* T1 — MORADO */
+
+.term-weight-column-0 {
+    background:
+        rgba(124, 91, 150, 0.20) !important;
+}
+
+
+/* T2 — ROSA */
+
+.term-weight-column-1 {
+    background:
+        rgba(194, 126, 153, 0.20) !important;
+}
+
+
+/* T3 — AMARILLO */
+
+.term-weight-column-2 {
+    background:
+        rgba(198, 170, 91, 0.20) !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.term-weight-footer {
+    justify-content: flex-end;
+}
+
+
+.term-weight-total {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 12px;
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    box-shadow:
+        2px 2px 0
+        rgba(91, 72, 105, 0.04);
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    transform: rotate(-0.2deg);
+}
+
+
+.term-weight-total strong {
+    color: var(--purple-dark);
+
+    font-size: 13px;
+}
+
+
+.term-weight-warning {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 11px;
+
+    background: var(--yellow);
+
+    border: 1px solid var(--line);
+    border-radius: 5px;
+
+    color: var(--ink-soft);
+
+    font-size: 11px;
+
+    transform: rotate(-0.15deg);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.term-weight-empty {
+    padding: 40px 20px;
+
+    background: var(--paper-light);
+
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+
+    color: var(--ink-soft);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .term-weight-table {
+        min-width: 650px;
+    }
+
+
+    .term-weight-table thead th:first-child {
+        width: 165px;
+        min-width: 165px;
+    }
+
+
+    .term-weight-table thead th {
+        min-width: 95px;
+    }
+
+
+    .term-weight-grade-cell {
+        min-width: 95px;
+    }
+}

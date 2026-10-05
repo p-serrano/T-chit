@@ -136,16 +136,12 @@
    --------------------------------------------------------- */
 
 .main {
-
     flex: 1;
-
     min-width: 0;
-
-    padding: 28px 34px;
-
     max-width: 1500px;
-
     margin: 0 auto;
+
+    background: var(--paper-light);
 }
 
 
@@ -154,31 +150,92 @@
    --------------------------------------------------------- */
 
 .topbar {
+    position: relative;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
+    padding: 28px 34px;
     margin-bottom: 30px;
+
+    background: var(--paper-dark);
+
+    border-bottom: 1px solid var(--line);
+
+    box-shadow:
+        0 2px 0 rgba(45, 35, 50, 0.04),
+        0 6px 14px rgba(45, 35, 50, 0.04);
+
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   TOPBAR — PAPER EDGE
+   --------------------------------------------------------- */
+
+.topbar::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            var(--purple-light) 0 28px,
+            transparent 28px 44px,
+            var(--pink-light) 44px 62px,
+            transparent 62px 82px
+        );
+
+    opacity: 0.45;
+}
+
+
+/* ---------------------------------------------------------
+   TOPBAR — PAPER MARK
+   --------------------------------------------------------- */
+
+.topbar::after {
+    content: "";
+
+    position: absolute;
+
+    top: 14px;
+    right: 30%;
+
+    width: 90px;
+    height: 7px;
+
+    background: var(--yellow-light);
+
+    opacity: 0.35;
+
+    transform: rotate(-1.5deg);
+}
+
+
+#appView {
+    padding: 0 34px 34px;
 }
 
 
 .page-title {
-
-    font-size: 28px;
-
+    font-family: var(--font-mono);
+    font-size: 32px;
     color: var(--ink);
 }
 
-
 .page-subtitle {
-
     margin-top: 4px;
-
     color: var(--ink-soft);
-
     font-size: 13px;
 }
 

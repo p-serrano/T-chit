@@ -13,7 +13,7 @@ const Storage = {
     getDefaultData() {
 
         return {
-            version: 5,
+            version: 6,
 
             academicYears: [],
             calendarEvents: [],
@@ -29,9 +29,11 @@ const Storage = {
 
             assessmentActivities: [],
             assessmentResults: [],
+            gradebookConfigs: [],
             assessmentInstruments: [],
 
-            attendance: []
+            attendance: [],
+            activityNotes: []
         };
     },
 
@@ -144,6 +146,14 @@ const Storage = {
             data.attendance = [];
         }
 
+        if (!Array.isArray(data.activityNotes)) {
+            data.activityNotes = [];
+        }
+
+        if (!Array.isArray(data.gradebookConfigs)) {
+            data.gradebookConfigs = [];
+        }
+
 
         // --------------------------------
         // v5 — Academic / Assessment base
@@ -224,7 +234,7 @@ const Storage = {
         // Final version
         // --------------------------------
 
-        data.version = 5;
+        data.version = 6;
 
         return data;
     },

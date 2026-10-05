@@ -20,41 +20,48 @@ function renderSingleClassView(classId) {
     }
 
 
+    const isActivity =
+        classItem.type ===
+        ClassManager.TYPES.ACTIVITY;
+
+
     const students =
-        EnrollmentManager
-            .getStudentsForClass(classId)
-            .slice()
-            .sort((a, b) => {
+        isActivity
+            ? []
+            : EnrollmentManager
+                .getStudentsForClass(classId)
+                .slice()
+                .sort((a, b) => {
 
-                const lastNameA =
-                    (a.lastName || "").trim();
+                    const lastNameA =
+                        (a.lastName || "").trim();
 
-                const lastNameB =
-                    (b.lastName || "").trim();
+                    const lastNameB =
+                        (b.lastName || "").trim();
 
-                const lastNameComparison =
-                    lastNameA.localeCompare(
-                        lastNameB,
-                        "es",
-                        {
-                            sensitivity: "base"
-                        }
-                    );
+                    const lastNameComparison =
+                        lastNameA.localeCompare(
+                            lastNameB,
+                            "es",
+                            {
+                                sensitivity: "base"
+                            }
+                        );
 
-                if (lastNameComparison !== 0) {
-                    return lastNameComparison;
-                }
+                    if (lastNameComparison !== 0) {
+                        return lastNameComparison;
+                    }
 
-                return (a.firstName || "").trim()
-                    .localeCompare(
-                        (b.firstName || "").trim(),
-                        "es",
-                        {
-                            sensitivity: "base"
-                        }
-                    );
+                    return (a.firstName || "").trim()
+                        .localeCompare(
+                            (b.firstName || "").trim(),
+                            "es",
+                            {
+                                sensitivity: "base"
+                            }
+                        );
 
-            });
+                });
 
 
     const academicYear =
@@ -77,106 +84,220 @@ function renderSingleClassView(classId) {
             </button>
 
 
-            <!-- HEADER -->
-
             <div class="class-detail-header">
 
-                <div>
+                <h3 class="class-detail-section-title">
+                    Class Details
+                </h3>
 
-                    <div class="class-detail-kicker">
-                        ${escapeHTML(
-                            academicYear?.name || ""
-                        )}
+
+                <div class="class-detail-main">
+
+                    <div class="class-detail-name-row">
+
+                        <input
+                            id="classDetailName"
+                            class="class-detail-name-input"
+                            type="text"
+                            value="${escapeHTML(classItem.name)}"
+                            aria-label="Class name">
+
+                        <button
+                            type="button"
+                            class="class-detail-name-save"
+                            onclick="saveClassDetailName('${classItem.id}')">
+
+                            SAVE
+
+                        </button>
+
                     </div>
 
-                    <h2>
-                        ${escapeHTML(classItem.name)}
-                    </h2>
 
-                    <p>
-                        ${escapeHTML(
-                            classItem.subject || "English"
-                        )}
-                    </p>
+                    <div class="class-detail-context">
 
-                </div>
+                        <div class="class-detail-pill">
+                            ${escapeHTML(
+                                academicYear?.name || ""
+                            )}
+                        </div>
 
+                        ${
+                            !isActivity
+                                ? `
+                                    <div class="class-detail-pill">
+                                        ${escapeHTML(
+                                            classItem.subject ||
+                                            "English"
+                                        )}
+                                    </div>
+                                `
+                                : `
+                                    <div class="class-detail-pill">
+                                        CENTRE ACTIVITY
+                                    </div>
+                                `
+                        }
 
-                <div class="class-detail-actions">
-
-                    <button
-                        class="btn-secondary"
-                        onclick="openStudentImport()">
-
-                        ↓ IMPORT
-
-                    </button>
-
-                    <button
-                        class="btn-primary"
-                        onclick="openAddStudentModal()">
-
-                        + ADD STUDENT
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- CURRICULUM -->
-
-            <div class="class-curriculum-section">
-
-                <div class="section-header">
-
-                    <div>
-                        <h3 class="section-title">
-                            Curriculum
-                        </h3>
-
-                        <p class="section-description">
-                            Select the curriculum used by this class.
-                        </p>
                     </div>
 
                 </div>
 
-                ${renderClassCurriculumSelector(classItem)}
 
-            </div>
+                <div class="class-detail-bottom">
 
+                    <div class="class-detail-actions">
 
+                        <button
+                            class="btn-primary"
+                            onclick="openStudentImport()">
 
-            <!-- STUDENTS -->
+                            ↓ IMPORT
 
-            <div class="student-section">
+                        </button>
 
-                <div class="section-header">
+                        <button
+                            class="btn-primary"
+                            onclick="openAddStudentModal()">
 
-                    <h3 class="section-title">
-                        Students
-                    </h3>
+                            + ADD STUDENT
 
-                    <span class="student-total">
-                        ${students.length}
-                    </span>
+                        </button>
+
+                    </div>
+
+                    <div class="class-colour-control">
+
+                        <div class="class-colour-label">
+                            CLASS COLOUR
+                        </div>
+
+                        <div class="class-colour-options">
+                            ${renderClassColourOptions(classItem)}
+                        </div>
+
+                    </div>
 
                 </div>
 
-
-                ${
-                    students.length
-                        ? renderStudentTable(students)
-                        : renderNoStudents()
-                }
-
             </div>
+
+
+            ${
+                !isActivity
+                    ? `
+
+                        <!-- CURRICULUM -->
+
+                        <div class="class-curriculum-section">
+
+                            <div class="section-header">
+
+                                <div>
+
+                                    <h3 class="section-title">
+                                        Curriculum
+                                    </h3>
+
+                                    <p class="section-description">
+                                        Select the curriculum used by this class.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            ${renderClassCurriculumSelector(
+                                classItem
+                            )}
+
+                        </div>
+
+
+                        <!-- STUDENTS -->
+
+                        <div class="student-section">
+
+                            <div class="section-header">
+
+                                <h3 class="section-title">
+                                    Students
+                                </h3>
+
+                                <span class="student-total">
+                                    ${students.length}
+                                </span>
+
+                            </div>
+
+
+                            ${
+                                students.length
+                                    ? renderStudentTable(
+                                        students
+                                    )
+                                    : renderNoStudents()
+                            }
+
+                        </div>
+
+                      `
+                    : ""
+            }
 
         </div>
 
     `;
+}
+
+
+// ---------------------------------------------------------
+// SAVE CLASS NAME
+// ---------------------------------------------------------
+
+function saveClassDetailName(classId) {
+
+    const input =
+        document.getElementById(
+            "classDetailName"
+        );
+
+    if (!input) {
+        return;
+    }
+
+    const name =
+        input.value.trim();
+
+    if (!name) {
+        alert("The name cannot be empty.");
+        input.focus();
+        return;
+    }
+
+    try {
+
+        ClassManager.update(
+            classId,
+            {
+                name
+            }
+        );
+
+        renderSingleClassView(classId);
+
+    } catch (error) {
+
+        console.error(
+            "Error updating class name:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "The class name could not be updated."
+        );
+    }
 }
 
 
@@ -814,6 +935,139 @@ function deleteSelectedStudents() {
         alert(
             error.message ||
             "Some students could not be deleted."
+        );
+    }
+}
+
+
+// ---------------------------------------------------------
+// CLASS COLOUR
+// ---------------------------------------------------------
+
+function renderClassColourOptions(classItem) {
+
+    const availableColors =
+        ClassManager.getAvailableColors(
+            classItem.academicYearId
+        );
+
+    /*
+     * The current colour belongs to this class,
+     * so it is not returned by getAvailableColors().
+     * We add it manually so the current selection
+     * remains visible.
+     */
+
+    const colors = [
+        ...(classItem.color
+            ? [classItem.color]
+            : []),
+        ...availableColors.filter(
+            color =>
+                color !== classItem.color
+        )
+    ];
+
+
+    if (!colors.length) {
+
+        return `
+            <span class="class-colour-empty">
+                No colours available.
+            </span>
+        `;
+    }
+
+
+    return colors
+        .map(color => {
+
+            const selected =
+                color === classItem.color;
+
+            return `
+                <button
+                    type="button"
+                    class="
+                        class-colour-option
+                        ${selected ? "selected" : ""}
+                    "
+                    style="
+                        --class-colour:
+                            ${escapeHTML(color)};
+                    "
+                    onclick="
+                        changeClassColour(
+                            '${classItem.id}',
+                            '${escapeHTML(color)}'
+                        )
+                    "
+                    aria-label="Select class colour"
+                    title="${
+                        selected
+                            ? "Current colour"
+                            : "Select colour"
+                    }">
+                </button>
+            `;
+
+        })
+        .join("");
+}
+
+
+// ---------------------------------------------------------
+// CHANGE CLASS COLOUR
+// ---------------------------------------------------------
+
+function changeClassColour(
+    classId,
+    color
+) {
+
+    const classItem =
+        ClassManager.getById(
+            classId
+        );
+
+    if (!classItem) {
+        return;
+    }
+
+
+    if (!color) {
+        return;
+    }
+
+
+    /*
+     * The manager performs the real
+     * availability validation.
+     */
+
+    try {
+
+        ClassManager.update(
+            classId,
+            {
+                color
+            }
+        );
+
+        renderSingleClassView(
+            classId
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error changing class colour:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "The class colour could not be changed."
         );
     }
 }

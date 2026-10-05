@@ -30,11 +30,7 @@ const AssessmentActivityManager = {
                 }
 
                 return {
-                    specificCompetenceId,
-
-                    weight: this.normalizeWeight(
-                        item.weight
-                    )
+                    specificCompetenceId
                 };
 
             })
@@ -90,31 +86,6 @@ const AssessmentActivityManager = {
 
     },
 
-
-    // -----------------------------------------------------
-    // NORMALIZE WEIGHT
-    // -----------------------------------------------------
-
-    normalizeWeight(
-        weight = 0
-    ) {
-
-        const value =
-            Number(weight);
-
-        if (!Number.isFinite(value)) {
-            return 0;
-        }
-
-        return Math.min(
-            100,
-            Math.max(
-                0,
-                value
-            )
-        );
-
-    },
 
 
     // -----------------------------------------------------
@@ -420,6 +391,82 @@ const AssessmentActivityManager = {
 
 
     // -----------------------------------------------------
+    // GET BY TERM
+    // -----------------------------------------------------
+
+    getByTerm(
+        academicYearId,
+        classId,
+        termId
+    ) {
+
+        const term =
+            AcademicYearManager.getTermById(
+                academicYearId,
+                termId
+            );
+
+
+        if (!term) {
+            return [];
+        }
+
+
+        return AppState
+            .data
+            .assessmentActivities
+            .filter(activity => {
+
+                const lesson =
+                    AppState
+                        .data
+                        .lessons
+                        .find(
+                            item =>
+                                item.id ===
+                                activity.lessonId
+                        );
+
+
+                if (!lesson) {
+                    return false;
+                }
+
+
+                if (
+                    lesson.academicYearId !==
+                    academicYearId
+                ) {
+                    return false;
+                }
+
+
+                if (
+                    lesson.classId !==
+                    classId
+                ) {
+                    return false;
+                }
+
+
+                if (!lesson.date) {
+                    return false;
+                }
+
+
+                return (
+                    lesson.date >=
+                        term.startDate &&
+                    lesson.date <=
+                        term.endDate
+                );
+
+            });
+
+    },
+
+
+    // -----------------------------------------------------
     // GET ALL
     // -----------------------------------------------------
 
@@ -521,6 +568,7 @@ const AssessmentActivityManager = {
                 cleanTitle;
 
         }
+
 
         
         // ---------------------------------------------

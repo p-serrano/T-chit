@@ -12,6 +12,7 @@ const AssessmentResultManager = {
     create({
         assessmentActivityId,
         studentId,
+        specificCompetenceId,
         value
     }) {
 
@@ -28,6 +29,15 @@ const AssessmentResultManager = {
 
             throw new Error(
                 "Student is required."
+            );
+
+        }
+
+
+        if (!specificCompetenceId) {
+
+            throw new Error(
+                "Specific competence is required."
             );
 
         }
@@ -52,6 +62,35 @@ const AssessmentResultManager = {
 
             throw new Error(
                 "Assessment activity not found."
+            );
+
+        }
+
+
+        // ----------------------------------------
+        // CHECK SPECIFIC COMPETENCE
+        // ----------------------------------------
+
+        const activityCompetences =
+            Array.isArray(
+                activity.specificCompetences
+            )
+                ? activity.specificCompetences
+                : [];
+
+
+        const competenceBelongsToActivity =
+            activityCompetences.some(
+                competence =>
+                    competence.specificCompetenceId ===
+                    specificCompetenceId
+            );
+
+
+        if (!competenceBelongsToActivity) {
+
+            throw new Error(
+                "Specific competence is not assigned to this activity."
             );
 
         }
@@ -105,34 +144,32 @@ const AssessmentResultManager = {
 
 
         // ----------------------------------------
-        // ONE RESULT PER STUDENT / ACTIVITY
+        // ONE RESULT PER
+        // STUDENT / ACTIVITY / COMPETENCE
         // ----------------------------------------
 
         const existing =
-            this.getByStudentActivity(
+            this.getByStudentActivityCompetence(
                 studentId,
-                assessmentActivityId
+                assessmentActivityId,
+                specificCompetenceId
             );
 
 
-        if (existing.length) {
+        if (existing) {
 
-            const result =
-                existing[0];
-
-
-            result.value =
+            existing.value =
                 normalizedValue;
 
 
-            result.updatedAt =
+            existing.updatedAt =
                 new Date().toISOString();
 
 
             AppState.save();
 
 
-            return result;
+            return existing;
 
         }
 
@@ -155,6 +192,8 @@ const AssessmentResultManager = {
             assessmentActivityId,
 
             studentId,
+
+            specificCompetenceId,
 
             value:
                 normalizedValue,
@@ -264,11 +303,13 @@ const AssessmentResultManager = {
 
     // ----------------------------------------
     // GET EXACT RESULT
+    // STUDENT + ACTIVITY + COMPETENCE
     // ----------------------------------------
 
-    getByStudentActivityResult(
+    getByStudentActivityCompetence(
         studentId,
-        assessmentActivityId
+        assessmentActivityId,
+        specificCompetenceId
     ) {
 
         return AppState
@@ -278,9 +319,42 @@ const AssessmentResultManager = {
                 result =>
                     result.studentId ===
                     studentId &&
+
                     result.assessmentActivityId ===
-                    assessmentActivityId
+                    assessmentActivityId &&
+
+                    result.specificCompetenceId ===
+                    specificCompetenceId
             ) || null;
+
+    },
+
+
+    // ----------------------------------------
+    // GET EXACT RESULT
+    // LEGACY ALIAS
+    // ----------------------------------------
+
+    getByStudentActivityResult(
+        studentId,
+        assessmentActivityId,
+        specificCompetenceId
+    ) {
+
+        if (
+            !specificCompetenceId
+        ) {
+
+            return null;
+
+        }
+
+
+        return this.getByStudentActivityCompetence(
+            studentId,
+            assessmentActivityId,
+            specificCompetenceId
+        );
 
     },
 

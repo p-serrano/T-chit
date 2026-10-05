@@ -316,53 +316,20 @@ const StudentImporter = {
     // NAME DETECTION
     // =================================================
 
-detectNames(lines, items = []) {
+    detectNames(lines, items = []) {
 
-    console.log(
-        "🔎 Detecting student names from PDF..."
-    );
+        const results = [];
 
-    const results = [];
+        const normalize = value =>
+            String(value || "")
+                .replace(/\s+/g, " ")
+                .trim();
 
-    // --------------------------------------------------
-    // HELPERS
-    // --------------------------------------------------
-
-    const normalize = value => {
-
-        return String(value || "")
-            .replace(/\s+/g, " ")
-            .trim();
-
-    };
-
-    const normalizeKey = value => {
-
-        return normalize(value)
-            .toUpperCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
-    };
-
-    const isStudentName = value => {
-
-        const text = normalize(value);
-
-        if (!text) {
-            return false;
-        }
-
-        // A student name in these school PDFs
-        // follows the format:
-        //
-        // SURNAME, FIRST NAME
-        //
-        if (!text.includes(",")) {
-            return false;
-        }
-
-        // Avoid obvious headers / institution data.
-        const key = normalizeKey(text);
+        const normalizeKey = value =>
+            normalize(value)
+                .toUpperCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
 
         const forbidden = [
             "APELLIDOS Y NOMBRE",
@@ -377,388 +344,254 @@ detectNames(lines, items = []) {
             "GRUPO"
         ];
 
-        if (
-            forbidden.some(
-                word => key.includes(word)
-            )
-        ) {
-            return false;
-        }
+        const isStudentName = value => {
 
-        const parts =
-            text.split(",");
+            const text = normalize(value);
 
-        if (parts.length < 2) {
-            return false;
-        }
+            if (!text) return false;
+            if (!text.includes(",")) return false;
 
-        const surname =
-            normalize(parts[0]);
+            const key = normalizeKey(text);
 
-        const firstName =
-            normalize(
-                parts
-                    .slice(1)
-                    .join(",")
-            );
+            if (
+                forbidden.some(word =>
+                    key.includes(word)
+                )
+            ) {
+                return false;
+            }
 
-        if (
-            surname.length < 2 ||
-            firstName.length < 2
-        ) {
-            return false;
-        }
+            const parts = text
+                .split(",")
+                .map(part => normalize(part))
+                .filter(Boolean);
 
-        // Names should contain letters.
-        if (
-            !/[A-Za-zÁÉÍÓÚÀÈÌÒÙÜÑÇáéíóúàèìòùüñç]/.test(
-                surname
-            )
-        ) {
-            return false;
-        }
+            if (parts.length < 2) {
+                return false;
+            }
 
-        if (
-            !/[A-Za-zÁÉÍÓÚÀÈÌÒÙÜÑÇáéíóúàèìòùüñç]/.test(
-                firstName
-            )
-        ) {
-            return false;
-        }
+            if (
+                !/[A-Za-zÁÉÍÓÚÀÈÌÒÙÜÑÇáéíóúàèìòùüñç]/.test(text)
+            ) {
+                return false;
+            }
 
-        return true;
-    };
+            return true;
+        };
 
-    const addName = value => {
+        const addName = value => {
 
-        const name =
-            normalize(value);
+            const name = normalize(value);
 
-        if (!isStudentName(name)) {
-            return;
-        }
+            if (!isStudentName(name)) {
+                return;
+            }
 
-        const key =
-            normalizeKey(name);
+            const key = normalizeKey(name);
 
-        if (
-            results.some(
-                item =>
-                    normalizeKey(
-                        item.fullName
-                    ) === key
-            )
-        ) {
-            return;
-        }
+            if (
+                results.some(item =>
+                    normalizeKey(item.fullName) === key
+                )
+            ) {
+                return;
+            }
 
-        results.push({
-            fullName: name
-        });
-    };
+            results.push({
+                fullName: name
+            });
+        };
 
-
-    // --------------------------------------------------
-    // STRATEGY 1
-    // PDF.js RAW ITEMS
-    //
-    // Look for the numbered student records.
-    // --------------------------------------------------
-
-    if (
-        Array.isArray(items) &&
-        items.length
-    ) {
-
-        console.log(
-            "🔎 Looking for numbered student rows..."
-        );
 
         /*
-         * Only use the first page.
-         *
-         * We know the student table starts with
-         * order 1 and continues through 29.
-         */
-        const firstPageItems =
-            items.filter(
-                item =>
-                    item.page === 1
-            );
+        * ---------------------------------------------------------
+        * STRATEGY 1
+        * PDF rows reconstructed from positioned PDF items.
+        *
+        * PDF.js does not necessarily return the complete student
+        * name as one item. For example:
+        *
+        *   AIT
+        *   KACI, ISMAIL
+        *
+        * or:
+        *
+        *   ABDELLAH,
+        *   AYA,
+        *   BEN
+        *
+        * Therefore we reconstruct the complete row first.
+        * ---------------------------------------------------------
+        */
 
-        /*
-         * Find items containing order numbers 1–29.
-         *
-         * We deliberately require the text to be
-         * exactly the number.
-         */
-        const orderItems =
-            firstPageItems.filter(
-                item => {
+        if (Array.isArray(items) && items.length) {
 
-                    const text =
-                        normalize(item.text);
+            const firstPageItems =
+                items.filter(item => item.page === 1);
 
-                    if (
-                        !/^\d{1,2}$/.test(text)
-                    ) {
+            const orderItems =
+                firstPageItems.filter(item => {
+
+                    const text = normalize(item.text);
+
+                    if (!/^\d{1,2}$/.test(text)) {
                         return false;
                     }
 
-                    const number =
-                        Number(text);
+                    const number = Number(text);
 
-                    return (
-                        number >= 1 &&
-                        number <= 29
-                    );
-                }
-            );
+                    return number >= 1 && number <= 99;
+                });
 
-        console.log(
-            "🔢 Possible order numbers:",
-            orderItems.map(
-                item => ({
-                    number:
-                        Number(
-                            normalize(
-                                item.text
-                            )
-                        ),
-                    index:
-                        firstPageItems.indexOf(
-                            item
-                        ),
-                    text:
-                        item.text,
-                    transform:
-                        item.transform
-                })
-            )
-        );
-
-
-        /*
-         * The PDF extraction has a very useful
-         * structure:
-         *
-         *   ORDER
-         *   blank
-         *   NIA
-         *   blank
-         *   NAME
-         *   blank
-         *   SUBJECTS
-         *   REPEAT
-         *
-         * Therefore, for each order number,
-         * inspect the following items until the
-         * next order number.
-         */
-        const sortedOrders =
-            orderItems
-                .map(
-                    item => ({
+            const sortedOrders =
+                orderItems
+                    .map(item => ({
                         item,
-                        number:
-                            Number(
-                                normalize(
-                                    item.text
-                                )
-                            ),
-                        index:
-                            firstPageItems.indexOf(
-                                item
-                            )
-                    })
-                )
-                .sort(
-                    (a, b) =>
+                        number: Number(normalize(item.text)),
+                        index: firstPageItems.indexOf(item)
+                    }))
+                    .sort((a, b) =>
                         a.index - b.index
-                );
-
-
-        /*
-         * We want the FIRST occurrence of each
-         * student number.
-         *
-         * The PDF also contains things such as
-         * "1 de", "2 de", page numbers, etc.
-         * Those are ignored because they don't
-         * produce a valid name in the following
-         * block.
-         */
-        const usedNumbers =
-            new Set();
-
-
-        for (
-            let i = 0;
-            i < sortedOrders.length;
-            i++
-        ) {
-
-            const current =
-                sortedOrders[i];
-
-            if (
-                usedNumbers.has(
-                    current.number
-                )
-            ) {
-                continue;
-            }
-
-            const next =
-                sortedOrders
-                    .slice(i + 1)
-                    .find(
-                        candidate =>
-                            candidate.index >
-                                current.index &&
-                            candidate.number !==
-                                current.number
                     );
 
-            const endIndex =
-                next
-                    ? next.index
-                    : firstPageItems.length;
+            for (let i = 0; i < sortedOrders.length; i++) {
 
+                const current = sortedOrders[i];
 
-            const block =
-                firstPageItems.slice(
-                    current.index,
-                    endIndex
-                );
+                const next =
+                    sortedOrders
+                        .slice(i + 1)
+                        .find(candidate =>
+                            candidate.index > current.index
+                        );
 
-            console.log(
-                `🔎 STUDENT BLOCK ${current.number}:`,
-                block.map(
-                    item => item.text
-                )
-            );
+                const endIndex =
+                    next
+                        ? next.index
+                        : firstPageItems.length;
 
+                const block =
+                    firstPageItems.slice(
+                        current.index + 1,
+                        endIndex
+                    );
 
-            /*
-             * Search the block for the first
-             * valid "SURNAME, NAME" value.
-             */
-            const candidates =
-                block.filter(
-                    item =>
-                        isStudentName(
-                            item.text
-                        )
-                );
+                const blockText =
+                    block
+                        .map(item => normalize(item.text))
+                        .filter(Boolean)
+                        .join(" ")
+                        .replace(/\s+/g, " ")
+                        .trim();
 
-            console.log(
-                `👤 BLOCK ${current.number} NAME CANDIDATES:`,
-                candidates.map(
-                    item => item.text
-                )
-            );
+                if (!blockText) {
+                    continue;
+                }
 
+                /*
+                * Find the first comma. Everything before it is part
+                * of the surname area; everything after it is the
+                * given-name area.
+                *
+                * A second comma is handled later by
+                * normalizeImportedName().
+                */
 
-            if (
-                candidates.length
-            ) {
+                if (isStudentName(blockText)) {
+                    addName(blockText);
+                    continue;
+                }
 
-                addName(
-                    candidates[0].text
-                );
+                /*
+                * Some PDFs put the surname and given name in separate
+                * PDF items but without a useful row boundary.
+                *
+                * Try progressively smaller combinations.
+                */
 
-                usedNumbers.add(
-                    current.number
-                );
+                for (let size = Math.min(block.length, 8); size >= 2; size--) {
+
+                    let found = false;
+
+                    for (
+                        let start = 0;
+                        start <= block.length - size;
+                        start++
+                    ) {
+
+                        const candidate =
+                            block
+                                .slice(start, start + size)
+                                .map(item => normalize(item.text))
+                                .filter(Boolean)
+                                .join(" ")
+                                .replace(/\s+/g, " ")
+                                .trim();
+
+                        if (!isStudentName(candidate)) {
+                            continue;
+                        }
+
+                        addName(candidate);
+                        found = true;
+                        break;
+                    }
+
+                    if (found) {
+                        break;
+                    }
+                }
             }
         }
-    }
 
 
-    // --------------------------------------------------
-    // VALIDATION
-    // --------------------------------------------------
+        /*
+        * ---------------------------------------------------------
+        * STRATEGY 2
+        * Generic text-line fallback.
+        * ---------------------------------------------------------
+        */
 
-    /*
-     * If we successfully found the numbered
-     * student table, DON'T run the generic line
-     * parser.
-     *
-     * This is crucial for 4C.pdf because PDF.js
-     * reconstructs the entire NAME column as
-     * one giant line.
-     */
-    if (
-        results.length >= 2
-    ) {
+        if (results.length >= 2) {
+            return results;
+        }
 
-        console.log(
-            "✅ Names found from numbered PDF rows:",
-            results
-        );
+        const columnCodes = new Set([
+            "CCO",
+            "DIG",
+            "DIG1",
+            "DIG2",
+            "DIG3",
+            "FR",
+            "TR",
+            "ANG",
+            "LAT",
+            "TEC",
+            "MAT",
+            "AE",
+            "REL",
+            "FQ",
+            "FQ1",
+            "FQ2",
+            "BIO1",
+            "BIO2",
+            "EE",
+            "EA",
+            "MUS",
+            "VAL",
+            "ARTE",
+            "FIL",
+            "FOPP",
+            "CAS"
+        ]);
 
-        return results;
-    }
-
-
-    // --------------------------------------------------
-    // STRATEGY 2
-    // GENERIC TEXT-LINE FALLBACK
-    //
-    // Used for PDFs such as 4C_OPT_MOD.pdf
-    // where PDF.js gives us one student per line.
-    // --------------------------------------------------
-
-    console.log(
-        "⚠️ Numbered-row detection did not find enough names."
-    );
-
-    console.log(
-        "🔎 Trying generic line-based detection..."
-    );
-
-
-    const columnCodes = new Set([
-        "CCO",
-        "DIG",
-        "DIG1",
-        "DIG2",
-        "DIG3",
-        "FR",
-        "TR",
-        "ANG",
-        "LAT",
-        "TEC",
-        "MAT",
-        "AE",
-        "REL",
-        "FQ",
-        "FQ1",
-        "FQ2",
-        "BIO1",
-        "BIO2",
-        "EE",
-        "EA",
-        "MUS",
-        "VAL",
-        "ARTE",
-        "FIL",
-        "FOPP",
-        "CAS"
-    ]);
-
-
-    const prefixCodes =
-        new Set([
+        const prefixCodes = new Set([
             "R",
             "PA",
             "PI"
         ]);
 
-
-    const ignored =
-        new Set([
+        const ignored = new Set([
             "APELLIDOS Y NOMBRE",
             "NOMBRE Y APELLIDOS",
             "LISTADO DE ALUMNOS",
@@ -769,64 +602,39 @@ detectNames(lines, items = []) {
             "REPITE"
         ]);
 
+        lines.forEach(line => {
 
-    lines.forEach(
-        line => {
-
-            let text =
-                normalize(line);
+            let text = normalize(line);
 
             if (!text) {
                 return;
             }
 
-            const key =
-                normalizeKey(text);
+            const key = normalizeKey(text);
 
-            if (
-                ignored.has(key)
-            ) {
+            if (ignored.has(key)) {
                 return;
             }
 
-            /*
-             * If the line contains several names
-             * concatenated together, don't attempt
-             * to interpret it as one student.
-             */
             const commaCount =
-                (
-                    text.match(/,/g) || []
-                ).length;
+                (text.match(/,/g) || []).length;
 
-            if (
-                commaCount !== 1
-            ) {
+            if (commaCount < 1) {
                 return;
             }
 
-            /*
-             * Remove order number.
-             */
             text =
                 text.replace(
                     /^\d{1,2}\s+/,
                     ""
                 );
 
-            /*
-             * Remove status prefix.
-             */
             const firstWord =
                 text
                     .split(/\s+/)[0]
                     ?.toUpperCase();
 
-            if (
-                prefixCodes.has(
-                    firstWord
-                )
-            ) {
+            if (prefixCodes.has(firstWord)) {
 
                 text =
                     text
@@ -835,49 +643,32 @@ detectNames(lines, items = []) {
                         .join(" ");
             }
 
-            /*
-             * Cut after the name if subject
-             * codes follow it.
-             */
             const words =
                 text.split(/\s+/);
 
             const commaIndex =
-                words.findIndex(
-                    word =>
-                        word.includes(",")
+                words.findIndex(word =>
+                    word.includes(",")
                 );
 
-            if (
-                commaIndex === -1
-            ) {
+            if (commaIndex === -1) {
                 return;
             }
 
-            let end =
-                words.length;
+            let end = words.length;
 
             for (
-                let i =
-                    commaIndex + 1;
+                let i = commaIndex + 1;
                 i < words.length;
                 i++
             ) {
 
                 const clean =
                     words[i]
-                        .replace(
-                            /[^A-Za-z0-9]/g,
-                            ""
-                        )
+                        .replace(/[^A-Za-z0-9]/g, "")
                         .toUpperCase();
 
-                if (
-                    columnCodes.has(
-                        clean
-                    )
-                ) {
-
+                if (columnCodes.has(clean)) {
                     end = i;
                     break;
                 }
@@ -885,181 +676,188 @@ detectNames(lines, items = []) {
 
             const name =
                 words
-                    .slice(
-                        0,
-                        end
-                    )
+                    .slice(0, end)
                     .join(" ");
 
             addName(name);
-        }
-    );
+        });
 
+        return results;
+    },
 
-    console.log(
-        "👥 NAMES FOUND FROM FALLBACK:",
-        results
-    );
-
-    return results;
-},
 
 
     // =================================================
     // IMPORT
     // =================================================
 
-    importStudents(
-        names,
-        classId,
-        academicYearId
-    ) {
+    importStudents(names, classId, academicYearId) {
 
         if (!classId) {
-            throw new Error(
-                "No class selected."
-            );
+            throw new Error("No class selected.");
         }
 
         if (!academicYearId) {
-            throw new Error(
-                "No academic year selected."
-            );
+            throw new Error("No academic year selected.");
         }
 
-        if (
-            !Array.isArray(names) ||
-            !names.length
-        ) {
-            throw new Error(
-                "No students selected."
-            );
+        if (!Array.isArray(names) || !names.length) {
+            throw new Error("No students selected.");
         }
 
         const imported = [];
 
         const existingStudents =
-            EnrollmentManager
-                .getStudentsForClass(
-                    classId
+            EnrollmentManager.getStudentsForClass(classId);
+
+        const normalizeName = value =>
+            String(value || "")
+                .trim()
+                .toLocaleLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, " ");
+
+
+        /*
+        * Convert the normalized PDF representation:
+        *
+        *   AIT KACI, ISMAIL
+        *
+        * into:
+        *
+        *   firstName: ISMAIL
+        *   lastName: AIT KACI
+        *
+        * For three comma-separated parts:
+        *
+        *   ABDELLAH, AYA, BEN
+        *
+        * we interpret the middle part as the given name and
+        * combine the two surname parts:
+        *
+        *   firstName: AYA
+        *   lastName: BEN ABDELLAH
+        */
+
+        const parseStudentName = fullName => {
+
+            const parts =
+                String(fullName || "")
+                    .split(",")
+                    .map(part => part.trim())
+                    .filter(Boolean);
+
+            if (parts.length < 2) {
+                return null;
+            }
+
+            let firstName = "";
+            let lastName = "";
+
+            if (parts.length === 2) {
+
+                lastName = parts[0];
+                firstName = parts[1];
+
+            } else {
+
+                firstName = parts[1];
+
+                lastName =
+                    [
+                        ...parts.slice(2),
+                        parts[0]
+                    ]
+                        .filter(Boolean)
+                        .join(" ");
+            }
+
+            firstName = firstName
+                .replace(/\s+/g, " ")
+                .trim();
+
+            lastName = lastName
+                .replace(/\s+/g, " ")
+                .trim();
+
+            if (!firstName || !lastName) {
+                return null;
+            }
+
+            return {
+                firstName,
+                lastName
+            };
+        };
+
+
+        names.forEach(fullName => {
+
+            const parsed =
+                parseStudentName(fullName);
+
+            if (!parsed) {
+                return;
+            }
+
+            const normalized =
+                normalizeName(
+                    `${parsed.firstName} ${parsed.lastName}`
                 );
 
-        names.forEach(
-            fullName => {
+            const exists =
+                existingStudents.some(student => {
 
-                const nameParts =
-                    String(
-                        fullName
-                    )
-                        .trim()
-                        .split(",");
+                    const existingName =
+                        `${student.firstName} ${student.lastName}`;
 
-                if (
-                    nameParts.length < 2
-                ) {
-                    return;
-                }
-
-                const lastName =
-                    nameParts[0]
-                        .trim();
-
-                const firstName =
-                    nameParts
-                        .slice(1)
-                        .join(",")
-                        .trim();
-
-                if (
-                    !firstName ||
-                    !lastName
-                ) {
-                    return;
-                }
-
-                const normalizeName =
-                    value =>
-                        String(
-                            value || ""
-                        )
-                            .trim()
-                            .toLocaleLowerCase()
-                            .normalize("NFD")
-                            .replace(
-                                /[\u0300-\u036f]/g,
-                                ""
-                            );
-
-                const normalized =
-                    normalizeName(
-                        fullName
+                    return (
+                        normalizeName(existingName) ===
+                        normalized
                     );
-
-                const exists =
-                    existingStudents.some(
-                        student => {
-
-                            const existingName =
-                                `${student.firstName} ${student.lastName}`;
-
-                            return (
-                                normalizeName(
-                                    existingName
-                                ) ===
-                                normalized
-                            );
-                        }
-                    );
-
-                if (exists) {
-                    return;
-                }
-
-                const alreadyImported =
-                    imported.some(
-                        student => {
-
-                            const importedName =
-                                `${student.firstName} ${student.lastName}`;
-
-                            return (
-                                normalizeName(
-                                    importedName
-                                ) ===
-                                normalized
-                            );
-                        }
-                    );
-
-                if (
-                    alreadyImported
-                ) {
-                    return;
-                }
-
-                const student =
-                    StudentManager.create({
-                        firstName,
-                        lastName
-                    });
-
-                EnrollmentManager.create({
-                    studentId:
-                        student.id,
-
-                    classId,
-
-                    academicYearId
                 });
 
-                imported.push(
-                    student
-                );
+            if (exists) {
+                return;
             }
-        );
+
+            const alreadyImported =
+                imported.some(student => {
+
+                    const importedName =
+                        `${student.firstName} ${student.lastName}`;
+
+                    return (
+                        normalizeName(importedName) ===
+                        normalized
+                    );
+                });
+
+            if (alreadyImported) {
+                return;
+            }
+
+            const student =
+                StudentManager.create({
+                    firstName: parsed.firstName,
+                    lastName: parsed.lastName
+                });
+
+            console.log("STUDENT CREATED:", student);
+
+            EnrollmentManager.create({
+                studentId: student.id,
+                classId,
+                academicYearId
+            });
+
+            imported.push(student);
+        });
 
         return imported;
-    }
+    },
+
 
 };
 

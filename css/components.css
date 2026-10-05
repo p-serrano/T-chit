@@ -1,267 +1,144 @@
 /* =========================================================
    T-CHIT — COMPONENTS
+   General UI components shared across the application.
    ========================================================= */
 
 
-/* ---------------------------------------------------------
-   SIDEBAR BOTTOM
-   --------------------------------------------------------- */
+/* =========================================================
+   SIDEBAR / APP CONTEXT
+   ========================================================= */
 
 .sidebar-bottom {
     margin-top: auto;
 }
 
-
-/* ---------------------------------------------------------
-   ACADEMIC YEAR BADGE
-   --------------------------------------------------------- */
-
 .academic-year-badge {
-
-    background: var(--paper-light);
-
-    border: 1px solid var(--line);
-
     padding: 8px 13px;
 
+    background: var(--paper-light);
+    border: 1px solid var(--line);
     border-radius: 6px;
 
+    color: var(--ink-soft);
     font-family: var(--font-mono);
-
     font-size: 11px;
 
-    color: var(--ink-soft);
-
     box-shadow: var(--shadow);
 }
 
 
 /* ---------------------------------------------------------
-   DASHBOARD
-   --------------------------------------------------------- */
-
-.dashboard {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 28px;
-}
-
-
-/* Welcome */
-
-.dashboard-welcome {
-
-    position: relative;
-
-    background: var(--paper-light);
-
-    border: 1px solid var(--line);
-
-    padding: 24px 28px;
-
-    border-radius: var(--radius);
-
-    box-shadow: var(--shadow);
-
-    overflow: hidden;
-}
-
-
-.dashboard-welcome::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 120px;
-    height: 120px;
-
-    border-radius: 50%;
-
-    background: var(--pink-light);
-
-    opacity: 0.18;
-
-    right: -30px;
-    top: -40px;
-
-    transform: rotate(15deg);
-}
-
-
-.dashboard-welcome h3 {
-
-    font-family: var(--font-hand);
-
-    font-size: 31px;
-
-    color: var(--purple-dark);
-
-    margin-bottom: 3px;
-}
-
-
-.dashboard-welcome p {
-
-    color: var(--ink-soft);
-
-    font-size: 13px;
-}
-
-
-/* ---------------------------------------------------------
-   QUICK STATS
+   Quick Stats
    --------------------------------------------------------- */
 
 .stats-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
 }
 
-
 .stat-card {
-
-    background: var(--paper-light);
-
-    border: 1px solid var(--line);
-
-    border-radius: var(--radius);
+    position: relative;
 
     padding: 18px;
 
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
     box-shadow: var(--shadow);
-
-    position: relative;
 }
-
 
 .stat-card:nth-child(1) {
     transform: rotate(-0.4deg);
 }
 
-
 .stat-card:nth-child(2) {
     transform: rotate(0.25deg);
 }
-
 
 .stat-card:nth-child(3) {
     transform: rotate(-0.2deg);
 }
 
-
 .stat-card:nth-child(4) {
     transform: rotate(0.35deg);
 }
 
-
 .stat-label {
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.07em;
-
     color: var(--ink-soft);
 
+    font-size: 11px;
     font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
 }
 
-
 .stat-value {
-
-    font-family: var(--font-mono);
-
-    font-size: 28px;
-
-    font-weight: 600;
+    margin-top: 7px;
 
     color: var(--purple);
 
-    margin-top: 7px;
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 600;
 }
 
 
 /* ---------------------------------------------------------
-   SECTION HEADER
+   Section Header
    --------------------------------------------------------- */
 
 .section-header {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     margin-bottom: 10px;
 }
 
-
-.section-title {
-
-    font-family: var(--font-hand);
-
-    font-size: 27px;
-
-    color: var(--ink);
-}
-
-
 .section-link {
-
-    font-size: 12px;
-
     color: var(--purple);
 
-    cursor: pointer;
-
+    font-size: 12px;
     font-weight: 600;
+
+    cursor: pointer;
+}
+
+.section-description {
+	margin: 4px 0 0;
+	color: var(--ink-soft);
+	font-family: var(--font-ui);
+	font-size: 12px;
+	line-height: 1.5;
 }
 
 
 /* ---------------------------------------------------------
-   TODAY'S CLASSES
+   Today's Classes
    --------------------------------------------------------- */
 
 .classes-list {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 9px;
 }
 
-
 .class-card {
-
     display: flex;
-
     align-items: center;
-
     gap: 18px;
-
-    background: var(--paper-light);
-
-    border: 1px solid var(--line);
-
-    border-radius: var(--radius-small);
 
     padding: 13px 16px;
 
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+
     box-shadow: var(--shadow);
 }
-
 
 .class-time {
     min-width: 70px;
@@ -272,7 +149,6 @@
 
     line-height: 1.2;
 }
-
 
 .class-time span {
     display: block;
@@ -285,53 +161,41 @@
     font-weight: 400;
 }
 
-
 .class-info {
-
     flex: 1;
+    min-width: 0;
 }
-
 
 .class-name {
-
-    font-weight: 600;
-
     font-size: 14px;
+    font-weight: 600;
 }
 
-
 .class-subject {
-
-    font-size: 11px;
+    margin-top: 2px;
 
     color: var(--ink-soft);
 
-    margin-top: 2px;
+    font-size: 11px;
 }
 
-
 .class-action {
+    padding: 8px 13px;
 
     background: var(--purple);
+    border-radius: 5px;
 
     color: white;
 
-    padding: 8px 13px;
-
-    border-radius: 5px;
-
     font-size: 11px;
-
     font-weight: 700;
 
     letter-spacing: 0.03em;
 }
 
-
 .class-action:hover {
     background: var(--purple-dark);
 }
-
 
 .class-lesson {
     margin-top: 5px;
@@ -347,7 +211,6 @@
     text-overflow: ellipsis;
 }
 
-
 .class-lesson-empty {
     color: var(--ink-muted);
 
@@ -356,11 +219,198 @@
 }
 
 
-/* ---------------------------------------------------------
-   EMPTY STATE
-   --------------------------------------------------------- */
+/* =========================================================
+   CLASS CREATION — TYPE + COLOUR
+   ========================================================= */
+
+.class-type-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.class-type-option {
+    flex: 1;
+    min-height: 38px;
+
+    padding: 7px 10px;
+
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+}
+
+.class-type-option.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: var(--paper-light);
+}
+
+
+.class-color-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    padding: 8px 0 4px;
+}
+
+.class-color-option {
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    background: var(--class-color-option);
+    border: 2px solid var(--paper-light);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 1px var(--line);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+.class-color-option:hover {
+    transform: scale(1.08);
+}
+
+.class-color-option.selected {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 0 2px var(--paper-light),
+        0 0 0 3px var(--purple);
+}
+
+
+.class-color-empty {
+    padding: 9px 11px;
+
+    background: var(--yellow);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink-soft);
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CENTRE ACTIVITY TILE
+   ========================================================= */
+
+.class-tile-activity {
+    border-top: 15px solid var(--class-color);
+}
+
+.class-tile-activity .class-subject-tag {
+    color: var(--ink);
+    background-color: var(--class-color);
+}
+
+.class-activity-label {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CLASS DETAIL — CLASS COLOUR
+   ========================================================= */
+
+.class-colour-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 12px;
+    padding: 8px 11px;
+
+    background: var(--paper-dark);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    width: fit-content;
+
+    transform: rotate(-0.15deg);
+}
+
+.class-colour-label {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.class-colour-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.class-colour-option {
+    width: 22px;
+    height: 22px;
+
+    padding: 0;
+
+    background: var(--class-colour);
+    border: 2px solid var(--paper-dark);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 1px var(--line);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+
+.class-colour-option:hover {
+    transform: scale(1.12);
+}
+
+.class-colour-option.selected {
+    transform: scale(1.12);
+
+    box-shadow:
+        0 0 0 2px var(--paper-dark),
+        0 0 0 3px var(--purple);
+}
+
+.class-colour-empty {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
 
 .empty-state {
+    padding: 40px 20px;
 
     background:
         repeating-linear-gradient(
@@ -372,45 +422,33 @@
         var(--paper-light);
 
     border: 1px dashed var(--line);
-
     border-radius: var(--radius);
-
-    padding: 40px 20px;
 
     text-align: center;
 }
 
-
 .empty-state-icon {
+    margin-bottom: 10px;
 
     font-size: 30px;
-
-    margin-bottom: 10px;
 
     opacity: 0.7;
 }
 
-
 .empty-state h3 {
+    margin-bottom: 5px;
 
     font-family: var(--font-hand);
-
     font-size: 25px;
-
-    margin-bottom: 5px;
 }
 
-
 .empty-state p {
-
     max-width: 420px;
-
     margin: auto;
 
     color: var(--ink-soft);
 
     font-size: 13px;
-
     line-height: 1.5;
 }
 
@@ -420,47 +458,34 @@
    ========================================================= */
 
 .settings-view {
-
     display: flex;
     flex-direction: column;
     gap: 24px;
-
 }
 
 
 /* ---------------------------------------------------------
-   ACADEMIC YEARS
+   Academic Years
    --------------------------------------------------------- */
 
 .academic-years-list {
-
     display: flex;
     flex-direction: column;
     gap: 14px;
-
 }
 
-
-/* ---------------------------------------------------------
-   ACADEMIC YEAR CARD
-   --------------------------------------------------------- */
-
 .academic-year-card {
-
     position: relative;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 20px;
 
     padding: 18px 20px;
 
     background: var(--paper-light);
-
     border: 1px solid var(--line);
-
     border-radius: var(--radius);
 
     box-shadow: var(--shadow);
@@ -468,88 +493,64 @@
     transition:
         transform 0.15s ease,
         box-shadow 0.15s ease;
-
 }
 
-
-/* Small scrapbook variations */
-
 .academic-year-card:nth-child(odd) {
-
     transform: rotate(-0.35deg);
-
 }
 
 .academic-year-card:nth-child(even) {
-
     transform: rotate(0.3deg);
-
 }
-
 
 .academic-year-card:hover {
-
-    transform:
-        translateY(-2px)
-        rotate(-0.2deg);
-
+    transform: translateY(-2px) rotate(-0.2deg);
     box-shadow: var(--shadow-heavy);
-
 }
 
-
-/* ---------------------------------------------------------
-   ACTIVE YEAR
-   --------------------------------------------------------- */
-
 .academic-year-card.active {
-
     border-left: 4px solid var(--purple);
 
     background:
-
         linear-gradient(
             90deg,
             rgba(112, 70, 168, 0.045),
             transparent 45%
         ),
-
         var(--paper-light);
-
 }
 
 
 /* ---------------------------------------------------------
-   CARD INFO
+   Academic Year Info
    --------------------------------------------------------- */
 
 .academic-year-card-info {
-
     flex: 1;
     min-width: 0;
-
 }
 
-
 .academic-year-card-info h3 {
-
     margin-top: 3px;
-
-    font-family: var(--font-hand);
-
-    font-size: 30px;
-
-    line-height: 1;
 
     color: var(--purple-dark);
 
+    font-family: var(--font-hand);
+    font-size: 30px;
+
+    line-height: 1;
 }
 
+
+/* ---------------------------------------------------------
+   Terms
+   --------------------------------------------------------- */
 
 .academic-year-terms {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+
     margin-top: 11px;
 }
 
@@ -557,12 +558,17 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+
     padding: 5px 8px;
+
     background: var(--paper);
+
     border: 1px solid var(--line);
     border-radius: 4px;
+
     font-family: var(--font-mono);
     font-size: 10px;
+
     line-height: 1.2;
 }
 
@@ -577,146 +583,114 @@
 
 .academic-year-terms-empty {
     margin-top: 9px;
+
+    color: var(--ink-soft);
+
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--ink-soft);
     font-style: italic;
 }
 
 
 /* ---------------------------------------------------------
-   CARD ACTIONS
+   Card Actions
    --------------------------------------------------------- */
 
 .academic-year-card-actions {
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 
     flex-shrink: 0;
-
 }
 
 
 /* ---------------------------------------------------------
-   ACTIVE BADGE
+   Active Badge
    --------------------------------------------------------- */
 
 .active-badge {
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 5px;
 
     padding: 5px 9px;
 
     background: var(--yellow);
+    border-radius: 4px;
 
     color: var(--ink);
 
-    border-radius: 4px;
-
     font-family: var(--font-mono);
-
     font-size: 11px;
-
     font-weight: 700;
 
     letter-spacing: 0.05em;
 
     transform: rotate(-1deg);
-
 }
 
-
-/* Little dot */
-
 .active-badge::before {
-
     content: "";
 
     width: 5px;
-
     height: 5px;
 
     border-radius: 50%;
 
     background: var(--purple);
-
 }
 
 
 /* ---------------------------------------------------------
-   DELETE BUTTON
+   Small Icon Button
    --------------------------------------------------------- */
 
-.academic-year-card
 .small-icon-button {
-
-    width: 28px;
-
-    height: 28px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border: 1px solid transparent;
-
-    border-radius: 5px;
+    background: transparent;
 
     color: var(--ink-soft);
 
     font-size: 18px;
+    line-height: 1;
+}
+
+.academic-year-card .small-icon-button {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
 
     transition:
         background 0.15s ease,
         color 0.15s ease,
         border-color 0.15s ease;
-
 }
 
-
-.academic-year-card
-.small-icon-button:hover {
-
+.academic-year-card .small-icon-button:hover {
     color: var(--red);
 
     background: rgba(200, 109, 114, 0.08);
-
     border-color: rgba(200, 109, 114, 0.25);
-
 }
 
 
 /* ---------------------------------------------------------
-   SETTINGS EMPTY STATE
+   Settings Empty State
    --------------------------------------------------------- */
 
-.settings-view
-.empty-state {
-
+.settings-view .empty-state {
     padding-top: 52px;
-
     padding-bottom: 52px;
-
 }
 
-
-/* Make the book icon feel like a little sticker */
-
-.settings-view
-.empty-state-icon {
-
+.settings-view .empty-state-icon {
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
 
@@ -726,226 +700,182 @@
     margin-bottom: 14px;
 
     background: var(--pink-light);
-
     border-radius: 8px;
 
     box-shadow: var(--shadow);
 
     transform: rotate(-3deg);
-
 }
 
 
-/* ---------------------------------------------------------
-   STUDENT IMPORT PREVIEW
-   --------------------------------------------------------- */
+/* =========================================================
+   CALENDAR SETTINGS
+   ========================================================= */
+
+.calendar-settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.calendar-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calendar-event-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 14px 16px;
+
+    background: var(--paper-light);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.calendar-event-card:nth-child(odd) {
+    transform: rotate(-0.2deg);
+}
+
+.calendar-event-card:nth-child(even) {
+    transform: rotate(0.15deg);
+}
+
+.calendar-event-date {
+    flex: 0 0 105px;
+
+    padding-right: 14px;
+
+    border-right: 1px solid var(--line);
+}
+
+.calendar-event-date-day {
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.calendar-event-type {
+    margin-top: 4px;
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.calendar-event-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.calendar-event-title {
+    color: var(--purple-dark);
+
+    font-family: var(--font-hand);
+    font-size: 24px;
+
+    line-height: 1;
+}
+
+.calendar-event-description {
+    margin-top: 5px;
+
+    color: var(--ink-soft);
+
+    font-size: 12px;
+}
+
+.calendar-event-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+.calendar-empty-state {
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+
+/* =========================================================
+   STUDENT IMPORT
+   ========================================================= */
 
 .import-result-summary {
-
     margin-top: 12px;
 
     padding: 9px 11px;
 
     background: var(--pink-light);
-
     border-radius: 5px;
-
-    font-size: 11px;
 
     color: var(--ink);
 
+    font-size: 11px;
 }
-
 
 .import-result-summary strong {
-
-    font-family: var(--font-mono);
-
     color: var(--purple-dark);
-
+    font-family: var(--font-mono);
 }
 
-
 .import-name-list {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 4px;
-
-    margin-top: 10px;
 
     max-height: 230px;
 
-    overflow-y: auto;
+    margin-top: 10px;
 
+    overflow-y: auto;
 }
 
-
 .import-name-row {
-
     display: flex;
-
     align-items: center;
-
     gap: 9px;
 
     padding: 7px 8px;
 
     background: var(--paper-light);
-
     border: 1px solid var(--paper-dark);
-
     border-radius: 4px;
 
     cursor: pointer;
 
     font-size: 12px;
-
 }
-
 
 .import-name-row:hover {
-
-    background: rgba(
-        112,
-        70,
-        168,
-        0.04
-    );
-
+    background: rgba(112, 70, 168, 0.04);
 }
-
 
 .import-name-row input {
-
-    accent-color: var(--purple);
-
     flex-shrink: 0;
 
+    accent-color: var(--purple);
 }
-
 
 .file-drop-zone.drag-active {
-
     border-color: var(--purple);
 
-    background:
-        rgba(
-            112,
-            70,
-            168,
-            0.06
-        );
+    background: rgba(112, 70, 168, 0.06);
 
     transform: rotate(-0.2deg);
-
-}
-
-
-/* ---------------------------------------------------------
-   SETTINGS RESPONSIVE
-   --------------------------------------------------------- */
-
-@media (max-width: 650px) {
-
-    .academic-year-card {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 14px;
-
-    }
-
-
-    .academic-year-card-actions {
-
-        width: 100%;
-
-        justify-content: space-between;
-
-    }
-
-}
-
-
-/* ---------------------------------------------------------
-   RESPONSIVE
-   --------------------------------------------------------- */
-
-@media (max-width: 950px) {
-
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    .topbar {
-
-        align-items: flex-start;
-
-        gap: 12px;
-    }
-
-
-    .academic-year-badge {
-
-        font-size: 11px;
-
-        padding: 6px 8px;
-    }
-
-
-    .stats-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 9px;
-    }
-
-
-    .stat-card {
-
-        padding: 14px;
-    }
-
-
-    .stat-value {
-
-        font-size: 23px;
-    }
-
-
-    .class-card {
-
-        gap: 10px;
-
-        padding: 11px;
-    }
-
-
-    .class-time {
-
-        width: 45px;
-
-        font-size: 11px;
-    }
-
-
-    .class-action {
-
-        padding: 7px 9px;
-
-        font-size: 11px;
-    }
 }
 
 
@@ -959,327 +889,72 @@
     gap: 24px;
 }
 
-
 .view-toolbar {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 }
 
-
 .view-label {
+    color: var(--ink-soft);
 
     font-family: var(--font-mono);
-
     font-size: 11px;
-
-    color: var(--ink-soft);
 
     letter-spacing: 0.08em;
 }
 
-
 .academic-year-name {
+    color: var(--purple-dark);
 
     font-family: var(--font-hand);
-
     font-size: 28px;
-
-    color: var(--purple-dark);
 }
 
 
-/* ---------------------------------------------------------
-   CLASS GRID
-   --------------------------------------------------------- */
 
-.classes-grid {
 
-    display: grid;
 
-    grid-template-columns:
-        repeat(auto-fill, minmax(230px, 1fr));
-
-    gap: 18px;
-}
-
-
-.class-tile {
-
-    background: var(--paper-light);
-
-    border: 1px solid var(--line);
-
-    border-radius: var(--radius);
-
-    padding: 20px;
-
-    box-shadow: var(--shadow);
-
-    position: relative;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-}
-
-
-.class-tile:hover {
-
-    transform: translateY(-3px) rotate(-0.2deg);
-
-    box-shadow: var(--shadow-heavy);
-}
-
-
-.class-tile:nth-child(odd) {
-    transform: rotate(-0.4deg);
-}
-
-
-.class-tile:nth-child(even) {
-    transform: rotate(0.35deg);
-}
-
-
-.class-tile:nth-child(odd):hover {
-    transform: translateY(-3px) rotate(-0.4deg);
-}
-
-
-.class-tile:nth-child(even):hover {
-    transform: translateY(-3px) rotate(0.35deg);
-}
-
-
-.class-tile-top {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 14px;
-}
-
-
-.class-subject-tag {
-
-    background: var(--pink-light);
-
-    padding: 4px 8px;
-
-    border-radius: 4px;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    font-weight: 700;
-}
-
-
-.small-icon-button {
-
-    background: transparent;
-
-    color: var(--ink-soft);
-
-    font-size: 18px;
-
-    line-height: 1;
-}
-
-
-.class-tile h3 {
-
-    font-family: var(--font-hand);
-
-    font-size: 32px;
-
-    color: var(--purple-dark);
-
-    margin-bottom: 4px;
-}
-
-
-.class-student-count {
-
-    color: var(--ink-soft);
-
-    font-size: 12px;
-
-    margin-bottom: 20px;
-}
-
-
-.open-class-button {
-
-    width: 100%;
-
-    background: var(--purple);
-
-    color: white;
-
-    padding: 9px;
-
-    border-radius: 5px;
-
-    font-size: 11px;
-
-    font-weight: 700;
-}
-
-
-/* ---------------------------------------------------------
-   CLASS DETAIL
-   --------------------------------------------------------- */
-
-.class-detail {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 20px;
-}
-
-
-.back-button {
-
-    align-self: flex-start;
-
-    background: transparent;
-
-    color: var(--purple);
-
-    font-family: var(--font-mono);
-
-    font-size: 11px;
-
-    font-weight: 600;
-}
-
-
-.class-detail-header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 20px;
-
-    background: var(--paper-light);
-
-    border: 1px solid var(--line);
-
-    border-radius: var(--radius);
-
-    padding: 22px 24px;
-
-    box-shadow: var(--shadow);
-}
-
-
-.class-detail-kicker {
-
-    font-family: var(--font-mono);
-
-    font-size: 11px;
-
-    color: var(--ink-soft);
-
-    margin-bottom: 3px;
-}
-
-
-.class-detail-header h2 {
-
-    font-family: var(--font-hand);
-
-    font-size: 40px;
-
-    color: var(--purple-dark);
-}
-
-
-.class-detail-header p {
-
-    color: var(--ink-soft);
-
-    font-size: 12px;
-}
-
-
-.class-detail-actions {
-
-    display: flex;
-
-    gap: 8px;
-}
-
+/* =========================================================
+   STUDENT TABLE
+   ========================================================= */
 
 .student-section {
-
     display: flex;
-
     flex-direction: column;
 }
 
-
 .student-total {
-
-    background: var(--purple);
-
-    color: white;
-
+    width: 26px;
     min-width: 26px;
     height: 26px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
+    background: var(--purple);
     border-radius: 50%;
 
-    font-family: var(--font-mono);
+    color: white;
 
+    font-family: var(--font-mono);
     font-size: 11px;
 }
 
-
-/* ---------------------------------------------------------
-   STUDENT TABLE
-   --------------------------------------------------------- */
-
 .student-table {
+    overflow: hidden;
 
     background: var(--paper-light);
-
     border: 1px solid var(--line);
-
     border-radius: var(--radius);
-
-    overflow: hidden;
 
     box-shadow: var(--shadow);
 }
 
-
 .student-row {
-
     display: grid;
-
     grid-template-columns: 30px 40px 1fr 40px;
-
     align-items: center;
 
     min-height: 48px;
@@ -1289,48 +964,37 @@
     border-bottom: 1px solid var(--paper-dark);
 }
 
-
 .student-row:last-child {
     border-bottom: none;
 }
 
-
 .student-header {
-
     min-height: 38px;
 
     background: var(--paper-dark);
 
-    font-family: var(--font-mono);
+    color: var(--ink-soft);
 
+    font-family: var(--font-mono);
     font-size: 11px;
 
     text-transform: uppercase;
-
-    color: var(--ink-soft);
 }
-
 
 .student-number {
+    color: var(--ink-soft);
 
     font-family: var(--font-mono);
-
     font-size: 11px;
-
-    color: var(--ink-soft);
 }
 
-
 .student-name {
-
+    font-family: var(--font-sans);
     font-size: 13px;
-
     font-weight: 500;
 }
 
-
 .student-edit {
-
     background: transparent;
 
     color: var(--purple);
@@ -1338,30 +1002,30 @@
     font-size: 16px;
 }
 
-/* =========================================================
-   STUDENT SELECTION
-   ========================================================= */
+
+/* ---------------------------------------------------------
+   Student Selection
+   --------------------------------------------------------- */
 
 .student-select {
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: 30px;
+
     flex-shrink: 0;
 }
 
 .student-select input {
     width: 15px;
     height: 15px;
+
     margin: 0;
+
     cursor: pointer;
     accent-color: var(--purple);
 }
-
-
-/* ---------------------------------------------------------
-   SELECTION BAR
-   --------------------------------------------------------- */
 
 .student-selection-bar {
     display: flex;
@@ -1371,39 +1035,40 @@
     margin-top: 10px;
     padding: 10px 12px;
 
+    background: var(--paper-light);
+
     border: 1px solid var(--line);
     border-radius: 6px;
-
-    background: var(--paper-light);
 }
-
 
 .student-selection-bar.hidden {
     display: none;
 }
 
-
 #studentSelectionCount {
+    color: var(--ink-soft);
+
     font-family: var(--font-mono);
     font-size: 11px;
+
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--ink-soft);
 }
 
 
-/* ---------------------------------------------------------
-   DANGER BUTTON
-   --------------------------------------------------------- */
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
 .btn-danger {
-    border: 1px solid #c66;
-    background: transparent;
-    color: #a33;
-
     padding: 7px 11px;
 
+    background: transparent;
+
+    border: 1px solid #c66;
     border-radius: 4px;
+
+    color: #a33;
 
     font-family: var(--font-mono);
     font-size: 11px;
@@ -1419,50 +1084,47 @@
         border-color 0.15s ease;
 }
 
-
 .btn-danger:hover {
     background: #a33;
     border-color: #a33;
+
     color: white;
 }
 
 
-/* ---------------------------------------------------------
-   MODALS
-   --------------------------------------------------------- */
+/* =========================================================
+   GENERAL MODAL BASICS
+   =========================================================
+   NOTE:
+   Lesson-specific modal layout belongs in lessonModals.css.
+   ========================================================= */
 
 #modalContainer {
     position: relative;
     z-index: 1000;
 }
 
-
 .modal-backdrop {
-
     position: fixed;
-
     inset: 0;
 
-    background: rgba(40, 30, 45, 0.35);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
+
+    background: rgba(40, 30, 45, 0.35);
 }
 
-
 .modal {
-
     width: min(500px, 100%);
+
+    padding: 10px;
 
     background: var(--paper-light);
 
     border: 1px solid var(--line);
-
     border-radius: var(--radius);
 
     box-shadow: var(--shadow-heavy);
@@ -1472,13 +1134,9 @@
     transform: rotate(-0.3deg);
 }
 
-
 .modal-header {
-
     display: flex;
-
     align-items: flex-start;
-
     justify-content: space-between;
 
     padding: 22px 24px;
@@ -1486,31 +1144,23 @@
     border-bottom: 1px solid var(--paper-dark);
 }
 
-
 .modal-kicker {
+    color: var(--purple);
 
     font-family: var(--font-mono);
-
     font-size: 11px;
-
-    color: var(--purple);
 
     letter-spacing: 0.08em;
 }
 
-
 .modal-header h3 {
+    color: var(--purple-dark);
 
     font-family: var(--font-hand);
-
     font-size: 31px;
-
-    color: var(--purple-dark);
 }
 
-
 .modal-close {
-
     background: transparent;
 
     color: var(--ink-soft);
@@ -1518,35 +1168,9 @@
     font-size: 24px;
 }
 
-
-.modal-body {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
-
-    padding: 22px 24px;
-}
-
-
-.modal-body label {
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    margin-top: 7px;
-}
-
-
 .modal-footer {
-
     display: flex;
-
     justify-content: flex-end;
-
     gap: 8px;
 
     padding: 16px 24px;
@@ -1556,18 +1180,93 @@
     border-top: 1px solid var(--paper-dark);
 }
 
+.modal-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* =========================================================
+   T-CHIT — SHARED TABS
+   ========================================================= */
+
+.attendance-tabs,
+.planner-tabs,
+.assessment-tabs,
+.calendar-view .view-tabs {
+	display: flex;
+	align-items: stretch;
+	gap: 4px;
+	border-bottom: 1px solid var(--line);
+}
+
+.attendance-tab,
+.planner-tab,
+.assessment-tab,
+.calendar-view .view-tab {
+	position: relative;
+	padding: 10px 15px 11px;
+	border: 0;
+	border-bottom: 2px solid transparent;
+	background: transparent;
+	color: var(--ink-muted);
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition:
+		color 0.15s ease,
+		background 0.15s ease,
+		border-color 0.15s ease;
+}
+
+.attendance-tab:hover,
+.planner-tab:hover,
+.assessment-tab:hover,
+.calendar-view .view-tab:hover {
+	color: var(--purple);
+	background: rgba(151, 104, 166, 0.045);
+}
+
+.attendance-tab.active,
+.planner-tab.active,
+.assessment-tab.active,
+.calendar-view .view-tab.active {
+	color: var(--purple);
+	border-bottom-color: var(--purple);
+}
+
+.attendance-tab:focus-visible,
+.planner-tab:focus-visible,
+.assessment-tab:focus-visible,
+.calendar-view .view-tab:focus-visible {
+	outline: 2px solid var(--purple);
+	outline-offset: 2px;
+}
+
+
+/* =========================================================
+   TERM EDITOR
+   ========================================================= */
 
 .modal-section {
     margin-top: 8px;
     padding-top: 15px;
+
     border-top: 1px solid var(--line);
 }
 
 .modal-section-title {
     margin-bottom: 10px;
+
+    color: var(--ink-soft);
+
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--ink-soft);
+
     letter-spacing: 0.08em;
 }
 
@@ -1579,16 +1278,22 @@
 
 .term-row {
     display: grid;
-    grid-template-columns: 62px minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns:
+        62px
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+
     align-items: center;
     gap: 7px;
 }
 
 .term-name {
+    color: var(--purple-dark);
+
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 700;
-    color: var(--purple-dark);
 }
 
 .term-row span {
@@ -1596,17 +1301,16 @@
     text-align: center;
 }
 
-/* ---------------------------------------------------------
-   IMPORT
-   --------------------------------------------------------- */
+
+/* =========================================================
+   FILE IMPORT
+   ========================================================= */
 
 .file-drop-zone {
+    padding: 35px 20px;
 
     border: 2px dashed var(--line);
-
     border-radius: var(--radius);
-
-    padding: 35px 20px;
 
     text-align: center;
 
@@ -1615,519 +1319,212 @@
         background 0.15s ease;
 }
 
-
 .file-drop-zone:hover {
-
     border-color: var(--purple-light);
 
     background: rgba(112, 70, 168, 0.03);
 }
 
-
 .drop-icon {
+    margin-bottom: 8px;
 
     font-size: 36px;
-
-    margin-bottom: 8px;
 }
-
 
 .file-drop-zone h4 {
+    margin-bottom: 4px;
 
     font-size: 14px;
-
-    margin-bottom: 4px;
 }
 
-
 .file-drop-zone p {
-
-    font-size: 11px;
+    margin-bottom: 15px;
 
     color: var(--ink-soft);
 
-    margin-bottom: 15px;
+    font-size: 11px;
 }
-
 
 .file-drop-zone input {
     display: none;
 }
 
-
 .supported-files {
-
     margin-top: 12px;
 
-    font-family: var(--font-mono);
-
-    font-size: 11px;
-
     color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
 
     letter-spacing: 0.05em;
 }
 
-
 .import-preview {
-
     margin-top: 15px;
-
     padding: 12px;
 
-    border: 1px solid var(--line);
-
-    border-radius: 6px;
-
     background: var(--paper);
-}
 
+    border: 1px solid var(--line);
+    border-radius: 6px;
+}
 
 .import-preview.hidden {
     display: none;
 }
 
-
 .import-file {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
 
     font-size: 12px;
 }
 
-
 .import-status {
-
     margin-top: 8px;
-
-    font-size: 11px;
 
     color: var(--ink-soft);
 
+    font-size: 11px;
     line-height: 1.5;
 }
 
+
+.nav-icon {
+	width: 50px;          /* o 14px si prefieres más pequeño */
+	height: 50px;
+	object-fit: contain;
+	flex-shrink: 0;
+	display: block;
+}
+
+/* Opcional: un poco de espacio y alineación perfecta */
+.nav-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.nav-item img.nav-icon {
+	margin-right: 2px;    /* ajuste fino si hace falta */
+}
+
 /* =========================================================
-   T-CHIT — ASSESSMENT ACTIVITY FORM
+   RESPONSIVE
    ========================================================= */
 
+@media (max-width: 950px) {
 
-/* ---------------------------------------------------------
-   ACTIVITY WEIGHT
-   --------------------------------------------------------- */
-
-.lesson-assessment-weight {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 
-.lesson-assessment-weight input {
-    width: 90px;
-    box-sizing: border-box;
-
-    padding: 7px 9px;
-
-    border: 1px solid var(--line);
-    border-radius: var(--radius-small);
-
-    background: var(--paper);
-
-    color: var(--ink);
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-
-    outline: none;
-}
-
-
-.lesson-assessment-weight input:focus {
-    border-color: var(--purple-light);
-
-    box-shadow:
-        0 0 0 2px rgba(154, 114, 199, 0.12);
-}
-
-
-.lesson-assessment-weight span {
-    color: var(--ink-soft);
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-}
-
-
-/* ---------------------------------------------------------
-   INSTRUMENT SELECT
-   --------------------------------------------------------- */
-
-.lesson-assessment-select {
-
-    width: 100%;
-    min-height: 36px;
-
-    box-sizing: border-box;
-
-    padding: 7px 10px;
-
-    border: 1px solid var(--line);
-    border-radius: var(--radius-small);
-
-    background: var(--paper);
-
-    color: var(--ink);
-
-    font-family: var(--font-ui);
-    font-size: 11px;
-
-    outline: none;
-
-    cursor: pointer;
-
-    transition:
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
-}
-
-
-.lesson-assessment-select:focus {
-
-    border-color: var(--purple-light);
-
-    box-shadow:
-        0 0 0 2px rgba(154, 114, 199, 0.12);
-}
-
-
-/* ---------------------------------------------------------
-   CRITERIA
-   --------------------------------------------------------- */
-
-.lesson-assessment-criteria {
-
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-
-/* Individual criterion */
-
-.assessment-criterion-option {
-
-    display: grid;
-
-    grid-template-columns:
-        18px
-        minmax(0, 1fr)
-        70px;
-
-    align-items: center;
-
-    gap: 7px;
-
-    padding: 7px 8px;
-
-    border: 1px solid transparent;
-    border-radius: 4px;
-
-    background: transparent;
-
-    transition:
-        background 0.12s ease,
-        border-color 0.12s ease;
-}
-
-
-.assessment-criterion-option:hover {
-
-    background: var(--paper-dark);
-
-    border-color: var(--line);
-}
-
-
-.assessment-criterion-option input[type="checkbox"] {
-
-    width: 14px;
-    height: 14px;
-
-    margin: 0;
-
-    accent-color: var(--purple);
-
-    cursor: pointer;
-}
-
-
-.assessment-criterion-info {
-
-    min-width: 0;
-}
-
-
-.assessment-criterion-code {
-
-    display: block;
-
-    color: var(--purple-dark);
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-
-    letter-spacing: 0.04em;
-}
-
-
-.assessment-criterion-description {
-
-    display: block;
-
-    margin-top: 2px;
-
-    color: var(--ink-soft);
-
-    font-family: var(--font-ui);
-    font-size: 11px;
-
-    line-height: 1.3;
-}
-
-
-/* Criterion weight */
-
-.assessment-criterion-weight {
-
-    width: 100%;
-
-    box-sizing: border-box;
-
-    padding: 5px 6px;
-
-    border: 1px solid var(--line);
-    border-radius: 4px;
-
-    background: var(--paper);
-
-    color: var(--ink);
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-
-    text-align: right;
-
-    outline: none;
-}
-
-
-.assessment-criterion-weight:focus {
-
-    border-color: var(--purple-light);
-
-    box-shadow:
-        0 0 0 2px rgba(154, 114, 199, 0.10);
-}
-
-
-/* ---------------------------------------------------------
-   BASIC KNOWLEDGE
-   --------------------------------------------------------- */
-
-.lesson-assessment-knowledge {
-
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-
-    max-height: 190px;
-
-    overflow-y: auto;
-
-    padding-right: 3px;
-}
-
-
-.assessment-knowledge-option {
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 8px;
-
-    padding: 6px 8px;
-
-    border: 1px solid transparent;
-    border-radius: 4px;
-
-    color: var(--ink);
-
-    font-family: var(--font-ui);
-    font-size: 11px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.12s ease,
-        border-color 0.12s ease;
-}
-
-
-.assessment-knowledge-option:hover {
-
-    background: var(--paper-dark);
-
-    border-color: var(--line);
-}
-
-
-.assessment-knowledge-option input {
-
-    flex: 0 0 auto;
-
-    width: 14px;
-    height: 14px;
-
-    margin: 1px 0 0;
-
-    accent-color: var(--purple);
-
-    cursor: pointer;
-}
-
-
-.assessment-knowledge-option span {
-
-    flex: 1;
-
-    line-height: 1.3;
-}
-
-
-/* ---------------------------------------------------------
-   KNOWLEDGE BLOCK LABEL
-   --------------------------------------------------------- */
-
-.assessment-knowledge-block {
-
-    margin-top: 9px;
-    margin-bottom: 3px;
-
-    color: var(--purple);
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-
-    text-transform: uppercase;
-    letter-spacing: 0.10em;
-}
-
-
-/* ---------------------------------------------------------
-   ASSESSMENT TOTAL / HINT
-   --------------------------------------------------------- */
-
-.assessment-weight-hint {
-
-    margin-top: 5px;
-
-    color: var(--ink-soft);
-
-    font-family: var(--font-mono);
-    font-size: 11px;
-
-    letter-spacing: 0.03em;
-}
-
-
-/* ---------------------------------------------------------
-   SELECTED STATE
-   --------------------------------------------------------- */
-
-.assessment-check-option:has(input:checked),
-.assessment-criterion-option:has(input[type="checkbox"]:checked),
-.assessment-knowledge-option:has(input:checked) {
-
-    background: rgba(112, 70, 168, 0.045);
-
-    border-color: rgba(112, 70, 168, 0.16);
-}
-
-
-/* ---------------------------------------------------------
-   RESPONSIVE
-   --------------------------------------------------------- */
-
-@media (max-width: 560px) {
-
-    .assessment-criterion-option {
-
-        grid-template-columns:
-            18px
-            minmax(0, 1fr)
-            62px;
-
-        gap: 5px;
-
-        padding: 7px 6px;
+@media (max-width: 650px) {
+
+    .academic-year-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
     }
 
+    .academic-year-card-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
 
-    .assessment-criterion-description {
+    .calendar-event-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .calendar-event-date {
+        flex: 0 0 100%;
+
+        padding-right: 0;
+        padding-bottom: 8px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .calendar-event-info {
+        flex: 1;
+        min-width: 180px;
+    }
+
+    .calendar-event-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .view-toolbar,
+    .class-detail-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .class-detail-actions {
+        width: 100%;
+    }
+
+    .class-detail-actions button {
+        flex: 1;
+    }
+
+    .classes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .topbar {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .academic-year-badge {
+        padding: 6px 8px;
 
         font-size: 11px;
     }
 
-
-    .lesson-assessment-knowledge {
-
-        max-height: 160px;
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
     }
 
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-value {
+        font-size: 23px;
+    }
+
+    .class-card {
+        gap: 10px;
+        padding: 11px;
+    }
+
+    .class-time {
+        width: 45px;
+
+        font-size: 11px;
+    }
+
+    .class-action {
+        padding: 7px 9px;
+
+        font-size: 11px;
+    }
 }
 
-
-/* ---------------------------------------------------------
-   MOBILE
-   --------------------------------------------------------- */
-
-@media (max-width: 650px) {
-
-    .view-toolbar,
-    .class-detail-header {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-
-    .class-detail-actions {
-
-        width: 100%;
-    }
-
-
-    .class-detail-actions button {
-
-        flex: 1;
-    }
-
-
-    .classes-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-}
 
 @media (max-width: 560px) {
 
@@ -2143,5 +1540,4 @@
     .term-row span {
         display: none;
     }
-
 }

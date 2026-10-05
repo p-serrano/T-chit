@@ -1,0 +1,421 @@
+/* =========================================================
+   T-CHIT — COMPETENCE WEIGHT
+   Specific styling
+   ========================================================= */
+
+
+/* =========================================================
+   VIEW
+   ========================================================= */
+
+.competence-weight-view {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.competence-weight-view
+.assessment-section-header > div:first-child {
+    min-width: 0;
+}
+
+
+.competence-weight-view
+.assessment-section-header h2 {
+    margin: 0 0 4px;
+
+    color: var(--purple-dark);
+
+    font-family: var(--font-hand);
+    font-size: 32px;
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+
+.competence-weight-view
+.assessment-section-header p {
+    margin: 0;
+
+    color: var(--ink-soft);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.competence-weight-table {
+    min-width: 720px;
+
+    table-layout: fixed;
+}
+
+
+.competence-weight-table thead th {
+    min-width: 105px;
+}
+
+
+.competence-weight-table thead th:first-child {
+    width: 190px;
+    min-width: 190px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   COMPETENCE HEADER
+   ========================================================= */
+
+.competence-weight-column {
+    text-align: center !important;
+}
+
+
+.competence-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3px;
+}
+
+
+.competence-header-code {
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+
+.competence-header-weight {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 2px;
+
+    margin-top: 3px;
+
+    color: var(--ink-muted);
+
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   COMPETENCE WEIGHT INPUT
+   ========================================================= */
+
+.competence-weight-input {
+    width: 42px;
+    height: 27px;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+
+    text-align: center;
+}
+
+
+.competence-weight-input:focus {
+    outline: none;
+
+    background: var(--paper-light);
+
+    border-color: var(--purple);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(112, 70, 168, 0.08);
+}
+
+
+/* =========================================================
+   COMPETENCE CELLS
+   ========================================================= */
+
+.competence-weight-table tbody td {
+    min-width: 105px;
+
+    padding: 11px 8px;
+}
+
+
+.competence-grade-cell {
+    text-align: center;
+}
+
+
+/* =========================================================
+   GRADE
+   ========================================================= */
+
+.competence-grade-cell {
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.competence-grade-cell:has(> .empty) {
+    color: var(--ink-muted);
+}
+
+
+/* =========================================================
+   COMPETENCE COLUMN DIFFERENTIATION
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HEADER
+   --------------------------------------------------------- */
+
+.competence-weight-table
+.gradebook-activity-column-0 {
+    background:
+        rgba(124, 91, 150, 0.20) !important;
+}
+
+
+.competence-weight-table
+.gradebook-activity-column-1 {
+    background:
+        rgba(194, 126, 153, 0.20) !important;
+}
+
+
+.competence-weight-table
+.gradebook-activity-column-2 {
+    background:
+        rgba(198, 170, 91, 0.20) !important;
+}
+
+
+.competence-weight-table
+.gradebook-activity-column-3 {
+    background:
+        rgba(91, 139, 137, 0.20) !important;
+}
+
+
+.competence-weight-table
+.gradebook-activity-column-4 {
+    background:
+        rgba(150, 112, 91, 0.20) !important;
+}
+
+
+.competence-weight-table
+.gradebook-activity-column-5 {
+    background:
+        rgba(108, 113, 151, 0.20) !important;
+}
+
+
+/* ---------------------------------------------------------
+   BODY
+   --------------------------------------------------------- */
+
+.competence-weight-table tbody td:nth-child(2) {
+    background:
+        rgba(124, 91, 150, 0.035);
+}
+
+
+.competence-weight-table tbody td:nth-child(3) {
+    background:
+        rgba(194, 126, 153, 0.035);
+}
+
+
+.competence-weight-table tbody td:nth-child(4) {
+    background:
+        rgba(198, 170, 91, 0.04);
+}
+
+
+.competence-weight-table tbody td:nth-child(5) {
+    background:
+        rgba(91, 139, 137, 0.035);
+}
+
+
+.competence-weight-table tbody td:nth-child(6) {
+    background:
+        rgba(150, 112, 91, 0.035);
+}
+
+
+.competence-weight-table tbody td:nth-child(7) {
+    background:
+        rgba(108, 113, 151, 0.035);
+}
+
+
+/* =========================================================
+   TOTAL COLUMN
+   ========================================================= */
+
+.competence-weight-table .term-total-column {
+    position: sticky;
+    right: 0;
+    z-index: 5;
+
+    min-width: 105px;
+
+    background: var(--paper-dark) !important;
+
+    border-left: 1px solid var(--line);
+
+    color: var(--purple-dark);
+
+    text-align: center !important;
+}
+
+
+.competence-weight-table .term-total-cell {
+    position: sticky;
+    right: 0;
+    z-index: 5;
+
+    min-width: 105px;
+
+    background: var(--paper-light) !important;
+
+    border-left: 1px solid var(--line);
+
+    color: var(--purple-dark);
+
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.competence-weight-footer {
+    justify-content: flex-end;
+}
+
+
+.competence-weight-total {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 12px;
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+    border-radius: 4px;
+
+    box-shadow:
+        2px 2px 0
+        rgba(91, 72, 105, 0.04);
+
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    transform: rotate(-0.2deg);
+}
+
+
+.competence-weight-total strong {
+    color: var(--purple-dark);
+
+    font-size: 13px;
+}
+
+
+.competence-weight-warning {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 11px;
+
+    background: var(--yellow);
+
+    border: 1px solid var(--line);
+    border-radius: 5px;
+
+    color: var(--ink-soft);
+
+    font-size: 11px;
+
+    transform: rotate(-0.15deg);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .competence-weight-table {
+        min-width: 650px;
+    }
+
+
+    .competence-weight-table thead th:first-child {
+        width: 165px;
+        min-width: 165px;
+    }
+
+
+    .competence-weight-table thead th {
+        min-width: 95px;
+    }
+
+
+    .competence-weight-table tbody td {
+        min-width: 95px;
+    }
+}

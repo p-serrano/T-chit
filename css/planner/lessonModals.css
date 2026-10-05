@@ -3,9 +3,9 @@
    ========================================================= */
 
 
-/* ---------------------------------------------------------
-   LESSON MODAL — SIZE + SCROLL
-   --------------------------------------------------------- */
+/* =========================================================
+   MODAL — SIZE + SCROLL
+   ========================================================= */
 
 #modalContainer .modal {
     width: min(620px, calc(100vw - 40px));
@@ -24,10 +24,14 @@
     overflow-y: auto;
     overflow-x: hidden;
 
-    padding-right: 10px;
+    padding: 10px;
+
+    scrollbar-width: thin;
+    scrollbar-color:
+        var(--purple-light)
+        var(--paper-dark);
 }
 
-/* MODAL BODY SCROLLBAR */
 #modalContainer .modal-body::-webkit-scrollbar {
     width: 6px;
 }
@@ -46,16 +50,10 @@
     background: var(--purple);
 }
 
-/* FIREFOX */
-#modalContainer .modal-body {
-    scrollbar-width: thin;
-    scrollbar-color: var(--purple-light) var(--paper-dark);
-}
 
-
-/* ---------------------------------------------------------
+/* =========================================================
    MODAL HEADER
-   --------------------------------------------------------- */
+   ========================================================= */
 
 #modalContainer .modal-header {
     position: relative;
@@ -63,28 +61,35 @@
 
 #modalContainer .modal-kicker {
     margin-bottom: 4px;
+
     color: var(--purple);
+
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 700;
+
     letter-spacing: 0.14em;
     text-transform: uppercase;
+
     opacity: 0.8;
 }
 
 #modalContainer .modal-header h3 {
     margin: 0;
+
     color: var(--ink);
+
     font-family: var(--font-hand);
     font-size: 28px;
     font-weight: 400;
+
     line-height: 1;
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    MODAL CLOSE
-   --------------------------------------------------------- */
+   ========================================================= */
 
 #modalContainer .modal-close {
     width: 30px;
@@ -96,14 +101,16 @@
 
     padding: 0;
 
+    background: var(--paper);
+
     border: 1px solid var(--line);
     border-radius: 50%;
 
-    background: var(--paper);
     color: var(--ink-soft);
 
     font-family: var(--font-mono);
     font-size: 16px;
+
     line-height: 1;
 
     cursor: pointer;
@@ -117,29 +124,22 @@
 
 #modalContainer .modal-close:hover {
     color: var(--purple-dark);
+
     border-color: var(--purple-light);
+
     background: var(--paper-dark);
+
     transform: rotate(4deg);
 }
 
 
 /* =========================================================
-   MODAL BODY
+   MODAL FORM
    ========================================================= */
-
-#modalContainer .modal-body {
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    flex: 1;
-    min-height: 0;
-
-    padding-right: 10px;
-}
 
 
 /* ---------------------------------------------------------
-   FORM LABELS
+   Labels
    --------------------------------------------------------- */
 
 #modalContainer .modal-body > label {
@@ -164,7 +164,7 @@
 
 
 /* ---------------------------------------------------------
-   INPUTS
+   Inputs
    --------------------------------------------------------- */
 
 #modalContainer .modal-body > input,
@@ -194,14 +194,17 @@
 #modalContainer .modal-body > input,
 #modalContainer .modal-body > select {
     min-height: 38px;
+
     padding: 8px 10px;
 }
 
 #modalContainer .modal-body > textarea {
     min-height: 105px;
+
     padding: 10px;
 
     resize: vertical;
+
     line-height: 1.5;
 }
 
@@ -209,6 +212,7 @@
 #modalContainer .modal-body > textarea:focus,
 #modalContainer .modal-body > select:focus {
     border-color: var(--purple-light);
+
     background: var(--paper);
 
     box-shadow:
@@ -217,7 +221,7 @@
 
 
 /* ---------------------------------------------------------
-   DISABLED CLASS FIELD
+   Disabled Class Field
    --------------------------------------------------------- */
 
 #modalContainer .modal-body > input:disabled {
@@ -229,6 +233,7 @@
     font-weight: 600;
 
     cursor: not-allowed;
+
     opacity: 0.9;
 }
 
@@ -239,7 +244,7 @@
 
 
 /* ---------------------------------------------------------
-   ASSESSMENT CONTAINER
+   Assessment Container
    --------------------------------------------------------- */
 
 .lesson-assessment {
@@ -253,7 +258,7 @@
 
 
 /* ---------------------------------------------------------
-   EVALUABLE TOGGLE
+   Evaluable Toggle
    --------------------------------------------------------- */
 
 .lesson-assessment-toggle {
@@ -266,10 +271,11 @@
 
     padding: 8px 11px;
 
+    background: var(--paper-dark);
+
     border: 1px solid var(--line);
     border-radius: var(--radius-small);
 
-    background: var(--paper-dark);
     color: var(--ink);
 
     font-family: var(--font-mono);
@@ -289,6 +295,7 @@
 
 .lesson-assessment-toggle:hover {
     border-color: var(--purple-light);
+
     background: var(--pink-light);
 
     transform: translateX(1px);
@@ -303,19 +310,18 @@
     margin: 0 9px 0 0;
 
     accent-color: var(--purple);
+
     cursor: pointer;
 }
 
 
 /* ---------------------------------------------------------
-   ASSESSMENT FIELDS
+   Assessment Fields
    --------------------------------------------------------- */
 
 .lesson-assessment-fields {
     margin-top: 12px;
     padding: 14px;
-
-    border-left: 3px solid var(--pink);
 
     background:
         linear-gradient(
@@ -324,6 +330,8 @@
             transparent 45%
         ),
         var(--paper-light);
+
+    border-left: 3px solid var(--pink);
 
     box-shadow:
         inset 0 1px 0 rgba(112, 70, 168, 0.025);
@@ -335,7 +343,7 @@
 
 
 /* ---------------------------------------------------------
-   LABELS INSIDE ASSESSMENT
+   Assessment Labels
    --------------------------------------------------------- */
 
 .lesson-assessment-fields > label {
@@ -360,7 +368,7 @@
 
 
 /* ---------------------------------------------------------
-   ASSESSMENT INPUTS
+   Assessment Inputs
    --------------------------------------------------------- */
 
 .lesson-assessment-fields input[type="text"],
@@ -373,10 +381,11 @@
 
     padding: 8px 10px;
 
+    background: var(--paper);
+
     border: 1px solid var(--line);
     border-radius: var(--radius-small);
 
-    background: var(--paper);
     color: var(--ink);
 
     font-family: var(--font-ui);
@@ -400,7 +409,7 @@
 
 
 /* ---------------------------------------------------------
-   SEARCH FIELD
+   Basic Knowledge Search
    --------------------------------------------------------- */
 
 .lesson-assessment-fields input[type="search"] {
@@ -412,6 +421,7 @@
 
 .lesson-assessment-fields input[type="search"]::placeholder {
     color: var(--ink-soft);
+
     opacity: 0.7;
 }
 
@@ -427,11 +437,6 @@
     border-top: 1px solid rgba(112, 70, 168, 0.08);
 }
 
-
-/* ---------------------------------------------------------
-   GROUP TITLE
-   --------------------------------------------------------- */
-
 .lesson-assessment-label {
     margin-bottom: 5px;
 
@@ -445,11 +450,6 @@
     letter-spacing: 0.10em;
 }
 
-
-/* ---------------------------------------------------------
-   HELP TEXT
-   --------------------------------------------------------- */
-
 .lesson-assessment-help {
     max-width: 540px;
 
@@ -459,6 +459,7 @@
 
     font-family: var(--font-ui);
     font-size: 11px;
+
     line-height: 1.45;
 }
 
@@ -479,11 +480,6 @@
     padding-right: 4px;
 }
 
-
-/* ---------------------------------------------------------
-   OPTION SCROLLBAR
-   --------------------------------------------------------- */
-
 .lesson-assessment-options::-webkit-scrollbar {
     width: 5px;
 }
@@ -494,6 +490,7 @@
 
 .lesson-assessment-options::-webkit-scrollbar-thumb {
     background: var(--purple-light);
+
     border-radius: 5px;
 }
 
@@ -503,7 +500,7 @@
 
 
 /* ---------------------------------------------------------
-   INDIVIDUAL OPTION
+   Assessment Checkbox Option
    --------------------------------------------------------- */
 
 .assessment-check-option {
@@ -511,7 +508,6 @@
 
     display: flex;
     align-items: center;
-
     gap: 8px;
 
     min-height: 30px;
@@ -519,10 +515,11 @@
     margin: 0;
     padding: 5px 8px;
 
+    background: transparent;
+
     border: 1px solid transparent;
     border-radius: 4px;
 
-    background: transparent;
     color: var(--ink);
 
     font-family: var(--font-ui);
@@ -538,25 +535,17 @@
 
 .assessment-check-option:hover {
     background: var(--paper-dark);
+
     border-color: var(--line);
 
     transform: translateX(1px);
 }
 
-
-/* ---------------------------------------------------------
-   SELECTED OPTION
-   --------------------------------------------------------- */
-
 .assessment-check-option.selected {
     background: var(--pink-light);
+
     border-color: rgba(112, 70, 168, 0.16);
 }
-
-
-/* ---------------------------------------------------------
-   CHECKBOX
-   --------------------------------------------------------- */
 
 .assessment-check-option input {
     flex: 0 0 auto;
@@ -567,13 +556,9 @@
     margin: 0;
 
     accent-color: var(--purple);
+
     cursor: pointer;
 }
-
-
-/* ---------------------------------------------------------
-   OPTION TEXT
-   --------------------------------------------------------- */
 
 .assessment-check-option span {
     flex: 1;
@@ -581,11 +566,6 @@
 
     line-height: 1.3;
 }
-
-
-/* ---------------------------------------------------------
-   OPTION WEIGHT
-   --------------------------------------------------------- */
 
 .assessment-check-option small {
     flex: 0 0 auto;
@@ -601,14 +581,84 @@
 
 
 /* =========================================================
-   SELECTED BASIC KNOWLEDGE
+   BASIC KNOWLEDGE
    ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Search Results
+   --------------------------------------------------------- */
+
+.assessment-basic-knowledge-results {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    max-height: 210px;
+
+    overflow-y: auto;
+
+    padding-right: 4px;
+}
+
+.assessment-basic-knowledge-results::-webkit-scrollbar {
+    width: 5px;
+}
+
+.assessment-basic-knowledge-results::-webkit-scrollbar-track {
+    background: var(--paper-dark);
+}
+
+.assessment-basic-knowledge-results::-webkit-scrollbar-thumb {
+    background: var(--purple-light);
+
+    border-radius: 5px;
+}
+
+.assessment-basic-knowledge-results::-webkit-scrollbar-thumb:hover {
+    background: var(--purple);
+}
+
+
+/* ---------------------------------------------------------
+   Basic Knowledge Result
+   --------------------------------------------------------- */
+
+.assessment-basic-knowledge-results .assessment-check-option {
+    align-items: flex-start;
+}
+
+.assessment-basic-knowledge-results .assessment-check-option span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.assessment-basic-knowledge-results .assessment-check-option strong {
+    color: var(--ink);
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.assessment-basic-knowledge-results .assessment-check-option small {
+    color: var(--ink-soft);
+
+    font-size: 10px;
+    font-weight: 400;
+
+    line-height: 1.35;
+}
+
+
+/* ---------------------------------------------------------
+   Selected Basic Knowledge
+   --------------------------------------------------------- */
 
 #lessonSelectedBasicKnowledge,
 #editLessonSelectedBasicKnowledge {
     display: flex;
     flex-wrap: wrap;
-
     gap: 5px;
 
     margin-top: 8px;
@@ -619,12 +669,13 @@
     max-width: 100%;
 }
 
+.assessment-basic-knowledge-selected {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 
-/* ---------------------------------------------------------
-   BASIC KNOWLEDGE CHIPS
-   --------------------------------------------------------- */
-
-.assessment-selected-item {
+.assessment-selected-knowledge-item {
     display: inline-flex;
     align-items: center;
 
@@ -632,21 +683,33 @@
 
     padding: 5px 7px;
 
+    background: var(--yellow-light);
+
     border: 1px solid var(--line);
     border-radius: 4px;
 
-    background: var(--yellow-light);
     color: var(--ink);
 
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10px;
+
     line-height: 1.3;
 }
 
+.assessment-selected-empty {
+    padding: 6px 8px;
 
-/* ---------------------------------------------------------
-   ASSESSMENT INSTRUMENT SELECT
-   --------------------------------------------------------- */
+    color: var(--ink-soft);
+
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-style: italic;
+}
+
+
+/* =========================================================
+   ASSESSMENT INSTRUMENT
+   ========================================================= */
 
 #lessonAssessmentInstrument,
 #editLessonAssessmentInstrument {
@@ -660,6 +723,8 @@
 
 #modalContainer #lessonStatus,
 #modalContainer #editLessonStatus {
+    color: var(--ink-soft);
+
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 600;
@@ -675,16 +740,10 @@
 
     display: flex;
     align-items: center;
-
     gap: 8px;
 
     border-top: 1px solid var(--line);
 }
-
-
-/* ---------------------------------------------------------
-   DELETE BUTTON
-   --------------------------------------------------------- */
 
 #modalContainer .modal-footer .btn-danger {
     margin-right: auto;
@@ -692,94 +751,8 @@
 
 
 /* =========================================================
-   SCROLLBAR
-   ========================================================= */
-
-#modalContainer .modal-body::-webkit-scrollbar {
-    width: 7px;
-}
-
-#modalContainer .modal-body::-webkit-scrollbar-track {
-    background: var(--paper-dark);
-    border-radius: 10px;
-}
-
-#modalContainer .modal-body::-webkit-scrollbar-thumb {
-    background: var(--purple-light);
-    border-radius: 10px;
-}
-
-#modalContainer .modal-body::-webkit-scrollbar-thumb:hover {
-    background: var(--purple);
-}
-
-
-/* =========================================================
    RESPONSIVE
    ========================================================= */
-
-@media (max-width: 700px) {
-
-    #modalContainer .modal {
-        width: min(
-            620px,
-            calc(100vw - 24px)
-        );
-
-        max-height: 94vh;
-    }
-
-    #modalContainer .modal-body {
-        padding-right: 6px;
-    }
-
-    .lesson-assessment-fields {
-        padding: 11px;
-        border-left-width: 2px;
-    }
-}
-
-
-@media (max-width: 560px) {
-
-    #modalContainer .modal {
-        width: calc(100vw - 16px);
-        max-height: 96vh;
-    }
-
-    #modalContainer .modal-header h3 {
-        font-size: 25px;
-    }
-
-    #modalContainer .modal-footer {
-        flex-wrap: wrap;
-    }
-
-    #modalContainer .modal-footer .btn-danger {
-        width: 100%;
-
-        margin-right: 0;
-        margin-bottom: 4px;
-    }
-
-    #modalContainer .modal-footer .btn-secondary,
-    #modalContainer .modal-footer .btn-primary {
-        flex: 1;
-    }
-
-    .lesson-assessment-toggle {
-        font-size: 11px;
-    }
-
-    .lesson-assessment-options {
-        max-height: 190px;
-    }
-}
-
-
-/* ---------------------------------------------------------
-   RESPONSIVE
-   --------------------------------------------------------- */
 
 @media (max-width: 700px) {
 
@@ -794,9 +767,11 @@
 
     .lesson-assessment-fields {
         padding: 11px;
+
         border-left-width: 2px;
     }
 }
+
 
 @media (max-width: 560px) {
 
@@ -815,6 +790,7 @@
 
     #modalContainer .modal-footer .btn-danger {
         width: 100%;
+
         margin-right: 0;
         margin-bottom: 4px;
     }
@@ -828,7 +804,8 @@
         font-size: 11px;
     }
 
-    .lesson-assessment-options {
+    .lesson-assessment-options,
+    .assessment-basic-knowledge-results {
         max-height: 190px;
     }
 }

@@ -86,7 +86,7 @@ function openClassSession(classId) {
         );
 
 
-    renderAttendanceView({
+    renderClassAttendanceModal({
         academicYear,
         classItem,
         today,
@@ -102,7 +102,7 @@ function openClassSession(classId) {
 // RENDER
 // ---------------------------------------------------------
 
-function renderAttendanceView({
+function renderClassAttendanceModal({
     academicYear,
     classItem,
     today,
@@ -662,16 +662,19 @@ function formatAttendanceDate(
         }
     ).format(date);
 }
-function setupAttendanceStatusControls() {
 
-    const modal =
-        document.getElementById("attendanceModal");
 
-    if (!modal) return;
+function setupAttendanceStatusControls(
+    root = document
+) {
+
+    if (!root) {
+        return;
+    }
 
 
     const radios =
-        modal.querySelectorAll(
+        root.querySelectorAll(
             ".attendance-status input"
         );
 
@@ -687,7 +690,9 @@ function setupAttendanceStatusControls() {
                         ".attendance-status-group"
                     );
 
-                if (!group) return;
+                if (!group) {
+                    return;
+                }
 
 
                 group
@@ -708,11 +713,13 @@ function setupAttendanceStatusControls() {
                         ".attendance-status"
                     );
 
+
                 if (selectedLabel) {
 
                     selectedLabel.classList.add(
                         "selected"
                     );
+
                 }
 
             }
