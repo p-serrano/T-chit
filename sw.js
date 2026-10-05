@@ -3,7 +3,7 @@
 // ----------------------------------------
 
 const CACHE_NAME =
-    "tchit-v1";
+    "tchit-v2";
 
 const APP_FILES = [
     "./",
@@ -34,14 +34,35 @@ self.addEventListener(
 
 
 self.addEventListener(
-    "activate",
-    event => {
+	"activate",
+	event => {
 
-        event.waitUntil(
-            self.clients.claim()
-        );
+		event.waitUntil(
 
-    }
+			caches
+				.keys()
+				.then(cacheNames =>
+					Promise.all(
+						cacheNames
+							.filter(
+								cacheName =>
+									cacheName !== CACHE_NAME
+							)
+							.map(
+								cacheName =>
+									caches.delete(
+										cacheName
+									)
+							)
+					)
+				)
+				.then(() =>
+					self.clients.claim()
+				)
+
+		);
+
+	}
 );
 
 
