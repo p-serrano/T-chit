@@ -388,10 +388,18 @@ function renderAttendanceStudent(
         savedRecord?.status || "present";
 
 
-    const name =
-        student.name ||
-        `${student.firstName || ""} ${student.lastName || ""}`.trim() ||
-        "Unnamed student";
+    const firstName =
+        student.firstName ||
+        "";
+
+    const lastName =
+        student.lastName ||
+        "";
+
+    const displayName =
+        lastName && firstName
+            ? `${lastName}, ${firstName}`
+            : lastName || firstName || student.name || "Unnamed student";
 
 
     const groupName =
@@ -406,14 +414,14 @@ function renderAttendanceStudent(
         >
 
             <div class="attendance-student-name">
-                ${escapeHTML(name)}
+                ${escapeHTML(displayName)}
             </div>
 
 
             <div
                 class="attendance-status-group"
                 role="radiogroup"
-                aria-label="Attendance status for ${escapeHTML(name)}"
+                aria-label="Attendance status for ${escapeHTML(displayName)}"
             >
 
                 ${renderAttendanceStatus(
