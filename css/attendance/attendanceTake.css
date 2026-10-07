@@ -1,41 +1,40 @@
 /* =========================================================
-T-CHIT — ATTENDANCE
-TAKE ATTENDANCE
-========================================================= */
+   T-CHIT — ATTENDANCE
+   TAKE ATTENDANCE
+   ========================================================= */
 
 /* ---------------------------------------------------------
-RECORD ATTENDANCE SECTION
---------------------------------------------------------- */
+   RECORD ATTENDANCE SECTION
+   --------------------------------------------------------- */
 
 .attendance-record-section {
-width: 100%;
+	width: 100%;
 }
 
 /* ---------------------------------------------------------
-HEADER
---------------------------------------------------------- */
+   HEADER
+   --------------------------------------------------------- */
 
 .attendance-record-header {
-margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .attendance-record-header h3 {
-margin: 0;
-color: var(--ink);
-font-family: var(--font-hand);
-font-size: 29px;
-font-weight: 400;
-line-height: 1;
+	margin: 0;
+	color: var(--ink);
+	font-family: var(--font-hand);
+	font-size: 29px;
+	font-weight: 400;
+	line-height: 1;
 }
 
 .attendance-record-header p {
-margin: 7px 0 0;
-color: var(--ink-soft);
-font-family: var(--font-ui);
-font-size: 12px;
-line-height: 1.5;
+	margin: 7px 0 0;
+	color: var(--ink-soft);
+	font-family: var(--font-ui);
+	font-size: 12px;
+	line-height: 1.5;
 }
-
 
 /* ---------------------------------------------------------
    DATE + CLASS SELECTOR
@@ -85,7 +84,6 @@ line-height: 1.5;
 .attendance-selector-field select:focus {
 	background: var(--paper-light);
 }
-
 
 /* ---------------------------------------------------------
    LOAD BUTTON
@@ -168,7 +166,7 @@ line-height: 1.5;
    DAILY HEADER
    --------------------------------------------------------- */
 
-.attendance-daily-header {
+.attendance-daily-loaded-header {
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
@@ -178,7 +176,7 @@ line-height: 1.5;
 	border-left: 3px solid var(--purple);
 }
 
-.attendance-daily-header h3 {
+.attendance-daily-loaded-header h3 {
 	margin: 0;
 	color: var(--ink);
 	font-family: var(--font-hand);
@@ -187,154 +185,82 @@ line-height: 1.5;
 	line-height: 1;
 }
 
-.attendance-daily-header p {
+.attendance-daily-loaded-header p {
 	margin: 6px 0 0;
 	color: var(--ink-soft);
 	font-family: var(--font-ui);
 	font-size: 12px;
 }
 
-.attendance-daily-header-actions {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-}
-
-/* ---------------------------------------------------------
-STUDENT LIST
---------------------------------------------------------- */
-
-.attendance-daily-students {
-display: flex;
-flex-direction: column;
-border-top: 1px solid rgba(91, 72, 105, 0.16);
-}
-
-.attendance-daily-student {
-display: grid;
-grid-template-columns:
-minmax(180px, 1fr)
-auto;
-align-items: center;
-gap: 18px;
-min-height: 58px;
-padding: 9px 0;
-border-bottom: 1px solid rgba(91, 72, 105, 0.11);
-}
-
-.attendance-daily-student-name {
-min-width: 0;
-color: var(--ink);
-font-family: var(--font-ui);
-font-size: 12px;
-font-weight: 600;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-}
-
-/* ---------------------------------------------------------
-STATUS CONTROLS
---------------------------------------------------------- */
-
-.attendance-daily-status {
-display: flex;
-align-items: center;
-gap: 6px;
-flex-wrap: wrap;
-}
-
-.attendance-daily-status .attendance-status {
-min-width: 72px;
-}
-
-/* ---------------------------------------------------------
-SAVE AREA
---------------------------------------------------------- */
-
-.attendance-daily-footer {
-display: flex;
-align-items: center;
-justify-content: flex-end;
-gap: 10px;
-margin-top: 18px;
-padding-top: 15px;
-border-top: 1px solid rgba(91, 72, 105, 0.14);
-}
-
-.attendance-save-button {
-min-width: 150px;
-}
-
-/* ---------------------------------------------------------
-RESPONSIVE
---------------------------------------------------------- */
-
-@media (max-width: 760px) {
-.attendance-selector {
-grid-template-columns: 1fr 1fr;
-}
-
-
-.attendance-selector-action {
-	grid-column: 1 / -1;
-}
-
-.attendance-selector-action .btn-primary {
-	width: 100%;
-}
-
-.attendance-daily-header {
-	align-items: flex-start;
-	flex-direction: column;
-}
-
-.attendance-daily-student {
-	grid-template-columns: 1fr;
-	gap: 9px;
-	padding: 13px 0;
-}
-
-.attendance-daily-status {
-	width: 100%;
-}
-
-.attendance-daily-status .attendance-status {
-	flex: 1 1 0;
-	min-width: 0;
-}
-
-
-}
-
-@media (max-width: 520px) {
-.attendance-selector {
-grid-template-columns: 1fr;
-padding: 13px;
-}
-
-
-.attendance-selector-action {
-	grid-column: auto;
-}
-
-.attendance-daily-empty {
-	padding: 34px 16px;
-}
-
-.attendance-daily-status .attendance-status {
-	min-height: 36px;
+.attendance-daily-loaded-header .attendance-student-count {
+	color: var(--ink-soft);
+	font-family: var(--font-ui);
 	font-size: 11px;
 }
 
-.attendance-daily-footer {
-	align-items: stretch;
-	flex-direction: column;
+/* ---------------------------------------------------------
+   SAVE AREA
+   --------------------------------------------------------- */
+
+.attendance-daily-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 18px;
+	padding-top: 15px;
+	border-top: 1px solid rgba(91, 72, 105, 0.14);
 }
 
-.attendance-save-button {
-	width: 100%;
+.attendance-daily-actions .btn-primary {
+	min-width: 150px;
 }
 
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
 
+@media (max-width: 760px) {
+
+	.attendance-selector {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.attendance-selector-action {
+		grid-column: 1 / -1;
+	}
+
+	.attendance-selector-action .btn-primary {
+		width: 100%;
+	}
+
+	.attendance-daily-loaded-header {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 520px) {
+
+	.attendance-selector {
+		grid-template-columns: 1fr;
+		padding: 13px;
+	}
+
+	.attendance-selector-action {
+		grid-column: auto;
+	}
+
+	.attendance-daily-empty {
+		padding: 34px 16px;
+	}
+
+	.attendance-daily-actions {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.attendance-daily-actions .btn-primary {
+		width: 100%;
+	}
 }

@@ -33,7 +33,8 @@ const Storage = {
             assessmentInstruments: [],
 
             attendance: [],
-            activityNotes: []
+            activityNotes: [],
+            notes: []
         };
     },
 
@@ -148,6 +149,10 @@ const Storage = {
 
         if (!Array.isArray(data.activityNotes)) {
             data.activityNotes = [];
+        }
+
+        if (!Array.isArray(data.notes)) { 
+            data.notes = []; 
         }
 
         if (!Array.isArray(data.gradebookConfigs)) {

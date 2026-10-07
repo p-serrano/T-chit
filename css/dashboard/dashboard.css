@@ -334,14 +334,25 @@
     gap: 9px;
 }
 .class-card {
+
     display: flex;
+
     align-items: center;
+
     gap: 18px;
+
     padding: 13px 16px;
+
     background: var(--paper-light);
+
     border: 1px solid var(--line);
+
+    border-left: 5px solid var(--class-color);
+
     border-radius: var(--radius-small);
+
     box-shadow: var(--shadow);
+
 }
 .class-time {
     min-width: 70px;
@@ -449,4 +460,25 @@
         padding: 7px 9px;
         font-size: 11px;
     }
+}
+
+
+/* ---------------------------------------------------------
+   UPCOMING — EVENTS VS REMINDERS
+   --------------------------------------------------------- */
+
+.dashboard-upcoming-event.is-event {
+	background: var(--paper-light);
+	border-left: 4px solid var(--purple);
+}
+
+.dashboard-upcoming-event.is-reminder {
+	background: #fff9de;
+	border-left: 4px solid var(--yellow);
+}
+
+.dashboard-upcoming-event.is-reminder
+.dashboard-upcoming-title::before {
+	content: "🔔";
+	margin-right: 6px;
 }

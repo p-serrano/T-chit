@@ -988,124 +988,90 @@ function getGradebookCompetenceIds(
     activities
 ) {
 
+    const competenceIds = [];
+
+
+    if (!Array.isArray(activities)) {
+        return competenceIds;
+    }
+
+
+    /*
+     * Collect only the specific competences
+     * actually assigned to the activities.
+     */
+
+    activities.forEach(
+        activity => {
+
+            if (
+                !Array.isArray(
+                    activity.specificCompetences
+                )
+            ) {
+                return;
+            }
+
+
+            activity.specificCompetences.forEach(
+                competence => {
+
+                    const competenceId =
+                        competence?.specificCompetenceId;
+
+
+                    if (
+                        !competenceId
+                    ) {
+                        return;
+                    }
+
+
+                    if (
+                        !competenceIds.includes(
+                            competenceId
+                        )
+                    ) {
+
+                        competenceIds.push(
+                            competenceId
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /*
+     * Sort by CE number.
+     *
+     * We use the curriculum only for
+     * ordering, never for discovering
+     * which competences are present.
+     */
+
     const classItem =
         ClassManager.getById(
             assessmentSelectedClassId
         );
 
 
-    if (!classItem) {
-        return [];
-    }
-
-
     const curriculum =
-        ClassManager.getCurriculum(
-            classItem.id
-        );
+        classItem
+            ? ClassManager.getCurriculum(
+                classItem.id
+            )
+            : null;
 
 
     if (!curriculum) {
-        return [];
+        return competenceIds;
     }
 
-
-    const competenceIds = [];
-
-
-    function collectCompetences(
-        value
-    ) {
-
-        if (!value) {
-            return;
-        }
-
-
-        if (Array.isArray(value)) {
-
-            value.forEach(
-                item =>
-                    collectCompetences(item)
-            );
-
-            return;
-        }
-
-
-        if (
-            typeof value !== "object"
-        ) {
-            return;
-        }
-
-
-        /*
-         * Specific competence
-         */
-
-        if (
-            value.id &&
-            (
-                value.code ||
-                value.shortCode
-            ) &&
-            (
-                value.name ||
-                value.description
-            )
-        ) {
-
-            const code =
-                String(
-                    value.code ||
-                    value.shortCode
-                ).toUpperCase();
-
-
-            /*
-             * Only CE / specific competence
-             */
-
-            if (
-                /^CE\d+$/.test(code)
-            ) {
-
-                if (
-                    !competenceIds.includes(
-                        value.id
-                    )
-                ) {
-
-                    competenceIds.push(
-                        value.id
-                    );
-
-                }
-
-                return;
-            }
-
-        }
-
-
-        Object.values(value)
-            .forEach(
-                child =>
-                    collectCompetences(child)
-            );
-
-    }
-
-
-    collectCompetences(
-        curriculum
-    );
-
-
-    /*
-     * Sort by CE number
-     */
 
     competenceIds.sort(
         (a, b) => {
@@ -1150,6 +1116,19 @@ function getGradebookCompetenceIds(
                         .replace(/\D/g, ""),
                     10
                 );
+
+
+            /*
+             * If the code does not contain a
+             * number, keep its original order.
+             */
+
+            if (
+                Number.isNaN(numberA) ||
+                Number.isNaN(numberB)
+            ) {
+                return 0;
+            }
 
 
             return numberA - numberB;
@@ -1437,16 +1416,27 @@ function getGradebookStudentName(
     }
 
 
-    return (
+    const firstName =
+        student.firstName ||
         student.name ||
+        "";
 
-        [
-            student.firstName,
-            student.lastName
-        ]
-            .filter(Boolean)
-            .join(" ") ||
 
+    const lastName =
+        student.lastName ||
+        "";
+
+
+    if (lastName && firstName) {
+
+        return `${lastName}, ${firstName}`;
+
+    }
+
+
+    return (
+        lastName ||
+        firstName ||
         "Unnamed student"
     );
 

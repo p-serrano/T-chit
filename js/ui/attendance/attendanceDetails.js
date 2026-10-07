@@ -809,16 +809,35 @@ function getStudentDisplayName(
     student
 ) {
 
-    return (
+    if (!student) {
+        return "No student";
+    }
+
+
+    const firstName =
+        student.firstName ||
         student.name ||
-        [
-            student.firstName,
-            student.lastName
-        ]
-            .filter(Boolean)
-            .join(" ") ||
+        "";
+
+
+    const lastName =
+        student.lastName ||
+        "";
+
+
+    if (lastName && firstName) {
+
+        return `${lastName}, ${firstName}`;
+
+    }
+
+
+    return (
+        lastName ||
+        firstName ||
         "Unnamed student"
     );
+
 }
 
 

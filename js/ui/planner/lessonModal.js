@@ -764,7 +764,10 @@ function createLesson(
 
     if (
         !date ||
-        !title.trim()
+        (
+            status !== "cancelled" &&
+            !title.trim()
+        )
     ) {
 
         alert(
@@ -1569,7 +1572,10 @@ function saveLessonEdit(lessonId) {
     }
 
 
-    if (!title) {
+    if (
+        status !== "cancelled" &&
+        !title
+    ) {
 
         showAlertModal(
             "MISSING TITLE",

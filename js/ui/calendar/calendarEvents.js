@@ -16,6 +16,7 @@ function renderCalendarEventsTab() {
 			</div>
 		`;
 	}
+
 	const events =
 		CalendarManager
 			.getByAcademicYearId(
@@ -27,6 +28,13 @@ function renderCalendarEventsTab() {
 						b.date
 					)
 			);
+
+
+	const reminders =
+		getCalendarReminders(
+			academicYear.id
+		);
+
 	return `
 		<div class="calendar-events-section">
 			<div class="view-toolbar">
@@ -46,27 +54,42 @@ function renderCalendarEventsTab() {
 					+ NEW EVENT
 				</button>
 			</div>
+
 			${
 				events.length
 					? renderCalendarEvents(events)
 					: `
 						<div class="empty-state calendar-empty-state">
+
 							<div class="empty-state-icon">
 								📅
 							</div>
+
 							<h3>
 								No calendar events yet
 							</h3>
+
 							<p>
 								Add holidays, exams, trips, meetings and other school events.
 							</p>
+
 							<button
 								class="btn-primary"
 								onclick="openNewCalendarEventModal()">
 								+ ADD EVENT
 							</button>
+
 						</div>
 					`
+			}
+
+
+			${
+				reminders.length
+					? renderCalendarReminders(
+						reminders
+					)
+					: ""
 			}
 		</div>
 	`;
@@ -130,6 +153,162 @@ function renderCalendarEvents(events) {
 		</div>
 	`;
 }
+
+
+// ----------------------------------------
+// Calendar reminders
+// ----------------------------------------
+
+function getCalendarReminders(
+	academicYearId
+) {
+
+	return NoteManager
+		.getByAcademicYear(
+			academicYearId
+		)
+		.filter(note =>
+			note.type === "reminder" &&
+			note.notify === true &&
+			note.notifyAt
+		)
+		.sort(
+			(a, b) =>
+				a.notifyAt.localeCompare(
+					b.notifyAt
+				)
+		);
+
+}
+
+
+// ----------------------------------------
+// Render calendar reminders
+// ----------------------------------------
+
+function renderCalendarReminders(
+	reminders
+) {
+
+	return `
+
+		<div class="calendar-reminders-section">
+
+			<div class="calendar-section-heading">
+
+				<div class="view-label">
+					REMINDERS
+				</div>
+
+				<div class="calendar-section-description">
+					Notes with scheduled reminders.
+				</div>
+
+			</div>
+
+
+			<div class="calendar-reminders-list">
+
+				${reminders.map(
+					note => {
+
+						const date =
+							note.notifyAt
+								? note.notifyAt.slice(
+									0,
+									10
+								)
+								: "";
+
+						const time =
+							note.notifyAt
+								? note.notifyAt.slice(
+									11,
+									16
+								)
+								: "";
+
+
+						return `
+
+							<article
+								class="calendar-reminder-card">
+
+								<div
+									class="calendar-reminder-icon">
+									🔔
+								</div>
+
+
+								<div
+									class="calendar-reminder-date">
+
+									<div
+										class="calendar-reminder-date-day">
+										${escapeHTML(
+											date
+										)}
+									</div>
+
+									<div
+										class="calendar-reminder-time">
+										${escapeHTML(
+											time
+										)}
+									</div>
+
+								</div>
+
+
+								<div
+									class="calendar-reminder-info">
+
+									<div
+										class="calendar-reminder-title">
+
+										${escapeHTML(
+											note.title ||
+											"Untitled reminder"
+										)}
+
+									</div>
+
+
+									${
+										note.text
+											? `
+
+												<div
+													class="calendar-reminder-description">
+
+													${escapeHTML(
+														note.text
+													)}
+
+												</div>
+
+											`
+											: ""
+									}
+
+								</div>
+
+							</article>
+
+						`;
+
+					}
+				).join("")}
+
+			</div>
+
+		</div>
+
+	`;
+
+}
+
+
 // ----------------------------------------
 // New calendar event modal
 // ----------------------------------------

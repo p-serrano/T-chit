@@ -99,22 +99,36 @@ function renderDashboardClassCards(
                         classItem
                     }) => {
 
+                        const isCentreActivity =
+                            classItem.type ===
+                            ClassManager.TYPES.ACTIVITY;
+
+
                         const students =
-                            EnrollmentManager
-                                .getStudentsForClass(
-                                    classItem.id
-                                );
+                            !isCentreActivity
+                                ? EnrollmentManager
+                                    .getStudentsForClass(
+                                        classItem.id
+                                    )
+                                : [];
 
 
                         const lesson =
-                            getTodayLesson(
-                                classItem.id
-                            );
+                            !isCentreActivity
+                                ? getTodayLesson(
+                                    classItem.id
+                                )
+                                : null;
 
 
                         return `
 
-                            <div class="class-card">
+                            <div
+                                class="class-card"
+                                style="--class-color: ${escapeHTML(
+                                    classItem.color || "var(--purple)"
+                                )};"
+                            >
 
                                 <div class="class-time">
 
@@ -144,52 +158,68 @@ function renderDashboardClassCards(
 
                                     <div class="class-subject">
 
-                                        ${escapeHTML(
-                                            classItem.subject ||
-                                            "English"
-                                        )}
-
-                                        ·
-
-                                        ${students.length}
-
                                         ${
-                                            students.length === 1
-                                                ? "student"
-                                                : "students"
+                                            isCentreActivity
+                                                ? "CENTRE ACTIVITY"
+                                                : `
+                                                    ${escapeHTML(
+                                                        classItem.subject ||
+                                                        "English"
+                                                    )}
+
+                                                    ·
+
+                                                    ${students.length}
+
+                                                    ${
+                                                        students.length === 1
+                                                            ? "student"
+                                                            : "students"
+                                                    }
+                                                `
                                         }
 
                                     </div>
 
 
                                     ${
-                                        lesson
-                                            ? `
-                                                <div class="class-lesson">
-                                                    ${escapeHTML(
-                                                        lesson.title ||
-                                                        "Untitled lesson"
-                                                    )}
-                                                </div>
-                                            `
-                                            : `
-                                                <div class="class-lesson class-lesson-empty">
-                                                    No lesson planned
-                                                </div>
-                                            `
+                                        !isCentreActivity
+                                            ? (
+                                                lesson
+                                                    ? `
+                                                        <div class="class-lesson">
+                                                            ${escapeHTML(
+                                                                lesson.title ||
+                                                                "Untitled lesson"
+                                                            )}
+                                                        </div>
+                                                    `
+                                                    : `
+                                                        <div class="class-lesson class-lesson-empty">
+                                                            No lesson planned
+                                                        </div>
+                                                    `
+                                            )
+                                            : ""
                                     }
 
                                 </div>
 
 
-                                <button
-                                    class="class-action"
-                                    onclick="startClass(
-                                        '${classItem.id}'
-                                    )"
-                                >
-                                    START CLASS
-                                </button>
+                                ${
+                                    !isCentreActivity
+                                        ? `
+                                            <button
+                                                class="class-action"
+                                                onclick="startClass(
+                                                    '${classItem.id}'
+                                                )"
+                                            >
+                                                START CLASS
+                                            </button>
+                                        `
+                                        : ""
+                                }
 
                             </div>
 

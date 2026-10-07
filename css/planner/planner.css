@@ -222,10 +222,6 @@
     );
 }
 
-.timetable-entry {
-    border-left: 4px solid var(--class-color);
-}
-
 .timetable-entry strong {
     color: var(--class-color);
 }
@@ -526,57 +522,161 @@
 
 
 /* ---------------------------------------------------------
-   COURSE PLAN SLOT
+   COURSE PLAN SLOT — BASE
    --------------------------------------------------------- */
 
 .course-plan-slot {
-	position: relative;
+    position: relative;
 
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-	width: 100%;
-	min-height: 72px;
+    width: 100%;
+    min-height: 72px;
 
-	padding: 11px;
+    padding: 11px;
 
-	border: 1px solid var(--line);
-	border-left: 5px solid var(--class-color);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--class-color);
 
-	border-radius: var(--radius-small);
+    border-radius: var(--radius-small);
 
-	background: var(--paper);
-	color: var(--ink);
+    background: var(--paper);
+    color: var(--ink);
 
-	text-align: left;
+    text-align: left;
 
-	cursor: pointer;
+    cursor: pointer;
 
-	box-shadow:
-		1px 2px 4px rgba(
-			45,
-			35,
-			50,
-			0.07
-		);
+    box-shadow:
+        1px 2px 4px rgba(
+            45,
+            35,
+            50,
+            0.07
+        );
 
-	transition:
-		transform 0.15s ease,
-		box-shadow 0.15s ease,
-		border-color 0.15s ease;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease,
+        background-color 0.15s ease;
 }
 
+
+/* ---------------------------------------------------------
+   PLANNED LESSON
+   --------------------------------------------------------- */
+
+.course-plan-slot-planned {
+    background: var(--yellow-light);
+}
+
+.course-plan-slot-planned strong {
+    margin-bottom: 4px;
+}
+
+
+/* ---------------------------------------------------------
+   DONE LESSON
+   --------------------------------------------------------- */
+
+.course-plan-slot-done {
+    background: rgba(146, 207, 161, 0.396);
+}
+
+.course-plan-slot-done strong {
+    margin-bottom: 4px;
+}
+
+
+/* ---------------------------------------------------------
+   CANCELLED LESSON
+   --------------------------------------------------------- */
+
+.course-plan-slot-cancelled {
+    background: rgba(200, 103, 111, 0.281);
+}
+
+.course-plan-slot-cancelled strong {
+    margin-bottom: 4px;
+}
+
+
+/* ---------------------------------------------------------
+   LESSON TITLE
+   --------------------------------------------------------- */
+
+.course-plan-lesson-title {
+    display: block;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    color: var(--ink);
+
+    font-family: var(--font-hand);
+    font-size: 18px;
+    line-height: 1.05;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS
+   --------------------------------------------------------- */
+
+.course-plan-status {
+    display: inline-block;
+
+    margin-top: auto;
+    padding-top: 7px;
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.course-plan-status-planned {
+    color: var(--purple);
+}
+
+.course-plan-status-done {
+    color: var(--green);
+}
+
+.course-plan-status-cancelled {
+    color: var(--red);
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+   --------------------------------------------------------- */
+
 .course-plan-slot:hover {
-	transform: translateY(-2px);
+    transform: translateY(-2px);
 
-	border-top-color: var(--purple-light);
-	border-right-color: var(--purple-light);
-	border-bottom-color: var(--purple-light);
+    border-top-color: var(--purple-light);
+    border-right-color: var(--purple-light);
+    border-bottom-color: var(--purple-light);
 
-	background-color: var(--paper-dark);
+    /*
+       IMPORTANT:
+       Do not change border-left-color here.
+       It must remain the class colour.
+    */
 
-	box-shadow: var(--shadow);
+    background-color: var(--paper-dark);
+
+    box-shadow: var(--shadow);
 }
 
 
@@ -631,39 +731,6 @@
 	font-size: 11px;
 	font-weight: 600;
 	letter-spacing: 0.05em;
-}
-
-
-
-
-/* ---------------------------------------------------------
-   PLANNED LESSON
-   --------------------------------------------------------- */
-
-.course-plan-slot-planned {
-    border-left-color: var(--pink);
-    background: var(--yellow-light);
-}
-
-.course-plan-slot-planned strong {
-    margin-bottom: 4px;
-}
-
-.course-plan-lesson-title {
-    display: block;
-
-    width: 100%;
-
-    overflow: hidden;
-
-    color: var(--ink);
-
-    font-family: var(--font-hand);
-    font-size: 18px;
-    line-height: 1.05;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 

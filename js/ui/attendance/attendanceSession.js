@@ -78,6 +78,20 @@ function openClassSession(classId) {
             classId
         );
 
+        console.log(
+            "ATTENDANCE MODAL",
+            {
+                classId,
+                students: students.map(
+                    student => ({
+                        id: student.id,
+                        name: student.firstName,
+                        lastName: student.lastName
+                    })
+                )
+            }
+        );
+
 
     const existingAttendance =
         AttendanceManager.getForClassAndDate(

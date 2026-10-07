@@ -460,6 +460,20 @@ function loadAttendanceForSelectedDate() {
             classId
         );
 
+        console.log(
+            "TAKE ATTENDANCE",
+            {
+                classId,
+                students: students.map(
+                    student => ({
+                        id: student.id,
+                        name: student.firstName,
+                        lastName: student.lastName
+                    })
+                )
+            }
+        );
+
 
     const attendance =
         AttendanceManager.getForClassAndDate(

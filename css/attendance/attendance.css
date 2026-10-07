@@ -292,6 +292,125 @@
 }
 
 /* ---------------------------------------------------------
+   COMMON STUDENT ATTENDANCE
+   --------------------------------------------------------- */
+
+.attendance-student-list {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid rgba(91, 72, 105, 0.15);
+}
+
+.attendance-student {
+	display: grid;
+	grid-template-columns:
+		minmax(180px, 1fr)
+		auto;
+	align-items: center;
+	gap: 18px;
+	min-height: 58px;
+	padding: 8px 0;
+	border-bottom: 1px solid rgba(91, 72, 105, 0.12);
+}
+
+.attendance-student-name {
+	min-width: 0;
+	color: var(--ink);
+	font-family: var(--font-ui);
+	font-size: 12px;
+	font-weight: 600;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   ATTENDANCE STATUS CONTROLS
+   --------------------------------------------------------- */
+
+.attendance-status-group {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.attendance-status {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 72px;
+	min-height: 32px;
+	padding: 0 9px;
+	box-sizing: border-box;
+	border: 1px solid rgba(91, 72, 105, 0.20);
+	background: rgba(255, 255, 255, 0.35);
+	color: var(--ink-muted);
+	font-family: var(--font-mono);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	cursor: pointer;
+	user-select: none;
+	transition:
+		background 0.12s ease,
+		border-color 0.12s ease,
+		color 0.12s ease,
+		transform 0.12s ease;
+}
+
+.attendance-status:hover {
+	color: var(--ink);
+	border-color: rgba(91, 72, 105, 0.38);
+}
+
+.attendance-status input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.attendance-status span {
+	pointer-events: none;
+}
+
+.attendance-status:has(input:focus-visible) {
+	outline: 2px solid var(--purple);
+	outline-offset: 2px;
+}
+
+.attendance-status.selected {
+	color: var(--ink);
+	border-color: rgba(91, 72, 105, 0.48);
+	box-shadow: inset 0 -2px 0 rgba(91, 72, 105, 0.12);
+}
+
+.attendance-status-present.selected {
+	background: rgba(150, 190, 150, 0.32);
+	border-color: rgba(91, 130, 91, 0.48);
+}
+
+.attendance-status-absent.selected {
+	background: rgba(190, 115, 130, 0.22);
+	border-color: rgba(150, 75, 95, 0.48);
+}
+
+.attendance-status-justified.selected {
+	background: rgba(240, 196, 79, 0.30);
+	border-color: rgba(175, 135, 35, 0.50);
+}
+
+.attendance-status-late.selected {
+	background: rgba(151, 104, 166, 0.22);
+	border-color: rgba(112, 72, 130, 0.50);
+}
+
+/* ---------------------------------------------------------
    RESPONSIVE
    --------------------------------------------------------- */
 
@@ -323,6 +442,20 @@
 		grid-template-columns: 1fr;
 	}
 
+	.attendance-student {
+		grid-template-columns: 1fr;
+		gap: 9px;
+		padding: 13px 0;
+	}
+
+	.attendance-status-group {
+		width: 100%;
+	}
+
+	.attendance-status {
+		flex: 1 1 0;
+		min-width: 0;
+	}
 }
 
 @media (max-width: 560px) {
@@ -339,4 +472,8 @@
 		grid-template-columns: 1fr;
 	}
 
+	.attendance-status {
+		min-height: 36px;
+		font-size: 11px;
+	}
 }

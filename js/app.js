@@ -160,6 +160,9 @@ function navigateTo(view) {
 		case "attendance":
 			renderAttendanceView();
 			break;
+		case "notes":
+			renderNotesView();
+			break;
 		default:
 			renderPlaceholder(view);
 			break;

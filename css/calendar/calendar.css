@@ -311,6 +311,233 @@
 
 
 /* =========================================================
+   CALENDAR — REMINDERS
+   ========================================================= */
+
+.calendar-reminders-section {
+
+    width: 100%;
+
+    margin-top: 24px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--line);
+
+}
+
+
+/* ---------------------------------------------------------
+   SECTION HEADING
+   --------------------------------------------------------- */
+
+.calendar-reminders-section
+.calendar-section-heading {
+
+    margin-bottom: 12px;
+
+}
+
+
+.calendar-reminders-section
+.view-label {
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+}
+
+
+.calendar-reminders-section
+.calendar-section-description {
+
+    margin-top: 3px;
+
+    color: var(--ink-muted);
+
+    font-size: 11px;
+
+}
+
+
+/* ---------------------------------------------------------
+   REMINDERS LIST
+   --------------------------------------------------------- */
+
+.calendar-reminders-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+/* ---------------------------------------------------------
+   REMINDER CARD
+   --------------------------------------------------------- */
+
+.calendar-reminder-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px 13px;
+
+    background: var(--paper-light);
+
+    border: 1px solid var(--line);
+
+    border-left: 3px solid var(--purple);
+
+    border-radius: var(--radius-small);
+
+    box-shadow: var(--shadow);
+
+}
+
+
+/* ---------------------------------------------------------
+   ICON
+   --------------------------------------------------------- */
+
+.calendar-reminder-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+
+    height: 30px;
+
+    flex-shrink: 0;
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+
+    border-radius: 50%;
+
+    font-size: 14px;
+
+}
+
+
+/* ---------------------------------------------------------
+   DATE
+   --------------------------------------------------------- */
+
+.calendar-reminder-date {
+
+    min-width: 82px;
+
+    padding-right: 10px;
+
+    border-right: 1px solid var(--line);
+
+}
+
+
+.calendar-reminder-date-day {
+
+    color: var(--ink);
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.calendar-reminder-time {
+
+    margin-top: 3px;
+
+    color: var(--purple);
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+/* ---------------------------------------------------------
+   INFO
+   --------------------------------------------------------- */
+
+.calendar-reminder-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.calendar-reminder-title {
+
+    color: var(--ink);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+}
+
+
+.calendar-reminder-description {
+
+    margin-top: 3px;
+
+    color: var(--ink-soft);
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+   --------------------------------------------------------- */
+
+.calendar-reminder-card:hover {
+
+    border-color: var(--purple);
+
+}
+
+
+/* =========================================================
    RESPONSIVE
    ========================================================= */
 

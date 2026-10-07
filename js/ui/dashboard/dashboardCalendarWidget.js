@@ -32,6 +32,17 @@ function renderDashboardCalendarWidget() {
                 academicYear.id
             );
 
+    const reminders =
+        NoteManager
+            .getByAcademicYear(
+                academicYear.id
+            )
+            .filter(note =>
+                note.type === "reminder" &&
+                note.notify === true &&
+                note.notifyAt
+            );
+
 
     const year =
         dashboardCalendarDate.getFullYear();
@@ -49,16 +60,45 @@ function renderDashboardCalendarWidget() {
         ).toUpperCase();
 
 
-    const upcomingEvents =
-        events
-            .filter(event =>
-                event.date >= getTodayISODate()
-            )
-            .sort(
-                (a, b) =>
-                    a.date.localeCompare(b.date)
-            )
-            .slice(0, 5);
+    const upcomingItems = [
+
+        ...events.map(event => ({
+            ...event,
+            itemType: "event",
+            sortDate: event.date,
+            sortTime: "00:00"
+        })),
+
+        ...reminders.map(note => ({
+            ...note,
+            itemType: "reminder",
+            sortDate:
+                note.notifyAt.slice(0, 10),
+            sortTime:
+                note.notifyAt.slice(11, 16)
+        }))
+
+    ]
+        .filter(item =>
+            item.sortDate >= getTodayISODate()
+        )
+        .sort((a, b) => {
+
+            const dateCompare =
+                a.sortDate.localeCompare(
+                    b.sortDate
+                );
+
+            if (dateCompare !== 0) {
+                return dateCompare;
+            }
+
+            return a.sortTime.localeCompare(
+                b.sortTime
+            );
+
+        })
+        .slice(0, 5);
 
 
 return `
@@ -93,7 +133,8 @@ return `
                     ${renderDashboardMiniCalendar(
                         year,
                         month,
-                        events
+                        events,
+                        reminders
                     )}
 
                 </div>
@@ -106,9 +147,9 @@ return `
                     </div>
 
                     ${
-                        upcomingEvents.length
+                        upcomingItems.length
                             ? renderDashboardUpcomingEvents(
-                                upcomingEvents
+                                upcomingItems
                             )
                             : `
                                 <div class="dashboard-calendar-empty">
@@ -146,7 +187,8 @@ return `
 function renderDashboardMiniCalendar(
     year,
     month,
-    events
+    events,
+    reminders
 ) {
 
     const firstDay =
@@ -240,6 +282,17 @@ function renderDashboardMiniCalendar(
             );
 
 
+        const dayReminders =
+            reminders.filter(
+                note =>
+                    note.notifyAt &&
+                    note.notifyAt.slice(
+                        0,
+                        10
+                    ) === date
+            );
+
+
         const isToday =
             date === today;
 
@@ -250,7 +303,12 @@ function renderDashboardMiniCalendar(
                 class="
                     dashboard-calendar-day
                     ${isToday ? "today" : ""}
-                    ${dayEvents.length ? "has-events" : ""}
+                    ${
+                        dayEvents.length ||
+                        dayReminders.length
+                            ? "has-events"
+                            : ""
+                    }
                 "
                 title="${
                     dayEvents.length
@@ -306,83 +364,80 @@ function renderDashboardMiniCalendar(
 // UPCOMING EVENTS
 // ---------------------------------------------------------
 
-function renderDashboardUpcomingEvents(
-    events
-) {
+function renderDashboardUpcomingEvents(items) {
 
-    return `
+	return `
+		<div class="dashboard-upcoming-events">
 
-        <div class="dashboard-upcoming-events">
+			${
+				items.map(item => {
 
-            ${
-                events.map(event => {
+					const date =
+						new Date(
+							`${item.sortDate}T00:00:00`
+						);
 
-                    const date =
-                        new Date(
-                            `${event.date}T00:00:00`
-                        );
+					const day =
+						date.getDate();
 
+					const month =
+						date.toLocaleDateString(
+							"en-GB",
+							{
+								month: "short"
+							}
+						)
+						.toUpperCase();
 
-                    const day =
-                        date.getDate();
+					return `
+                        <div class="dashboard-upcoming-event ${
+                            item.itemType === "reminder"
+                                ? "is-reminder"
+                                : "is-event"
+                        }">
 
+							<div class="dashboard-upcoming-date">
+								<strong>${day}</strong>
+								<span>${month}</span>
+							</div>
 
-                    const month =
-                        date.toLocaleDateString(
-                            "en-GB",
-                            {
-                                month: "short"
-                            }
-                        ).toUpperCase();
+							<div class="dashboard-upcoming-info">
 
+								<div class="dashboard-upcoming-title">
+									${escapeHTML(
+										item.title ||
+										"Untitled event"
+									)}
+								</div>
 
-                    return `
+								<div class="dashboard-upcoming-type">
 
-                        <div class="dashboard-upcoming-event">
+                                    ${
+                                        item.itemType === "reminder"
+                                            ? `Reminder · ${escapeHTML(
+                                                item.sortTime
+                                            )}`
+                                            : escapeHTML(
+                                                formatCalendarEventType(
+                                                    item.type
+                                                )
+                                            )
+                                    }
 
-                            <div class="dashboard-upcoming-date">
+								</div>
 
-                                <strong>
-                                    ${day}
-                                </strong>
+							</div>
 
-                                <span>
-                                    ${month}
-                                </span>
+						</div>
+					`;
 
-                            </div>
+				}).join("")
+			}
 
-
-                            <div class="dashboard-upcoming-info">
-
-                                <div class="dashboard-upcoming-title">
-                                    ${escapeHTML(
-                                        event.title ||
-                                        "Untitled event"
-                                    )}
-                                </div>
-
-                                <div class="dashboard-upcoming-type">
-                                    ${escapeHTML(
-                                        formatCalendarEventType(
-                                            event.type
-                                        )
-                                    )}
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }).join("")
-            }
-
-        </div>
-
-    `;
+		</div>
+	`;
 }
+
 
 
 // ---------------------------------------------------------

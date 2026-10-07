@@ -380,14 +380,23 @@ function renderCoursePlanLesson(
             .length > 0;
 
 
+    const statusClass =
+        lesson.status === "done"
+            ? "course-plan-slot-done"
+            : lesson.status === "cancelled"
+                ? "course-plan-slot-cancelled"
+                : "course-plan-slot-planned";
+
+
     return `
 
         <button
             type="button"
             class="
                 course-plan-slot
-                course-plan-slot-planned
+                ${statusClass}
             "
+            style="--class-color: ${classItem.color || "var(--purple-light)"};"
             data-lesson-id="${lesson.id}"
             onclick="openEditLessonModal(
                 '${lesson.id}'
@@ -430,7 +439,7 @@ function renderCoursePlanLesson(
                             EVALUABLE
 
                         </span>
-                      `
+                    `
                     : ""
             }
 
@@ -487,25 +496,6 @@ function renderCoursePlan() {
 	container.innerHTML = `
 
 		<div class="planner-view">
-
-			<div class="view-toolbar">
-
-				<div>
-
-					<div class="view-label">
-						ACADEMIC YEAR
-					</div>
-
-					<div class="academic-year-name">
-						${escapeHTML(
-							academicYear.name
-						)}
-					</div>
-
-				</div>
-
-			</div>
-
 
 			<div class="planner-tabs">
 
